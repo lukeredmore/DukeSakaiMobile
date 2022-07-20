@@ -11,7 +11,7 @@ import SwiftUI
 struct DukeSakaiApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootNavigationView()
         }
     }
 }

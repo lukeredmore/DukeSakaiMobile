@@ -7,16 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		261CA71B2887A05400C7C09B /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA71A2887A05400C7C09B /* ShareSheet.swift */; };
+		261CA71C2887A05400C7C09B /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA71A2887A05400C7C09B /* ShareSheet.swift */; };
+		261CA71E2887AA1C00C7C09B /* CustomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA71D2887AA1C00C7C09B /* CustomSheetView.swift */; };
+		261CA71F2887AA1C00C7C09B /* CustomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA71D2887AA1C00C7C09B /* CustomSheetView.swift */; };
 		26CF4AE7288646580017C703 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AE6288646580017C703 /* Tests_iOS.swift */; };
 		26CF4AE9288646580017C703 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AE8288646580017C703 /* Tests_iOSLaunchTests.swift */; };
 		26CF4AF3288646590017C703 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AF2288646590017C703 /* Tests_macOS.swift */; };
 		26CF4AF5288646590017C703 /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AF4288646590017C703 /* Tests_macOSLaunchTests.swift */; };
 		26CF4AF6288646590017C703 /* DukeSakaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4ACE288646570017C703 /* DukeSakaiApp.swift */; };
 		26CF4AF7288646590017C703 /* DukeSakaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4ACE288646570017C703 /* DukeSakaiApp.swift */; };
-		26CF4AF8288646590017C703 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4ACF288646570017C703 /* ContentView.swift */; };
-		26CF4AF9288646590017C703 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4ACF288646570017C703 /* ContentView.swift */; };
+		26CF4AF8288646590017C703 /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4ACF288646570017C703 /* RootNavigationView.swift */; };
+		26CF4AF9288646590017C703 /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4ACF288646570017C703 /* RootNavigationView.swift */; };
 		26CF4AFA288646590017C703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CF4AD0288646580017C703 /* Assets.xcassets */; };
 		26CF4AFB288646590017C703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CF4AD0288646580017C703 /* Assets.xcassets */; };
+		26CF4B0B288646FA0017C703 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B0A288646FA0017C703 /* LoginView.swift */; };
+		26CF4B0C288646FA0017C703 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B0A288646FA0017C703 /* LoginView.swift */; };
+		26CF4B0E288647D10017C703 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B0D288647D10017C703 /* HomeView.swift */; };
+		26CF4B0F288647D10017C703 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B0D288647D10017C703 /* HomeView.swift */; };
+		26CF4B11288649500017C703 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B10288649500017C703 /* LoginViewController.swift */; };
+		26CF4B12288649500017C703 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B10288649500017C703 /* LoginViewController.swift */; };
+		26CF4B14288649970017C703 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B13288649970017C703 /* Utils.swift */; };
+		26CF4B15288649970017C703 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B13288649970017C703 /* Utils.swift */; };
+		26CF4B1728864A630017C703 /* LoginVCWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B1628864A630017C703 /* LoginVCWrapper.swift */; };
+		26CF4B1828864A630017C703 /* LoginVCWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B1628864A630017C703 /* LoginVCWrapper.swift */; };
+		26CF4B1E288654D50017C703 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B1D288654D50017C703 /* Course.swift */; };
+		26CF4B1F288654D50017C703 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B1D288654D50017C703 /* Course.swift */; };
+		26CF4B21288667390017C703 /* HamburgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B20288667390017C703 /* HamburgerView.swift */; };
+		26CF4B22288667390017C703 /* HamburgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B20288667390017C703 /* HamburgerView.swift */; };
+		26CF4B24288668320017C703 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B23288668320017C703 /* HomeTabView.swift */; };
+		26CF4B25288668320017C703 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B23288668320017C703 /* HomeTabView.swift */; };
+		26CF4B282887236C0017C703 /* ResourcesNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B272887236C0017C703 /* ResourcesNavigationView.swift */; };
+		26CF4B292887236C0017C703 /* ResourcesNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B272887236C0017C703 /* ResourcesNavigationView.swift */; };
+		26CF4B2B288725210017C703 /* ResourcesRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B2A288725210017C703 /* ResourcesRetriever.swift */; };
+		26CF4B2C288725210017C703 /* ResourcesRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B2A288725210017C703 /* ResourcesRetriever.swift */; };
+		26CF4B2E2887343A0017C703 /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B2D2887343A0017C703 /* PDFViewer.swift */; };
+		26CF4B2F2887343A0017C703 /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B2D2887343A0017C703 /* PDFViewer.swift */; };
+		26CF4B31288736020017C703 /* ResourceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B30288736020017C703 /* ResourceDetailView.swift */; };
+		26CF4B32288736020017C703 /* ResourceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B30288736020017C703 /* ResourceDetailView.swift */; };
+		26CF4B3428873B240017C703 /* DocumentRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B3328873B240017C703 /* DocumentRetriever.swift */; };
+		26CF4B3528873B240017C703 /* DocumentRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B3328873B240017C703 /* DocumentRetriever.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +67,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		261CA71A2887A05400C7C09B /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		261CA71D2887AA1C00C7C09B /* CustomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetView.swift; sourceTree = "<group>"; };
 		26CF4ACE288646570017C703 /* DukeSakaiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeSakaiApp.swift; sourceTree = "<group>"; };
-		26CF4ACF288646570017C703 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		26CF4ACF288646570017C703 /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
 		26CF4AD0288646580017C703 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26CF4AD5288646580017C703 /* DukeSakai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeSakai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CF4ADB288646580017C703 /* DukeSakai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeSakai.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +81,19 @@
 		26CF4AEE288646590017C703 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CF4AF2288646590017C703 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		26CF4AF4288646590017C703 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		26CF4B0A288646FA0017C703 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		26CF4B0D288647D10017C703 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		26CF4B10288649500017C703 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		26CF4B13288649970017C703 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		26CF4B1628864A630017C703 /* LoginVCWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCWrapper.swift; sourceTree = "<group>"; };
+		26CF4B1D288654D50017C703 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		26CF4B20288667390017C703 /* HamburgerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerView.swift; sourceTree = "<group>"; };
+		26CF4B23288668320017C703 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
+		26CF4B272887236C0017C703 /* ResourcesNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesNavigationView.swift; sourceTree = "<group>"; };
+		26CF4B2A288725210017C703 /* ResourcesRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesRetriever.swift; sourceTree = "<group>"; };
+		26CF4B2D2887343A0017C703 /* PDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewer.swift; sourceTree = "<group>"; };
+		26CF4B30288736020017C703 /* ResourceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceDetailView.swift; sourceTree = "<group>"; };
+		26CF4B3328873B240017C703 /* DocumentRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentRetriever.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +128,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		261CA7202887B32800C7C09B /* LongUglyUtils */ = {
+			isa = PBXGroup;
+			children = (
+				261CA71D2887AA1C00C7C09B /* CustomSheetView.swift */,
+			);
+			path = LongUglyUtils;
+			sourceTree = "<group>";
+		};
 		26CF4AC8288646560017C703 = {
 			isa = PBXGroup;
 			children = (
@@ -98,7 +151,17 @@
 			isa = PBXGroup;
 			children = (
 				26CF4ACE288646570017C703 /* DukeSakaiApp.swift */,
-				26CF4ACF288646570017C703 /* ContentView.swift */,
+				26CF4ACF288646570017C703 /* RootNavigationView.swift */,
+				26CF4B0D288647D10017C703 /* HomeView.swift */,
+				26CF4B26288723590017C703 /* Resources */,
+				26CF4B23288668320017C703 /* HomeTabView.swift */,
+				26CF4B20288667390017C703 /* HamburgerView.swift */,
+				26CF4B0A288646FA0017C703 /* LoginView.swift */,
+				26CF4B10288649500017C703 /* LoginViewController.swift */,
+				26CF4B1628864A630017C703 /* LoginVCWrapper.swift */,
+				26CF4B1C288654C30017C703 /* Spec */,
+				26CF4B13288649970017C703 /* Utils.swift */,
+				261CA7202887B32800C7C09B /* LongUglyUtils */,
 				26CF4AD0288646580017C703 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -139,6 +202,27 @@
 				26CF4AF4288646590017C703 /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		26CF4B1C288654C30017C703 /* Spec */ = {
+			isa = PBXGroup;
+			children = (
+				26CF4B1D288654D50017C703 /* Course.swift */,
+			);
+			path = Spec;
+			sourceTree = "<group>";
+		};
+		26CF4B26288723590017C703 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				26CF4B272887236C0017C703 /* ResourcesNavigationView.swift */,
+				26CF4B2A288725210017C703 /* ResourcesRetriever.swift */,
+				26CF4B2D2887343A0017C703 /* PDFViewer.swift */,
+				26CF4B30288736020017C703 /* ResourceDetailView.swift */,
+				26CF4B3328873B240017C703 /* DocumentRetriever.swift */,
+				261CA71A2887A05400C7C09B /* ShareSheet.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,8 +383,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26CF4AF8288646590017C703 /* ContentView.swift in Sources */,
+				26CF4B1E288654D50017C703 /* Course.swift in Sources */,
+				26CF4B0B288646FA0017C703 /* LoginView.swift in Sources */,
+				26CF4B2E2887343A0017C703 /* PDFViewer.swift in Sources */,
+				26CF4B0E288647D10017C703 /* HomeView.swift in Sources */,
+				26CF4B282887236C0017C703 /* ResourcesNavigationView.swift in Sources */,
+				26CF4B31288736020017C703 /* ResourceDetailView.swift in Sources */,
+				26CF4AF8288646590017C703 /* RootNavigationView.swift in Sources */,
+				261CA71B2887A05400C7C09B /* ShareSheet.swift in Sources */,
+				26CF4B11288649500017C703 /* LoginViewController.swift in Sources */,
 				26CF4AF6288646590017C703 /* DukeSakaiApp.swift in Sources */,
+				26CF4B14288649970017C703 /* Utils.swift in Sources */,
+				26CF4B3428873B240017C703 /* DocumentRetriever.swift in Sources */,
+				26CF4B24288668320017C703 /* HomeTabView.swift in Sources */,
+				26CF4B1728864A630017C703 /* LoginVCWrapper.swift in Sources */,
+				26CF4B2B288725210017C703 /* ResourcesRetriever.swift in Sources */,
+				26CF4B21288667390017C703 /* HamburgerView.swift in Sources */,
+				261CA71E2887AA1C00C7C09B /* CustomSheetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,8 +407,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26CF4AF9288646590017C703 /* ContentView.swift in Sources */,
+				26CF4B1F288654D50017C703 /* Course.swift in Sources */,
+				26CF4B0C288646FA0017C703 /* LoginView.swift in Sources */,
+				26CF4B2F2887343A0017C703 /* PDFViewer.swift in Sources */,
+				26CF4B0F288647D10017C703 /* HomeView.swift in Sources */,
+				26CF4B292887236C0017C703 /* ResourcesNavigationView.swift in Sources */,
+				26CF4B32288736020017C703 /* ResourceDetailView.swift in Sources */,
+				26CF4AF9288646590017C703 /* RootNavigationView.swift in Sources */,
+				261CA71C2887A05400C7C09B /* ShareSheet.swift in Sources */,
+				26CF4B12288649500017C703 /* LoginViewController.swift in Sources */,
 				26CF4AF7288646590017C703 /* DukeSakaiApp.swift in Sources */,
+				26CF4B15288649970017C703 /* Utils.swift in Sources */,
+				26CF4B3528873B240017C703 /* DocumentRetriever.swift in Sources */,
+				26CF4B25288668320017C703 /* HomeTabView.swift in Sources */,
+				26CF4B1828864A630017C703 /* LoginVCWrapper.swift in Sources */,
+				26CF4B2C288725210017C703 /* ResourcesRetriever.swift in Sources */,
+				26CF4B22288667390017C703 /* HamburgerView.swift in Sources */,
+				261CA71F2887AA1C00C7C09B /* CustomSheetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
