@@ -8,50 +8,94 @@
 import SwiftUI
 
 struct HomeTabView: View {
-    @Binding var showMenu: Bool
+    @Binding var allCollections: [CourseCollection]
+    
+    init(allCollections: Binding<[CourseCollection]>) {
+        _allCollections = allCollections
+        
+        selectedCollection = CollectionPickerView.prelimFavsOrDefaultSelectedCourses(allCollections: allCollections.wrappedValue)
+    }
+    
     @State private var selection = 3
-    var course: Course
+    @State private var selectedCollection: CourseCollection
+    @State private var collectionPickerShown = false
+    
+    private var courseNames: String {
+        selectedCollection.courses.map { course in
+            return course.name
+        }.joined(separator: ", ") ?? "nil"
+    }
     
     var body: some View {
+        NavigationView {
         TabView(selection: $selection) {
-            Text("This is your gradebook for \(course.name)")
+            Text("This is your gradebook for \(courseNames)")
                 .tabItem {
                     Image(systemName: "text.book.closed")
                     Text("Grades")
                 }
                 .tag(1)
-            Text("These are assignments for \(course.name)")
+            Text("These are assignments for \(courseNames)")
                 .tabItem {
                     Image(systemName: "doc.text")
                     Text("Assignments")
                 }
                 .tag(2)
-            Text("These are announcements for \(course.name)")
+//            Text("These are Home for \(courseNames)")
+//                .tabItem {
+//                    Image(systemName: "house")
+//                    Text("Home")
+//                }
+//                .tag(3)
+            Text("Annoucements")
                 .tabItem {
-                    Image(systemName: "bell")
-                    Text("Announcements")
+                    Image(systemName: "megaphone")
+                    Text("Alerts")
                 }
                 .tag(3)
-            ResourcesNavigationView(siteId: course.siteId)
+            ResourcesNavigationView(collection: selectedCollection)
                 .tabItem {
                     Image(systemName: "folder")
                     Text("Resources")
                 }
                 .tag(4)
-            Text("More for \(course.name)")
-                .tabItem {
-                    Image(systemName: "ellipsis")
-                    Text("More")
-                }
-                .tag(5)
         }
-        
-        
+        .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Button {
+                    collectionPickerShown.toggle()
+                } label: {
+                    Text(selectedCollection.collectionName == "Favorites" ? "Favorite Courses" : selectedCollection.collectionName)
+                            .font(.headline)
+                            .fixedSize(horizontal: true, vertical: false)
+                            .offset(x: 4.0, y: 0.0)
+                            .foregroundColor(Color.primary)
+                        
+                        Image(systemName: "chevron.down")
+                            .scaleEffect(0.9)
+                            .offset(x: -3.0, y: 0.0)
+                            .rotationEffect(.degrees(collectionPickerShown ? -180 : 0), anchor: UnitPoint(x: 0.4, y: 0.5))
+                            .animation(.spring(), value: collectionPickerShown)
+                            .foregroundColor(Color.primary)
+                    }
+                
+            }
+        }
+        }.popupMenu(isPresented: $collectionPickerShown) {
+            CollectionPickerView(collections: allCollections, selectedCollection: $selectedCollection)
+        }.onChange(of: selectedCollection) { _ in
+            collectionPickerShown = false
+        }
     }
 }
 
 struct HomeTabView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeTabView(showMenu: .constant(true), course: Course(name: "Course 1", siteId: "id", term: "da", instructor: "Ad", lastModified: 123))
+        NavigationView  {
+            HomeTabView(allCollections:
+                    .constant(CourseCollection.previewDefault()))
+        }
     }
 }

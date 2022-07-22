@@ -126,19 +126,18 @@ class LoginViewController: UIViewController, WKNavigationDelegate, WKUIDelegate 
                 let statusCode = httpResponse?.statusCode
                 
                 if (statusCode == 200) {
-                    print("go courses")
                     do{
                         let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [String: AnyObject]
-                        print(json.keys)
+                        print(json.keys.sorted())
                         var name:String = "name"
                         
                         var instructor:String = "instructor"
                         var lastModified:Int64 = 0
                         var term:String = "Project"
+                        var created:Int64 = 0
                         if let title = json["title"] as? String {
                             name = title
                         }
-                        print(name)
                         if let type = json["type"] as? String {
                             if (type != "project") {
                                 if let props = json["props"]  {
@@ -154,11 +153,15 @@ class LoginViewController: UIViewController, WKNavigationDelegate, WKUIDelegate 
                         if let mylastModified = json["lastModified"] as? Int64{
                             lastModified = mylastModified
                         }
+                        if let myCreated = json["createdDate"] as? Int64{
+                            created = myCreated
+                        }
                         courses.append(Course(name: name,
                                               siteId: site,
                                               term: term,
                                               instructor: instructor,
-                                              lastModified: lastModified));
+                                              lastModified: lastModified,
+                                              created: created));
                     }catch {
                         print("Error with Json: \(error)")
                     }

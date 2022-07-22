@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct ResourcesNavigationView: View {
-    var siteId: String
+    var collection : CourseCollection
     @State private var resources: [Resource]? = nil
-    
     
     @ViewBuilder
     var decider : some View {
         if resources == nil {
             ProgressView()
                 .onAppear {
-                    ResourceRetriever.getResources(forSiteId: siteId) { res in
+                    ResourceRetriever.getResources(for: collection) { res in
                         resources = res ?? []
                     }
                 }
@@ -50,18 +49,12 @@ struct ResourcesNavigationView: View {
     }
     
     var body: some View {
-        decider.onChange(of: siteId) { id in
-            print("id changed to \(id) or \(siteId)")
+        decider.onChange(of: collection) { col in
+            print("col changed to \(col)")
             resources = nil
-            ResourceRetriever.getResources(forSiteId: id) { res in
+            ResourceRetriever.getResources(for: col) { res in
                 resources = res ?? []
             }
         }
-    }
-}
-
-struct ResourcesNavigationView_Previews: PreviewProvider {
-    static var previews: some View {
-        ResourcesNavigationView(siteId: "")
     }
 }

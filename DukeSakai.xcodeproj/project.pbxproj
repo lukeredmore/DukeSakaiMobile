@@ -11,6 +11,26 @@
 		261CA71C2887A05400C7C09B /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA71A2887A05400C7C09B /* ShareSheet.swift */; };
 		261CA71E2887AA1C00C7C09B /* CustomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA71D2887AA1C00C7C09B /* CustomSheetView.swift */; };
 		261CA71F2887AA1C00C7C09B /* CustomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA71D2887AA1C00C7C09B /* CustomSheetView.swift */; };
+		261CA72728885E5100C7C09B /* AuthContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72628885E5100C7C09B /* AuthContentView.swift */; };
+		261CA72828885E5100C7C09B /* AuthContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72628885E5100C7C09B /* AuthContentView.swift */; };
+		261CA72A28885E9300C7C09B /* DeeplinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72928885E9300C7C09B /* DeeplinkManager.swift */; };
+		261CA72B28885E9300C7C09B /* DeeplinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72928885E9300C7C09B /* DeeplinkManager.swift */; };
+		261CA72D288865B000C7C09B /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72C288865B000C7C09B /* Authenticator.swift */; };
+		261CA72E288865B000C7C09B /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72C288865B000C7C09B /* Authenticator.swift */; };
+		261CA7302888B24800C7C09B /* PopupMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72F2888B24800C7C09B /* PopupMenu.swift */; };
+		261CA7312888B24800C7C09B /* PopupMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72F2888B24800C7C09B /* PopupMenu.swift */; };
+		261CA7332888B2C300C7C09B /* CollectionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA7322888B2C300C7C09B /* CollectionPickerView.swift */; };
+		261CA7342888B2C400C7C09B /* CollectionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA7322888B2C300C7C09B /* CollectionPickerView.swift */; };
+		261CA7362889057000C7C09B /* FineBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA7352889057000C7C09B /* FineBorder.swift */; };
+		261CA7372889057000C7C09B /* FineBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA7352889057000C7C09B /* FineBorder.swift */; };
+		261CA73C28892A9200C7C09B /* OrientationWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA73B28892A9200C7C09B /* OrientationWrapper.swift */; };
+		261CA73D28892A9200C7C09B /* OrientationWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA73B28892A9200C7C09B /* OrientationWrapper.swift */; };
+		261CA742288B0F0300C7C09B /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA741288B0F0300C7C09B /* Networking.swift */; };
+		261CA743288B0F0300C7C09B /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA741288B0F0300C7C09B /* Networking.swift */; };
+		2655D8FC288B59A80023C210 /* AnnouncementsNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655D8FB288B59A80023C210 /* AnnouncementsNavigationView.swift */; };
+		2655D8FD288B59A80023C210 /* AnnouncementsNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655D8FB288B59A80023C210 /* AnnouncementsNavigationView.swift */; };
+		2655D900288B59CD0023C210 /* AnnouncementsRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655D8FF288B59CD0023C210 /* AnnouncementsRetriever.swift */; };
+		2655D901288B59CD0023C210 /* AnnouncementsRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655D8FF288B59CD0023C210 /* AnnouncementsRetriever.swift */; };
 		26CF4AE7288646580017C703 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AE6288646580017C703 /* Tests_iOS.swift */; };
 		26CF4AE9288646580017C703 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AE8288646580017C703 /* Tests_iOSLaunchTests.swift */; };
 		26CF4AF3288646590017C703 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AF2288646590017C703 /* Tests_macOS.swift */; };
@@ -23,18 +43,14 @@
 		26CF4AFB288646590017C703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CF4AD0288646580017C703 /* Assets.xcassets */; };
 		26CF4B0B288646FA0017C703 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B0A288646FA0017C703 /* LoginView.swift */; };
 		26CF4B0C288646FA0017C703 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B0A288646FA0017C703 /* LoginView.swift */; };
-		26CF4B0E288647D10017C703 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B0D288647D10017C703 /* HomeView.swift */; };
-		26CF4B0F288647D10017C703 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B0D288647D10017C703 /* HomeView.swift */; };
 		26CF4B11288649500017C703 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B10288649500017C703 /* LoginViewController.swift */; };
 		26CF4B12288649500017C703 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B10288649500017C703 /* LoginViewController.swift */; };
-		26CF4B14288649970017C703 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B13288649970017C703 /* Utils.swift */; };
-		26CF4B15288649970017C703 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B13288649970017C703 /* Utils.swift */; };
+		26CF4B14288649970017C703 /* ExistingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B13288649970017C703 /* ExistingUtils.swift */; };
+		26CF4B15288649970017C703 /* ExistingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B13288649970017C703 /* ExistingUtils.swift */; };
 		26CF4B1728864A630017C703 /* LoginVCWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B1628864A630017C703 /* LoginVCWrapper.swift */; };
 		26CF4B1828864A630017C703 /* LoginVCWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B1628864A630017C703 /* LoginVCWrapper.swift */; };
 		26CF4B1E288654D50017C703 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B1D288654D50017C703 /* Course.swift */; };
 		26CF4B1F288654D50017C703 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B1D288654D50017C703 /* Course.swift */; };
-		26CF4B21288667390017C703 /* HamburgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B20288667390017C703 /* HamburgerView.swift */; };
-		26CF4B22288667390017C703 /* HamburgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B20288667390017C703 /* HamburgerView.swift */; };
 		26CF4B24288668320017C703 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B23288668320017C703 /* HomeTabView.swift */; };
 		26CF4B25288668320017C703 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B23288668320017C703 /* HomeTabView.swift */; };
 		26CF4B282887236C0017C703 /* ResourcesNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B272887236C0017C703 /* ResourcesNavigationView.swift */; };
@@ -69,6 +85,17 @@
 /* Begin PBXFileReference section */
 		261CA71A2887A05400C7C09B /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		261CA71D2887AA1C00C7C09B /* CustomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetView.swift; sourceTree = "<group>"; };
+		261CA7252888565400C7C09B /* DukeSakai--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DukeSakai--iOS--Info.plist"; sourceTree = "<group>"; };
+		261CA72628885E5100C7C09B /* AuthContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContentView.swift; sourceTree = "<group>"; };
+		261CA72928885E9300C7C09B /* DeeplinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkManager.swift; sourceTree = "<group>"; };
+		261CA72C288865B000C7C09B /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
+		261CA72F2888B24800C7C09B /* PopupMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupMenu.swift; sourceTree = "<group>"; };
+		261CA7322888B2C300C7C09B /* CollectionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPickerView.swift; sourceTree = "<group>"; };
+		261CA7352889057000C7C09B /* FineBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FineBorder.swift; sourceTree = "<group>"; };
+		261CA73B28892A9200C7C09B /* OrientationWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationWrapper.swift; sourceTree = "<group>"; };
+		261CA741288B0F0300C7C09B /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		2655D8FB288B59A80023C210 /* AnnouncementsNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsNavigationView.swift; sourceTree = "<group>"; };
+		2655D8FF288B59CD0023C210 /* AnnouncementsRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsRetriever.swift; sourceTree = "<group>"; };
 		26CF4ACE288646570017C703 /* DukeSakaiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeSakaiApp.swift; sourceTree = "<group>"; };
 		26CF4ACF288646570017C703 /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
 		26CF4AD0288646580017C703 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,12 +109,10 @@
 		26CF4AF2288646590017C703 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		26CF4AF4288646590017C703 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		26CF4B0A288646FA0017C703 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		26CF4B0D288647D10017C703 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		26CF4B10288649500017C703 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		26CF4B13288649970017C703 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		26CF4B13288649970017C703 /* ExistingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingUtils.swift; sourceTree = "<group>"; };
 		26CF4B1628864A630017C703 /* LoginVCWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCWrapper.swift; sourceTree = "<group>"; };
 		26CF4B1D288654D50017C703 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
-		26CF4B20288667390017C703 /* HamburgerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerView.swift; sourceTree = "<group>"; };
 		26CF4B23288668320017C703 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		26CF4B272887236C0017C703 /* ResourcesNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesNavigationView.swift; sourceTree = "<group>"; };
 		26CF4B2A288725210017C703 /* ResourcesRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesRetriever.swift; sourceTree = "<group>"; };
@@ -128,17 +153,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		261CA7202887B32800C7C09B /* LongUglyUtils */ = {
+		261CA7202887B32800C7C09B /* ReuseableUIElements */ = {
 			isa = PBXGroup;
 			children = (
+				261CA72F2888B24800C7C09B /* PopupMenu.swift */,
 				261CA71D2887AA1C00C7C09B /* CustomSheetView.swift */,
+				261CA7352889057000C7C09B /* FineBorder.swift */,
+				261CA73B28892A9200C7C09B /* OrientationWrapper.swift */,
 			);
-			path = LongUglyUtils;
+			path = ReuseableUIElements;
+			sourceTree = "<group>";
+		};
+		261CA7242888554500C7C09B /* OAuth Login */ = {
+			isa = PBXGroup;
+			children = (
+				261CA72628885E5100C7C09B /* AuthContentView.swift */,
+				261CA72928885E9300C7C09B /* DeeplinkManager.swift */,
+				261CA72C288865B000C7C09B /* Authenticator.swift */,
+			);
+			path = "OAuth Login";
+			sourceTree = "<group>";
+		};
+		261CA73E288B0E5A00C7C09B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				261CA741288B0F0300C7C09B /* Networking.swift */,
+				26CF4B13288649970017C703 /* ExistingUtils.swift */,
+				261CA7202887B32800C7C09B /* ReuseableUIElements */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		261CA73F288B0E9A00C7C09B /* Existing Login */ = {
+			isa = PBXGroup;
+			children = (
+				26CF4B0A288646FA0017C703 /* LoginView.swift */,
+				26CF4B10288649500017C703 /* LoginViewController.swift */,
+				26CF4B1628864A630017C703 /* LoginVCWrapper.swift */,
+			);
+			path = "Existing Login";
+			sourceTree = "<group>";
+		};
+		2655D8FE288B59B00023C210 /* Announcements */ = {
+			isa = PBXGroup;
+			children = (
+				2655D8FB288B59A80023C210 /* AnnouncementsNavigationView.swift */,
+				2655D8FF288B59CD0023C210 /* AnnouncementsRetriever.swift */,
+			);
+			path = Announcements;
 			sourceTree = "<group>";
 		};
 		26CF4AC8288646560017C703 = {
 			isa = PBXGroup;
 			children = (
+				261CA7252888565400C7C09B /* DukeSakai--iOS--Info.plist */,
 				26CF4ACD288646570017C703 /* Shared */,
 				26CF4ADC288646580017C703 /* macOS */,
 				26CF4AE5288646580017C703 /* Tests iOS */,
@@ -152,16 +220,14 @@
 			children = (
 				26CF4ACE288646570017C703 /* DukeSakaiApp.swift */,
 				26CF4ACF288646570017C703 /* RootNavigationView.swift */,
-				26CF4B0D288647D10017C703 /* HomeView.swift */,
-				26CF4B26288723590017C703 /* Resources */,
 				26CF4B23288668320017C703 /* HomeTabView.swift */,
-				26CF4B20288667390017C703 /* HamburgerView.swift */,
-				26CF4B0A288646FA0017C703 /* LoginView.swift */,
-				26CF4B10288649500017C703 /* LoginViewController.swift */,
-				26CF4B1628864A630017C703 /* LoginVCWrapper.swift */,
+				261CA7322888B2C300C7C09B /* CollectionPickerView.swift */,
+				261CA7242888554500C7C09B /* OAuth Login */,
+				261CA73F288B0E9A00C7C09B /* Existing Login */,
+				2655D8FE288B59B00023C210 /* Announcements */,
+				26CF4B26288723590017C703 /* Resources */,
+				261CA73E288B0E5A00C7C09B /* Utils */,
 				26CF4B1C288654C30017C703 /* Spec */,
-				26CF4B13288649970017C703 /* Utils.swift */,
-				261CA7202887B32800C7C09B /* LongUglyUtils */,
 				26CF4AD0288646580017C703 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -386,20 +452,28 @@
 				26CF4B1E288654D50017C703 /* Course.swift in Sources */,
 				26CF4B0B288646FA0017C703 /* LoginView.swift in Sources */,
 				26CF4B2E2887343A0017C703 /* PDFViewer.swift in Sources */,
-				26CF4B0E288647D10017C703 /* HomeView.swift in Sources */,
 				26CF4B282887236C0017C703 /* ResourcesNavigationView.swift in Sources */,
+				261CA72D288865B000C7C09B /* Authenticator.swift in Sources */,
+				261CA7332888B2C300C7C09B /* CollectionPickerView.swift in Sources */,
 				26CF4B31288736020017C703 /* ResourceDetailView.swift in Sources */,
+				261CA742288B0F0300C7C09B /* Networking.swift in Sources */,
+				261CA73C28892A9200C7C09B /* OrientationWrapper.swift in Sources */,
 				26CF4AF8288646590017C703 /* RootNavigationView.swift in Sources */,
+				261CA7302888B24800C7C09B /* PopupMenu.swift in Sources */,
 				261CA71B2887A05400C7C09B /* ShareSheet.swift in Sources */,
 				26CF4B11288649500017C703 /* LoginViewController.swift in Sources */,
 				26CF4AF6288646590017C703 /* DukeSakaiApp.swift in Sources */,
-				26CF4B14288649970017C703 /* Utils.swift in Sources */,
+				26CF4B14288649970017C703 /* ExistingUtils.swift in Sources */,
 				26CF4B3428873B240017C703 /* DocumentRetriever.swift in Sources */,
+				261CA72728885E5100C7C09B /* AuthContentView.swift in Sources */,
 				26CF4B24288668320017C703 /* HomeTabView.swift in Sources */,
 				26CF4B1728864A630017C703 /* LoginVCWrapper.swift in Sources */,
+				2655D900288B59CD0023C210 /* AnnouncementsRetriever.swift in Sources */,
 				26CF4B2B288725210017C703 /* ResourcesRetriever.swift in Sources */,
-				26CF4B21288667390017C703 /* HamburgerView.swift in Sources */,
+				261CA7362889057000C7C09B /* FineBorder.swift in Sources */,
+				261CA72A28885E9300C7C09B /* DeeplinkManager.swift in Sources */,
 				261CA71E2887AA1C00C7C09B /* CustomSheetView.swift in Sources */,
+				2655D8FC288B59A80023C210 /* AnnouncementsNavigationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,20 +484,28 @@
 				26CF4B1F288654D50017C703 /* Course.swift in Sources */,
 				26CF4B0C288646FA0017C703 /* LoginView.swift in Sources */,
 				26CF4B2F2887343A0017C703 /* PDFViewer.swift in Sources */,
-				26CF4B0F288647D10017C703 /* HomeView.swift in Sources */,
 				26CF4B292887236C0017C703 /* ResourcesNavigationView.swift in Sources */,
+				261CA72E288865B000C7C09B /* Authenticator.swift in Sources */,
+				261CA7342888B2C400C7C09B /* CollectionPickerView.swift in Sources */,
 				26CF4B32288736020017C703 /* ResourceDetailView.swift in Sources */,
+				261CA743288B0F0300C7C09B /* Networking.swift in Sources */,
+				261CA73D28892A9200C7C09B /* OrientationWrapper.swift in Sources */,
 				26CF4AF9288646590017C703 /* RootNavigationView.swift in Sources */,
+				261CA7312888B24800C7C09B /* PopupMenu.swift in Sources */,
 				261CA71C2887A05400C7C09B /* ShareSheet.swift in Sources */,
 				26CF4B12288649500017C703 /* LoginViewController.swift in Sources */,
 				26CF4AF7288646590017C703 /* DukeSakaiApp.swift in Sources */,
-				26CF4B15288649970017C703 /* Utils.swift in Sources */,
+				26CF4B15288649970017C703 /* ExistingUtils.swift in Sources */,
 				26CF4B3528873B240017C703 /* DocumentRetriever.swift in Sources */,
+				261CA72828885E5100C7C09B /* AuthContentView.swift in Sources */,
 				26CF4B25288668320017C703 /* HomeTabView.swift in Sources */,
 				26CF4B1828864A630017C703 /* LoginVCWrapper.swift in Sources */,
+				2655D901288B59CD0023C210 /* AnnouncementsRetriever.swift in Sources */,
 				26CF4B2C288725210017C703 /* ResourcesRetriever.swift in Sources */,
-				26CF4B22288667390017C703 /* HamburgerView.swift in Sources */,
+				261CA7372889057000C7C09B /* FineBorder.swift in Sources */,
+				261CA72B28885E9300C7C09B /* DeeplinkManager.swift in Sources */,
 				261CA71F2887AA1C00C7C09B /* CustomSheetView.swift in Sources */,
+				2655D8FD288B59A80023C210 /* AnnouncementsNavigationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +662,7 @@
 				DEVELOPMENT_TEAM = XU8E27A586;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "DukeSakai--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -610,6 +693,7 @@
 				DEVELOPMENT_TEAM = XU8E27A586;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "DukeSakai--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

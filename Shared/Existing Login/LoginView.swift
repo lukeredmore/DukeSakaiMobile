@@ -9,7 +9,10 @@ import SwiftUI
 
 struct LoginView: View {
     @State private var showingLoginVC = true
-    @Binding var courses: [Course]
+    @State private var courses: [Course] = []
+    
+    let completion: ([Course]?) -> Void
+    
     var body: some View {
         Button("Login") {
             showingLoginVC = true
@@ -19,10 +22,11 @@ struct LoginView: View {
         .onChange(of: courses) { cr in
             if cr.isEmpty {
                 print("No courses found, with I could throw")
+                
             } else {
                 showingLoginVC = false
             }
-
+            completion(cr)
         }
     }
 }

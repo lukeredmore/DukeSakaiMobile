@@ -12,6 +12,12 @@ struct DukeSakaiApp: App {
     var body: some Scene {
         WindowGroup {
             RootNavigationView()
+//            AuthContentView()
+//                .onOpenURL { url in
+//                    print(url)
+//                    DeeplinkManager().manage(url: url)
+//
+//                }
         }
     }
 }

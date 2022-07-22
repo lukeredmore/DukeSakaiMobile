@@ -40,50 +40,29 @@ class Resource: Identifiable {
         if pathString.last! == "/" { pathString.removeLast() }
         var pathArray = pathString.split(separator: "/")
         pathArray.removeLast()
-
+        
         return (parent: pathArray.joined(separator: "/"),
                 id: pathString)
     }
 }
 
 class ResourceRetriever {
-    static func getResources(forSiteId siteId: String, completion: @escaping ([Resource]?) -> Void) {
-        let URLinfo = getInitialItems(siteId: siteId, endpoint: "content")
-        let urlRequest = URLinfo.urlRequest
-        let session = URLinfo.session
-        
-        
-        
-        let task = session.dataTask(with: urlRequest as URLRequest) {
-            (data, response, error) -> Void in
-            let httpResponse = response as? HTTPURLResponse
-            if (httpResponse == nil) {
-                completion(nil)
-                return
-            }
+    static func getResources(for collection: CourseCollection, completion: @escaping ([Resource]?) -> Void) {
+        Networking.getJSONArrayAt("content", from: collection.courses, aggregatingBy: "content_collection") { jsonArray in
+            var resources = [Resource]()
             
-            do {
-                if httpResponse?.statusCode == 200,
-                   let fullJson = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as? [String: AnyObject],
-                   let json = fullJson["content_collection"] as? [[String: AnyObject]] {
-                    var resources : [Resource] = []
-                    for resource in json {
-                        guard let numChildren = resource["numChildren"] as? Int,
-                              let type = resource["type"] as? String,
-                              let title = resource["title"] as? String,
-                              let url = resource["url"] as? String else {
-                            print("A RESOURCE WAS NIL!")
-                            continue }
-                        resources.append(Resource((title, numChildren, type, url)))
-                    }
-                    completion(buildHierarchy(resources))
-                }
-            } catch {
-                print("Error with Json: \(error)")
-                completion(nil)
+            for resource in jsonArray {
+                guard let numChildren = resource["numChildren"] as? Int,
+                      let type = resource["type"] as? String,
+                      let title = resource["title"] as? String,
+                      let url = resource["url"] as? String else {
+                    print("A RESOURCE WAS NIL!")
+                    continue }
+                resources.append(Resource((title, numChildren, type, url)))
             }
+            completion(buildHierarchy(resources))
+            
         }
-        task.resume()
     }
     
     private static func buildHierarchy(_ arry: [Resource]) -> [Resource] {
@@ -102,7 +81,7 @@ class ResourceRetriever {
                 children[parent] = [res]
             }
         }
-                
+        
         // function to recursively build the tree
         func findChildren(parent: Resource) {
             let ids = parent.treeIds
