@@ -7,23 +7,7 @@
 
 import SwiftUI
 
-//public extension UIApplication {
-//    func currentUIWindow() -> UIWindow? {
-//        let connectedScenes = UIApplication.shared.connectedScenes
-//            .filter({
-//                $0.activationState == .foregroundActive})
-//            .compactMap({$0 as? UIWindowScene})
-//
-//        let window = connectedScenes.first?
-//            .windows
-//            .first { $0.isKeyWindow }
-//
-//        return window
-//
-//    }
-//}
-
-struct ResourceDetailView: View {
+struct ResourceDetailViewSmall: View {
     @State var downloadLocation : URL? = nil
     @State private var shareSheetPresented = false
     
@@ -36,7 +20,7 @@ struct ResourceDetailView: View {
                 .edgesIgnoringSafeArea([.bottom, .leading, .trailing])
                 
         } else {
-            Text(resource.title)
+            WebView(urlString: resource.url)
         }
     }
     
@@ -79,6 +63,36 @@ struct ResourceDetailView: View {
                 }
                 .disabled(downloadLocation == nil)
             }
+    }
+}
+
+struct ResourceDetailViewLarge: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    let resource: Resource
+    
+    var body: some View {
+        WebView(urlString: resource.url) { presentationMode.wrappedValue.dismiss() }
+            .edgesIgnoringSafeArea([.bottom, .leading, .trailing])
+    }
+}
+
+struct ResourceDetailView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    let resource: Resource
+        
+    @ViewBuilder
+    var body: some View {
+        if resource.type == "text/url", let webUrl = resource.webUrl {
+            SafariView(url: URL(string: webUrl)!) { presentationMode.wrappedValue.dismiss() }
+                .navigationBarHidden(true)
+                .navigationTitle("")
+                .edgesIgnoringSafeArea([.bottom, .leading, .trailing, .top])
+        } else if resource.type.contains("pdf") || resource.type.contains("text") || resource.type.contains("officedocument") || resource.type.contains("image")  {
+            ResourceDetailViewSmall(resource: resource)
+        } else {
+            ResourceDetailViewLarge(resource: resource)
+        }
     }
 }
 

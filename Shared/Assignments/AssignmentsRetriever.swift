@@ -18,20 +18,25 @@ struct Assignment {
 
 class AssignmentsRetriever {
     static func getAssignments(for col: CourseCollection) async throws -> [Assignment] {
-        await withCheckedContinuation { continuation in
-            getAssignments(for: col) { assgn in
-                    continuation.resume(returning: assgn ?? [])
-               
-            }
-        }
+        
+        try! await Task.sleep(nanoseconds: 1_000_000_000)
+        return [Assignment(title: "test", status: "a", scale: "", instructions: "d", dueAt: Date())]
+        
+//        await withCheckedContinuation { continuation in
+//            getAssignments(for: col) { assgn in
+//                    continuation.resume(returning: assgn ?? [])
+//
+//            }
+//        }
         
     }
     
     private static func getAssignments(for col: CourseCollection, completion: @escaping ([Assignment]?) -> Void) {
+        print("Loading assignments")
         Networking.getJSONArrayAt("assignment",
                                   from: col.courses,
                                   aggregatingBy: "assignment_collection") { jsonArray in
-            print("Loading assignments")
+            print("got new json array")
             var assignmentItems = [Assignment]()
             for assn in jsonArray {
                 var title:String = "Not Available"
@@ -68,6 +73,7 @@ class AssignmentsRetriever {
                                                        instructions: instructions,
                                                        dueAt: Date(timeIntervalSince1970: Double(dueTime))))
             }
+            print("Returning new assignment items")
             completion(assignmentItems)
             
         }

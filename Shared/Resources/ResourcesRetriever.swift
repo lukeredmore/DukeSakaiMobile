@@ -13,6 +13,7 @@ class Resource: Identifiable {
     let title : String
     let type : String
     let url : String
+    let webUrl: String?
     var parent : Resource?
     var children : [Resource]?
     
@@ -26,11 +27,12 @@ class Resource: Identifiable {
         }
     }
     
-    init(_ tuple: (title: String, numChildren: Int, type: String, url: String)) {
-        self.numChildren = tuple.numChildren
-        self.title = tuple.title
-        self.type = tuple.type
-        self.url = tuple.url
+    init(title: String, numChildren: Int, type: String, url: String, webUrl: String? = nil) {
+        self.numChildren = numChildren
+        self.title = title
+        self.type = type
+        self.url = url
+        self.webUrl = webUrl
         
         children = self.type == "collection" ? [] : nil
     }
@@ -66,7 +68,12 @@ class ResourceRetriever {
                       let url = resource["url"] as? String else {
                     print("A RESOURCE WAS NIL!")
                     continue }
-                resources.append(Resource((title, numChildren, type, url)))
+                let res = Resource(title: title,
+                                   numChildren: numChildren,
+                                   type: type,
+                                   url: url,
+                                   webUrl: resource["webLinkUrl"] as? String ?? url)
+                resources.append(res)
             }
             if build {
                 completion(buildHierarchy(resources))

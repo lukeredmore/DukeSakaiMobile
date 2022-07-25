@@ -80,6 +80,10 @@
 		26E1695F288F0D7900D0ABA8 /* AsyncView in Frameworks */ = {isa = PBXBuildFile; productRef = 26E1695E288F0D7900D0ABA8 /* AsyncView */; };
 		26E16961288F277500D0ABA8 /* AssignmentsNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16960288F277500D0ABA8 /* AssignmentsNavigationView.swift */; };
 		26E16962288F277500D0ABA8 /* AssignmentsNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16960288F277500D0ABA8 /* AssignmentsNavigationView.swift */; };
+		26E16964288F41A500D0ABA8 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16963288F41A500D0ABA8 /* WebView.swift */; };
+		26E16965288F41A500D0ABA8 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16963288F41A500D0ABA8 /* WebView.swift */; };
+		26E16967288F4B5100D0ABA8 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16966288F4B5100D0ABA8 /* SafariView.swift */; };
+		26E16968288F4B5100D0ABA8 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16966288F4B5100D0ABA8 /* SafariView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +150,8 @@
 		26E16957288E46BF00D0ABA8 /* AssignmentsRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsRetriever.swift; sourceTree = "<group>"; };
 		26E1695A288EE08E00D0ABA8 /* CollectionCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCoordinatorView.swift; sourceTree = "<group>"; };
 		26E16960288F277500D0ABA8 /* AssignmentsNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsNavigationView.swift; sourceTree = "<group>"; };
+		26E16963288F41A500D0ABA8 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		26E16966288F4B5100D0ABA8 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +195,8 @@
 				261CA7352889057000C7C09B /* FineBorder.swift */,
 				261CA73B28892A9200C7C09B /* OrientationWrapper.swift */,
 				2655D905288B789C0023C210 /* DynamicWebView.swift */,
+				26E16963288F41A500D0ABA8 /* WebView.swift */,
+				26E16966288F4B5100D0ABA8 /* SafariView.swift */,
 			);
 			path = ReuseableUIElements;
 			sourceTree = "<group>";
@@ -522,6 +530,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				26CF4B1E288654D50017C703 /* Course.swift in Sources */,
+				26E16967288F4B5100D0ABA8 /* SafariView.swift in Sources */,
+				26E16964288F41A500D0ABA8 /* WebView.swift in Sources */,
 				26CF4B0B288646FA0017C703 /* LoginView.swift in Sources */,
 				26CF4B2E2887343A0017C703 /* PDFViewer.swift in Sources */,
 				26CF4B282887236C0017C703 /* ResourcesNavigationView.swift in Sources */,
@@ -560,6 +570,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				26CF4B1F288654D50017C703 /* Course.swift in Sources */,
+				26E16968288F4B5100D0ABA8 /* SafariView.swift in Sources */,
+				26E16965288F41A500D0ABA8 /* WebView.swift in Sources */,
 				26CF4B0C288646FA0017C703 /* LoginView.swift in Sources */,
 				26CF4B2F2887343A0017C703 /* PDFViewer.swift in Sources */,
 				26CF4B292887236C0017C703 /* ResourcesNavigationView.swift in Sources */,
