@@ -84,6 +84,8 @@
 		26E16965288F41A500D0ABA8 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16963288F41A500D0ABA8 /* WebView.swift */; };
 		26E16967288F4B5100D0ABA8 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16966288F4B5100D0ABA8 /* SafariView.swift */; };
 		26E16968288F4B5100D0ABA8 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16966288F4B5100D0ABA8 /* SafariView.swift */; };
+		26E1696A288F57D400D0ABA8 /* RemoteContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16969288F57D400D0ABA8 /* RemoteContentView.swift */; };
+		26E1696B288F57D400D0ABA8 /* RemoteContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16969288F57D400D0ABA8 /* RemoteContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +154,7 @@
 		26E16960288F277500D0ABA8 /* AssignmentsNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsNavigationView.swift; sourceTree = "<group>"; };
 		26E16963288F41A500D0ABA8 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		26E16966288F4B5100D0ABA8 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		26E16969288F57D400D0ABA8 /* RemoteContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +200,7 @@
 				2655D905288B789C0023C210 /* DynamicWebView.swift */,
 				26E16963288F41A500D0ABA8 /* WebView.swift */,
 				26E16966288F4B5100D0ABA8 /* SafariView.swift */,
+				26E16969288F57D400D0ABA8 /* RemoteContentView.swift */,
 			);
 			path = ReuseableUIElements;
 			sourceTree = "<group>";
@@ -536,6 +540,7 @@
 				26CF4B2E2887343A0017C703 /* PDFViewer.swift in Sources */,
 				26CF4B282887236C0017C703 /* ResourcesNavigationView.swift in Sources */,
 				261CA72D288865B000C7C09B /* Authenticator.swift in Sources */,
+				26E1696A288F57D400D0ABA8 /* RemoteContentView.swift in Sources */,
 				261CA7332888B2C300C7C09B /* CollectionPickerView.swift in Sources */,
 				26CF4B31288736020017C703 /* ResourceDetailView.swift in Sources */,
 				261CA742288B0F0300C7C09B /* Networking.swift in Sources */,
@@ -576,6 +581,7 @@
 				26CF4B2F2887343A0017C703 /* PDFViewer.swift in Sources */,
 				26CF4B292887236C0017C703 /* ResourcesNavigationView.swift in Sources */,
 				261CA72E288865B000C7C09B /* Authenticator.swift in Sources */,
+				26E1696B288F57D400D0ABA8 /* RemoteContentView.swift in Sources */,
 				261CA7342888B2C400C7C09B /* CollectionPickerView.swift in Sources */,
 				26CF4B32288736020017C703 /* ResourceDetailView.swift in Sources */,
 				261CA743288B0F0300C7C09B /* Networking.swift in Sources */,

@@ -18,17 +18,11 @@ struct Assignment {
 
 class AssignmentsRetriever {
     static func getAssignments(for col: CourseCollection) async throws -> [Assignment] {
-        
-        try! await Task.sleep(nanoseconds: 1_000_000_000)
-        return [Assignment(title: "test", status: "a", scale: "", instructions: "d", dueAt: Date())]
-        
-//        await withCheckedContinuation { continuation in
-//            getAssignments(for: col) { assgn in
-//                    continuation.resume(returning: assgn ?? [])
-//
-//            }
-//        }
-        
+        await withCheckedContinuation { continuation in
+            getAssignments(for: col) { assgn in
+                    continuation.resume(returning: assgn ?? [])
+            }
+        }
     }
     
     private static func getAssignments(for col: CourseCollection, completion: @escaping ([Assignment]?) -> Void) {
