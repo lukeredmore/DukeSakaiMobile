@@ -6,94 +6,90 @@
 //
 
 import SwiftUI
+import AsyncView
+
+//struct LastWrapper: View {
+//    @ObservedObject var avm : AssignmentsViewModel
+//
+//
+//
+//    var body: some View {
+//        RemoteContentView(source: avm) {
+//            List($0, id: \.title) { item in
+//                Text(item.title)
+//            }
+//        }.onChange(of: avm.state) { st in
+//            print("new state \(st.str)")
+//        }
+//    }
+//}
 
 struct HomeTabView: View {
-    @Binding var allCollections: [CourseCollection]
+    @Binding var selectedCollection: CourseCollection
     
-    init(allCollections: Binding<[CourseCollection]>) {
-        _allCollections = allCollections
-        
-        selectedCollection = CollectionPickerView.prelimFavsOrDefaultSelectedCourses(allCollections: allCollections.wrappedValue)
+    @StateObject var annoucementsModel: AsyncModel<[Announcement]>
+    @StateObject var assignmentsModel: AsyncModel<[Assignment]>
+    @StateObject var resourcesModel: AsyncModel<[Resource]>
+    
+    init(selectedCollection: Binding<CourseCollection>) {
+        self._selectedCollection = selectedCollection
+        self._annoucementsModel = StateObject(wrappedValue: AsyncModel { try await AnnouncementsRetriever.getAnnouncements(for: selectedCollection.wrappedValue) })
+        self._assignmentsModel = StateObject(wrappedValue: AsyncModel { try await AssignmentsRetriever.getAssignments(for: selectedCollection.wrappedValue) })
+        self._resourcesModel = StateObject(wrappedValue: AsyncModel { try await ResourceRetriever.getResources(for: selectedCollection.wrappedValue) })
     }
-    
-    @State private var selection = 3
-    @State private var selectedCollection: CourseCollection
-    @State private var collectionPickerShown = false
     
     private var courseNames: String {
         selectedCollection.courses.map { course in
             return course.name
-        }.joined(separator: ", ") ?? "nil"
+        }.joined(separator: ", ")
     }
     
-    var toolbarButton: some View {
-        Button {
-            collectionPickerShown.toggle()
-        } label: {
-            Text(selectedCollection.collectionName == "Favorites" ? "Favorite Courses" : selectedCollection.collectionName)
-                .font(.headline)
-                .fixedSize(horizontal: true, vertical: false)
-                .offset(x: 4.0, y: 0.0)
-                .foregroundColor(Color.primary)
-            
-            Image(systemName: "chevron.down")
-                .scaleEffect(0.9)
-                .offset(x: -3.0, y: 0.0)
-                .rotationEffect(.degrees(collectionPickerShown ? -180 : 0), anchor: UnitPoint(x: 0.4, y: 0.5))
-                .animation(.spring(), value: collectionPickerShown)
-                .foregroundColor(Color.primary)
-        }
-        
-        
-    }
-    
+    @State private var selection = 3
     var body: some View {
-        NavigationView {
-            TabView(selection: $selection) {
-                Text("This is your gradebook for \(courseNames)")
-                    .tabItem {
-                        Image(systemName: "text.book.closed")
-                        Text("Grades")
-                    }
-                    .tag(1)
-                Text("These are assignments for \(courseNames)")
-                    .tabItem {
-                        Image(systemName: "doc.text")
-                        Text("Assignments")
-                    }
-                    .tag(2)
-                RemoteContentView(source: AnnoucementsViewModel(selectedCollection)) {
-                    AnnouncementsNavigationView(courseNameFollowsAuthorName: selectedCollection.courses.count > 1,
-                                                annoucements: $0)
+        TabView(selection: $selection) {
+            Text("This is your gradebook for \(courseNames)")
+                .tabItem {
+                    Image(systemName: "text.book.closed")
+                    Text("Grades")
                 }
+                .tag(1)
+            
+            AsyncModelView(model: assignmentsModel, content: AssignmentsNavigationView.build)
+                .tabItem {
+                    Image(systemName: "doc.text")
+                    Text("Assignments")
+                }
+                .tag(2)
+            
+            AsyncModelView(model: annoucementsModel) { AnnouncementsNavigationView.build($0, hasMultipleCourses: selectedCollection.courses.count > 1) }
                 .tabItem {
                     Image(systemName: "megaphone")
                     Text("Alerts")
                 }
                 .tag(3)
-                ResourcesNavigationView(collection: selectedCollection)
-                    .tabItem {
-                        Image(systemName: "folder")
-                        Text("Resources")
-                    }
-                    .tag(4)
+            
+            AsyncModelView(model: resourcesModel, content: ResourcesNavigationView.build)
+                .tabItem {
+                    Image(systemName: "folder")
+                    Text("Resources")
+                }
+                .tag(4)
+        }
+        .onChange(of: selectedCollection) { selco in
+            print("Selected collection changed, reloading models")
+            Task {
+                await assignmentsModel.load()
+                await annoucementsModel.load()
+                await resourcesModel.load()
             }
-            .navigationBarBackButtonHidden(true)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .principal) { toolbarButton } }
-        }.popupMenu(isPresented: $collectionPickerShown) {
-            CollectionPickerView(collections: allCollections, selectedCollection: $selectedCollection)
-        }.onChange(of: selectedCollection) { _ in
-            collectionPickerShown = false
+            
         }
     }
 }
 
 //struct HomeTabView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        NavigationView  {
 //            HomeTabView(allCollections:
 //                    .constant(PreviewUtils.allCollections))
-//        }
 //    }
 //}

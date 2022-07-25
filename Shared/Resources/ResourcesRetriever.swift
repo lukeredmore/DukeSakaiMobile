@@ -47,7 +47,15 @@ class Resource: Identifiable {
 }
 
 class ResourceRetriever {
-    static func getResources(for collection: CourseCollection, build: Bool = true, completion: @escaping ([Resource]?) -> Void) {
+    static func getResources(for col: CourseCollection) async throws -> [Resource] {
+        await withCheckedContinuation { continuation in
+            getResources(for: col) { res in
+                continuation.resume(returning: res ?? [])
+            }
+        }
+    }
+    
+    private static func getResources(for collection: CourseCollection, build: Bool = true, completion: @escaping ([Resource]?) -> Void) {
         Networking.getJSONArrayAt("content", from: collection.courses, aggregatingBy: "content_collection") { jsonArray in
             var resources = [Resource]()
             
@@ -105,28 +113,6 @@ class ResourceRetriever {
         if roots.count == 1, roots[0].type == "collection", let children = roots[0].children {
             return children
         } else { return roots }
-    }
-}
-
-class ResourceViewModel: LoadableObject {
-    @Published private(set) var state: LoadingState<[Resource]> = .idle
-    
-    let collection: CourseCollection
-    
-    init(_ collection: CourseCollection) {
-        self.collection = collection
-    }
-    
-    func load() {
-        state = .loading
-        print("requested to load")
-        ResourceRetriever.getResources(for: collection, build: true) { resources in
-            if resources == nil {
-                self.state = .failed("It was nil")
-            } else {
-                self.state = .loaded(resources!)
-            }
-        }
     }
 }
 

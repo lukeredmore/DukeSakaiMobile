@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AsyncView
 
 struct Announcement: Identifiable, Comparable, Codable {
     static func < (lhs: Announcement, rhs: Announcement) -> Bool {
@@ -36,28 +37,16 @@ struct Announcement: Identifiable, Comparable, Codable {
     
 }
 
-class AnnoucementsViewModel: LoadableObject {
-    @Published private(set) var state: LoadingState<[Announcement]> = .idle
-    
-    let collection: CourseCollection
-    init(_ collection: CourseCollection) {
-        self.collection = collection
-    }
-    
-    func load() {
-        state = .loading
-        print("requested to load")
-        getAnnouncements(for: collection) { res in
-            if res == nil {
-                self.state = .failed("It was nil")
-            } else {
-                self.state = .loaded(res!)
+class AnnouncementsRetriever {
+    static func getAnnouncements(for collection: CourseCollection) async throws -> [Announcement] {
+        await withCheckedContinuation { continuation in
+            getAnnouncements(for: collection) { anns in
+                continuation.resume(returning: anns ?? [])
             }
         }
     }
     
-    
-    private func getAnnouncements(for collection: CourseCollection, completion: @escaping ([Announcement]?) -> Void) {
+    static private func getAnnouncements(for collection: CourseCollection, completion: @escaping ([Announcement]?) -> Void) {
         Networking.getJSONArrayAt("announcement",
                                   from: collection.courses,
                                   aggregatingBy: "announcement_collection",

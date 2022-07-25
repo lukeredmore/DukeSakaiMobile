@@ -11,7 +11,7 @@ class Networking {
     
     static private let SAKAI_DIRECT_URL = "https://sakai.duke.edu/direct/"
     
-    private static func createURL(siteId: String, endpoint: String, options: [String: String]) -> URL? {
+    static func createURL(siteId: String, endpoint: String, options: [String: String]) -> URL? {
         let baseURLString = SAKAI_DIRECT_URL + endpoint + "/site/" + siteId + ".json"
         guard let baseURL = URL(string: baseURLString) else { return nil }
         var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)
@@ -53,6 +53,7 @@ class Networking {
         for course in courses {
             group.enter()
             if let url = createURL(siteId: course.siteId, endpoint: endpoint, options: options) {
+                print(url.absoluteString)
                 getJSONFrom(url) { json in
                     if let json = json {
                         print("Task \(course.name) is done")

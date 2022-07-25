@@ -11,6 +11,15 @@ struct AnnouncementsNavigationView: View {
     var courseNameFollowsAuthorName: Bool, annoucements: [Announcement]
     @State private var tappedAnnoucement: Announcement? = nil
     
+    @ViewBuilder
+    static func build(_ item: [Announcement], hasMultipleCourses: Bool) -> some View {
+        if item.isEmpty {
+            Text("No announcements found")
+        } else {
+            AnnouncementsNavigationView(courseNameFollowsAuthorName: hasMultipleCourses, annoucements: item)
+        }
+    }
+    
     var body: some View {
         List(annoucements, id: \.title) { item in
             Button {

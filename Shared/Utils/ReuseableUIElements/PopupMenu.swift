@@ -75,20 +75,20 @@ extension View {
     }
 }
 
-struct PopupMenu_Previews: PreviewProvider {
-    static let cols = PreviewUtils.allCollections
-    static var previews: some View {
-        NavigationView  {
-            TabView {
-                Text("Default").tabItem { Image(systemName: "star") }
-            }
-            .popupMenu(isPresented: .constant(true)) {
-                CollectionPickerView(collections: cols, selectedCollection: .constant(cols[0]))
-            }
-            .navigationTitle("Test content")
-            .navigationBarTitleDisplayMode(.inline)
-        }
-        .preferredColorScheme(.dark)
-        .previewInterfaceOrientation(.portrait)
-    }
-}
+//struct PopupMenu_Previews: PreviewProvider {
+//    static let cols = PreviewUtils.allCollections
+//    static var previews: some View {
+//        NavigationView  {
+//            TabView {
+//                Text("Default").tabItem { Image(systemName: "star") }
+//            }
+//            .popupMenu(isPresented: .constant(true)) {
+//                CollectionPickerView(collections: cols, selectedCollection: .constant(cols[0]))
+//            }
+//            .navigationTitle("Test content")
+//            .navigationBarTitleDisplayMode(.inline)
+//        }
+//        .preferredColorScheme(.dark)
+//        .previewInterfaceOrientation(.portrait)
+//    }
+//}
