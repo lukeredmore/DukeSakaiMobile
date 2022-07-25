@@ -47,7 +47,7 @@ class Resource: Identifiable {
 }
 
 class ResourceRetriever {
-    static func getResources(for collection: CourseCollection, completion: @escaping ([Resource]?) -> Void) {
+    static func getResources(for collection: CourseCollection, build: Bool = true, completion: @escaping ([Resource]?) -> Void) {
         Networking.getJSONArrayAt("content", from: collection.courses, aggregatingBy: "content_collection") { jsonArray in
             var resources = [Resource]()
             
@@ -60,7 +60,12 @@ class ResourceRetriever {
                     continue }
                 resources.append(Resource((title, numChildren, type, url)))
             }
-            completion(buildHierarchy(resources))
+            if build {
+                completion(buildHierarchy(resources))
+            } else {
+                completion(resources)
+            }
+            
             
         }
     }
@@ -103,4 +108,25 @@ class ResourceRetriever {
     }
 }
 
+class ResourceViewModel: LoadableObject {
+    @Published private(set) var state: LoadingState<[Resource]> = .idle
+    
+    let collection: CourseCollection
+    
+    init(_ collection: CourseCollection) {
+        self.collection = collection
+    }
+    
+    func load() {
+        state = .loading
+        print("requested to load")
+        ResourceRetriever.getResources(for: collection, build: true) { resources in
+            if resources == nil {
+                self.state = .failed("It was nil")
+            } else {
+                self.state = .loaded(resources!)
+            }
+        }
+    }
+}
 

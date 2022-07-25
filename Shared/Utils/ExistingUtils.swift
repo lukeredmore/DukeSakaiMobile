@@ -5,20 +5,20 @@
 //  Created by Luke Redmore on 7/18/22.
 //
 
-import Foundation
+import UIKit
 
-func getInitialItems(siteId: String, endpoint: String) -> (urlRequest:NSMutableURLRequest, session:URLSession){
-    let generalUrl = "https://sakai.duke.edu/direct/"
-    let thisurl = generalUrl + endpoint + "/site/" + siteId + ".json"
-    print(thisurl)
-//    if endpoint == "announcement" {
-//        thisurl = thisurl + "?n=100&d=3000"
-//    }
-    let requestURL: NSURL = NSURL(string: thisurl)!
-    let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
-    let session = URLSession.shared
-    
-    return (urlRequest, session)
+extension UIColor {
+    var hex : String {
+        let components = self.cgColor.components
+        let r: CGFloat = components?[0] ?? 0.0
+        let g: CGFloat = components?[1] ?? 0.0
+        let b: CGFloat = components?[2] ?? 0.0
+
+        let hexString = String.init(format: "#%02lX%02lX%02lX", lroundf(Float(r * 255)), lroundf(Float(g * 255)), lroundf(Float(b * 255)))
+        print(hexString)
+        return hexString
+    }
+
 }
 
 extension String {

@@ -16,7 +16,14 @@ struct RootNavigationView: View {
                 LoginView { cr in
                     if let courses = cr, !courses.isEmpty {
                         print("Got new courses, mocking collection creation now")
-                        print(courses)
+//                        if let dobdata = try? JSONEncoder().encode(courses) {
+//                            if let json = String(data: dobdata, encoding: .utf8) {
+//                                print("Below this line is json string")
+//                              print(json)
+//                                print("above this line is json string")
+//                            }
+//                        }
+//                        print(courses)
                         var collectionsToSet = [CourseCollection(collectionName: "All Courses", courses: courses)]
                         collectionsToSet.append(contentsOf: Course.organizeByTerm(courses: courses))
                         collections = collectionsToSet

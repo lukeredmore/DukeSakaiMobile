@@ -52,9 +52,8 @@ class Networking {
         
         for course in courses {
             group.enter()
-            if let url = createURL(siteId: course.siteId, endpoint: "content", options: options) {
+            if let url = createURL(siteId: course.siteId, endpoint: endpoint, options: options) {
                 getJSONFrom(url) { json in
-                    
                     if let json = json {
                         print("Task \(course.name) is done")
                         if let child = json[aggregation] as? [[String: AnyObject]] {
@@ -74,8 +73,7 @@ class Networking {
         }
         
         group.notify(queue: .main) {
-            print("all tasks done \(aggregation)")
-            print(aggregatedArray)
+            print("Aggregated array for \(aggregation)")
             completion(aggregatedArray)
         }
     }

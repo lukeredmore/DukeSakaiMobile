@@ -1,0 +1,234 @@
+[
+  {
+    "siteId": "9a57937c-c230-496e-81ad-b23b72830c4e",
+    "term": "Project",
+    "instructor": "Catherine Admay",
+    "lastModified": 1618493258000,
+    "name": "Bassett Fac-in-Residence",
+    "created": 1597533589000
+  },
+  {
+    "siteId": "3a50a97f-723e-4d69-8233-7a886353fa7e",
+    "term": "2020 Fall Term",
+    "instructor": "Dewey McCafferty",
+    "lastModified": 1598539442000,
+    "name": "CHEM.101DL.005.F20",
+    "created": 1596652536000
+  },
+  {
+    "siteId": "5e88c482-1938-4945-a60c-7d1f57f7ca00",
+    "term": "2020 Fall Term",
+    "instructor": "Daniel Fowler",
+    "lastModified": 1605805054000,
+    "name": "CHEM.101L9.111.F20",
+    "created": 1597602742000
+  },
+  {
+    "siteId": "5c048600-398e-412c-94c9-b55881117fae",
+    "term": "2021 Spring Term",
+    "instructor": "Brandon Fain",
+    "lastModified": 1617199452000,
+    "name": "COMPSCI.201.01D.Sp21",
+    "created": 1608583674000
+  },
+  {
+    "siteId": "a331dab2-2789-40f2-bf4e-96720371ac97",
+    "term": "2021 Fall Term",
+    "instructor": "Nicki Washington",
+    "lastModified": 1636140875000,
+    "name": "COMPSCI.240.01.F21",
+    "created": 1626993842000
+  },
+  {
+    "siteId": "94778dad-8666-4dc1-805c-5c9dae227547",
+    "term": "Project",
+    "instructor": "Esko Brummel",
+    "lastModified": 1640620480000,
+    "name": "DQ Community Page",
+    "created": 1613655601000
+  },
+  {
+    "siteId": "46fca4c8-86b9-4d28-b418-611a652484f4",
+    "term": "2021 Fall Term",
+    "instructor": "Iman Marvian Mashhad",
+    "lastModified": 1630617912000,
+    "name": "ECE.110L.002.F21",
+    "created": 1629125247000
+  },
+  {
+    "siteId": "99f4a317-8d25-4791-9da9-34ff7663b819",
+    "term": "2021 Fall Term",
+    "instructor": "Kip Coonley",
+    "lastModified": 1638486667000,
+    "name": "ECE.110L9.01L.F21",
+    "created": 1629227644000
+  },
+  {
+    "siteId": "a500fbde-f539-4840-b81d-170b0a1fe9de",
+    "term": "2021 Fall Term",
+    "instructor": "Tyler Bletsch",
+    "lastModified": 1629235861000,
+    "name": "ECE.250D.01D.F21",
+    "created": 1624997437000
+  },
+  {
+    "siteId": "94ff3fe3-05bf-4324-9957-b9c4d090d305",
+    "term": "2022 Spring Term",
+    "instructor": "Steven Cummer",
+    "lastModified": 1641848609000,
+    "name": "ECE.270DL.001.Sp22",
+    "created": 1641310863000
+  },
+  {
+    "siteId": "09a8125f-7601-49a4-84ee-32b9bfe7033a",
+    "term": "2022 Spring Term",
+    "instructor": "Kip Coonley",
+    "lastModified": 1651020741000,
+    "name": "ECE.270L9.01L.Sp22",
+    "created": 1641518050000
+  },
+  {
+    "siteId": "7b6f159b-754e-4dda-845e-e04499d4973b",
+    "term": "2022 Spring Term",
+    "instructor": "Leslie Collins",
+    "lastModified": 1650384798000,
+    "name": "ECE.280L.01.Sp22",
+    "created": 1641333493000
+  },
+  {
+    "siteId": "3f66619b-4053-4dcc-be5e-3de62a114eba",
+    "term": "2021 Spring Term",
+    "instructor": "Rebecca Simmons",
+    "lastModified": 1616968639000,
+    "name": "EGR.121L.01L.Sp21",
+    "created": 1610474355000
+  },
+  {
+    "siteId": "654ba123-4305-4b4b-aaf1-53677f40f5cc",
+    "term": "2020 Fall Term",
+    "instructor": "Nico Hotz",
+    "lastModified": 1597776953000,
+    "name": "EGR.95FS.01.F20",
+    "created": 1597685005000
+  },
+  {
+    "siteId": "724e2bff-d0f5-43a6-ac02-7d9bf1b4119c",
+    "term": "2020 Fall Term",
+    "instructor": "- -",
+    "lastModified": 1646753428000,
+    "name": "EGR.95FS.03.F20",
+    "created": 1597132550000
+  },
+  {
+    "siteId": "e5d21ca7-38d1-4e8b-b78c-8d3ec76abb6a",
+    "term": "2020 Fall Term",
+    "instructor": "Nico Hotz",
+    "lastModified": 1599830645000,
+    "name": "FOCUS.195FS.04.F20",
+    "created": 1597857940000
+  },
+  {
+    "siteId": "e305f0a0-e813-46dc-bfa2-d8c3951f036a",
+    "term": "Project",
+    "instructor": "Valerie Cullen",
+    "lastModified": 1654282724000,
+    "name": "GEO PDO Fall 2022",
+    "created": 1649271524000
+  },
+  {
+    "siteId": "f1de5d9b-c68a-4e24-910a-536952a0dfed",
+    "term": "2020 Fall Term",
+    "instructor": "Clark Bray",
+    "lastModified": 1600885519000,
+    "name": "MATH.212D.001.F20",
+    "created": 1596134224000
+  },
+  {
+    "siteId": "fed9eedc-50da-4428-96ec-f7d2319cdd68",
+    "term": "2020 Fall Term",
+    "instructor": "Alexander Wagner",
+    "lastModified": 1598194227000,
+    "name": "MATH.212D.14D.F20",
+    "created": 1597437019000
+  },
+  {
+    "siteId": "6e71de10-eb1c-4ec9-838b-1efe14f6eb96",
+    "term": "2021 Spring Term",
+    "instructor": "Clark Bray",
+    "lastModified": 1622121536000,
+    "name": "MATH.216.001.Sp21",
+    "created": 1609787459000
+  },
+  {
+    "siteId": "37406f8f-ebae-4489-b91d-282da67d516e",
+    "term": "2021 Spring Term",
+    "instructor": "Woojin Kim",
+    "lastModified": 1615259442000,
+    "name": "MATH.216D.09D.Sp21",
+    "created": 1610506830000
+  },
+  {
+    "siteId": "159f1f5a-d85a-441a-a5a7-1031046e0fee",
+    "term": "2022 Spring Term",
+    "instructor": "Jesse Silliman",
+    "lastModified": 1644950109000,
+    "name": "MATH.219.04.Sp22",
+    "created": 1641308165000
+  },
+  {
+    "siteId": "cf3bfa34-faf5-469e-b7fc-45317d828720",
+    "term": "2022 Spring Term",
+    "instructor": "Clark Bray",
+    "lastModified": 1651499941000,
+    "name": "MATH.219.Sp22",
+    "created": 1640025333000
+  },
+  {
+    "siteId": "44632a57-b06e-4714-93a1-76e12d441c5a",
+    "term": "2022 Spring Term",
+    "instructor": "Woojin Kim",
+    "lastModified": 1643327089000,
+    "name": "MATH.230.03.Sp22",
+    "created": 1640831628000
+  },
+  {
+    "siteId": "706b2522-39b5-4a2b-8df2-d454dea7c09e",
+    "term": "2021 Spring Term",
+    "instructor": "Arya Roy",
+    "lastModified": 1656347490000,
+    "name": "PHYSICS.151L.001.Sp21",
+    "created": 1610460265000
+  },
+  {
+    "siteId": "b968fb55-84a8-4928-9f04-7a4ff2fc3adb",
+    "term": "2022 Spring Term",
+    "instructor": "Sarah Rispin Sedlak",
+    "lastModified": 1642609741000,
+    "name": "SCISOC.256.02.Sp22",
+    "created": 1641170552000
+  },
+  {
+    "siteId": "c8689900-b35f-4a05-aba2-1e1200a41960",
+    "term": "Project",
+    "instructor": "Luke Redmore",
+    "lastModified": 1658341752000,
+    "name": "testsite",
+    "created": 1658341751000
+  },
+  {
+    "siteId": "1071bfd5-c487-4bea-af6a-4b13dbc3ffd8",
+    "term": "Project",
+    "instructor": "Tyler Bletsch",
+    "lastModified": 1620676185000,
+    "name": "Tyler's Intro to Linux",
+    "created": 1620672034000
+  },
+  {
+    "siteId": "51d59d25-2543-4775-a8be-43e674f4513a",
+    "term": "2021 Spring Term",
+    "instructor": "Michael Accinno",
+    "lastModified": 1619536149000,
+    "name": "WRITING.101.59.Sp21",
+    "created": 1611072762000
+  }
+]

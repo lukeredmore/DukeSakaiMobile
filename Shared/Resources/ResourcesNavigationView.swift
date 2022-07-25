@@ -34,7 +34,6 @@ struct ResourcesNavigationView: View {
                             .opacity(0.0)
                             .buttonStyle(PlainButtonStyle())
                         
-                        
                         HStack {
                             Image(systemName: item.icon)
                             Text(item.title)
@@ -50,7 +49,6 @@ struct ResourcesNavigationView: View {
     
     var body: some View {
         decider.onChange(of: collection) { col in
-            print("col changed to \(col)")
             resources = nil
             ResourceRetriever.getResources(for: col) { res in
                 resources = res ?? []

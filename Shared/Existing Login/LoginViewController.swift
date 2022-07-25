@@ -78,7 +78,7 @@ class LoginViewController: UIViewController, WKNavigationDelegate, WKUIDelegate 
 
         if let cookies: [HTTPCookie] = self.getData(key: "cookies") {
             for cookie in cookies {
-                print(cookie)
+//                print(cookie)
                 group.enter()
                 configuration.websiteDataStore.httpCookieStore.setCookie(cookie) {
                     self.group.leave()
@@ -128,7 +128,7 @@ class LoginViewController: UIViewController, WKNavigationDelegate, WKUIDelegate 
                 if (statusCode == 200) {
                     do{
                         let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [String: AnyObject]
-                        print(json.keys.sorted())
+//                        print(json.keys.sorted())
                         var name:String = "name"
                         
                         var instructor:String = "instructor"

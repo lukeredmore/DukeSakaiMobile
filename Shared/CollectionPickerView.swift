@@ -171,8 +171,11 @@ struct CollectionPickerView: View {
 }
 
 struct CollectionPickerView_Previews: PreviewProvider {
-    static let cols = CourseCollection.previewDefault()
+    static let cols = PreviewUtils.allCollections
+    
+    @ViewBuilder
     static var previews: some View {
-        CollectionPickerView(collections: cols, selectedCollection: .constant(cols[0]))
+        print(cols)
+        return CollectionPickerView(collections: cols, selectedCollection: .constant(cols[0]))
     }
 }

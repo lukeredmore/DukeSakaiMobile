@@ -76,7 +76,7 @@ extension View {
 }
 
 struct PopupMenu_Previews: PreviewProvider {
-    static let cols = CourseCollection.previewDefault()
+    static let cols = PreviewUtils.allCollections
     static var previews: some View {
         NavigationView  {
             TabView {
