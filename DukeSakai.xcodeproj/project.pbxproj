@@ -11,10 +11,8 @@
 		261CA71C2887A05400C7C09B /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA71A2887A05400C7C09B /* ShareSheet.swift */; };
 		261CA71E2887AA1C00C7C09B /* CustomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA71D2887AA1C00C7C09B /* CustomSheetView.swift */; };
 		261CA71F2887AA1C00C7C09B /* CustomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA71D2887AA1C00C7C09B /* CustomSheetView.swift */; };
-		261CA72728885E5100C7C09B /* AuthContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72628885E5100C7C09B /* AuthContentView.swift */; };
-		261CA72828885E5100C7C09B /* AuthContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72628885E5100C7C09B /* AuthContentView.swift */; };
-		261CA72A28885E9300C7C09B /* DeeplinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72928885E9300C7C09B /* DeeplinkManager.swift */; };
-		261CA72B28885E9300C7C09B /* DeeplinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72928885E9300C7C09B /* DeeplinkManager.swift */; };
+		261CA72728885E5100C7C09B /* AuthDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72628885E5100C7C09B /* AuthDecider.swift */; };
+		261CA72828885E5100C7C09B /* AuthDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72628885E5100C7C09B /* AuthDecider.swift */; };
 		261CA72D288865B000C7C09B /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72C288865B000C7C09B /* Authenticator.swift */; };
 		261CA72E288865B000C7C09B /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72C288865B000C7C09B /* Authenticator.swift */; };
 		261CA7302888B24800C7C09B /* PopupMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72F2888B24800C7C09B /* PopupMenu.swift */; };
@@ -41,24 +39,20 @@
 		2655D90E288DC7830023C210 /* courses.json in Resources */ = {isa = PBXBuildFile; fileRef = 2655D90C288DC7830023C210 /* courses.json */; };
 		2655D910288DEECD0023C210 /* announcements.json in Resources */ = {isa = PBXBuildFile; fileRef = 2655D90F288DEECD0023C210 /* announcements.json */; };
 		2655D911288DEECD0023C210 /* announcements.json in Resources */ = {isa = PBXBuildFile; fileRef = 2655D90F288DEECD0023C210 /* announcements.json */; };
+		265C636028A6CDBC005D9403 /* AuthWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C635F28A6CDBC005D9403 /* AuthWebView.swift */; };
+		265C636128A6CDBC005D9403 /* AuthWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C635F28A6CDBC005D9403 /* AuthWebView.swift */; };
 		26CF4AE7288646580017C703 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AE6288646580017C703 /* Tests_iOS.swift */; };
 		26CF4AE9288646580017C703 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AE8288646580017C703 /* Tests_iOSLaunchTests.swift */; };
 		26CF4AF3288646590017C703 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AF2288646590017C703 /* Tests_macOS.swift */; };
 		26CF4AF5288646590017C703 /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AF4288646590017C703 /* Tests_macOSLaunchTests.swift */; };
 		26CF4AF6288646590017C703 /* DukeSakaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4ACE288646570017C703 /* DukeSakaiApp.swift */; };
 		26CF4AF7288646590017C703 /* DukeSakaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4ACE288646570017C703 /* DukeSakaiApp.swift */; };
-		26CF4AF8288646590017C703 /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4ACF288646570017C703 /* RootNavigationView.swift */; };
-		26CF4AF9288646590017C703 /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4ACF288646570017C703 /* RootNavigationView.swift */; };
 		26CF4AFA288646590017C703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CF4AD0288646580017C703 /* Assets.xcassets */; };
 		26CF4AFB288646590017C703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CF4AD0288646580017C703 /* Assets.xcassets */; };
-		26CF4B0B288646FA0017C703 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B0A288646FA0017C703 /* LoginView.swift */; };
-		26CF4B0C288646FA0017C703 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B0A288646FA0017C703 /* LoginView.swift */; };
 		26CF4B11288649500017C703 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B10288649500017C703 /* LoginViewController.swift */; };
 		26CF4B12288649500017C703 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B10288649500017C703 /* LoginViewController.swift */; };
-		26CF4B14288649970017C703 /* ExistingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B13288649970017C703 /* ExistingUtils.swift */; };
-		26CF4B15288649970017C703 /* ExistingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B13288649970017C703 /* ExistingUtils.swift */; };
-		26CF4B1728864A630017C703 /* LoginVCWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B1628864A630017C703 /* LoginVCWrapper.swift */; };
-		26CF4B1828864A630017C703 /* LoginVCWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B1628864A630017C703 /* LoginVCWrapper.swift */; };
+		26CF4B14288649970017C703 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B13288649970017C703 /* Utils.swift */; };
+		26CF4B15288649970017C703 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B13288649970017C703 /* Utils.swift */; };
 		26CF4B1E288654D50017C703 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B1D288654D50017C703 /* Course.swift */; };
 		26CF4B1F288654D50017C703 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B1D288654D50017C703 /* Course.swift */; };
 		26CF4B24288668320017C703 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B23288668320017C703 /* HomeTabView.swift */; };
@@ -77,15 +71,22 @@
 		26E16959288E46BF00D0ABA8 /* AssignmentsRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16957288E46BF00D0ABA8 /* AssignmentsRetriever.swift */; };
 		26E1695B288EE08E00D0ABA8 /* CollectionCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E1695A288EE08E00D0ABA8 /* CollectionCoordinatorView.swift */; };
 		26E1695C288EE08E00D0ABA8 /* CollectionCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E1695A288EE08E00D0ABA8 /* CollectionCoordinatorView.swift */; };
-		26E1695F288F0D7900D0ABA8 /* AsyncView in Frameworks */ = {isa = PBXBuildFile; productRef = 26E1695E288F0D7900D0ABA8 /* AsyncView */; };
 		26E16961288F277500D0ABA8 /* AssignmentsNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16960288F277500D0ABA8 /* AssignmentsNavigationView.swift */; };
 		26E16962288F277500D0ABA8 /* AssignmentsNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16960288F277500D0ABA8 /* AssignmentsNavigationView.swift */; };
 		26E16964288F41A500D0ABA8 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16963288F41A500D0ABA8 /* WebView.swift */; };
 		26E16965288F41A500D0ABA8 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16963288F41A500D0ABA8 /* WebView.swift */; };
 		26E16967288F4B5100D0ABA8 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16966288F4B5100D0ABA8 /* SafariView.swift */; };
 		26E16968288F4B5100D0ABA8 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16966288F4B5100D0ABA8 /* SafariView.swift */; };
-		26E1696A288F57D400D0ABA8 /* RemoteContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16969288F57D400D0ABA8 /* RemoteContentView.swift */; };
-		26E1696B288F57D400D0ABA8 /* RemoteContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E16969288F57D400D0ABA8 /* RemoteContentView.swift */; };
+		26E1696E2890326F00D0ABA8 /* GradeRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E1696D2890326F00D0ABA8 /* GradeRetriever.swift */; };
+		26E1696F2890326F00D0ABA8 /* GradeRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E1696D2890326F00D0ABA8 /* GradeRetriever.swift */; };
+		26E169842891FCEA00D0ABA8 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E169832891FCEA00D0ABA8 /* AsyncContentView.swift */; };
+		26E169852891FCEA00D0ABA8 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E169832891FCEA00D0ABA8 /* AsyncContentView.swift */; };
+		26E169872896093A00D0ABA8 /* ResourceOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E169862896093A00D0ABA8 /* ResourceOverviewView.swift */; };
+		26E169882896093A00D0ABA8 /* ResourceOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E169862896093A00D0ABA8 /* ResourceOverviewView.swift */; };
+		26F67B0F28A9A1240098B7FD /* SakaiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F67B0E28A9A1240098B7FD /* SakaiEnvironment.swift */; };
+		26F67B1028A9A1240098B7FD /* SakaiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F67B0E28A9A1240098B7FD /* SakaiEnvironment.swift */; };
+		26F67B1228A9D2A60098B7FD /* CookieMonster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F67B1128A9D2A60098B7FD /* CookieMonster.swift */; };
+		26F67B1328A9D2A60098B7FD /* CookieMonster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F67B1128A9D2A60098B7FD /* CookieMonster.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,8 +110,7 @@
 		261CA71A2887A05400C7C09B /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		261CA71D2887AA1C00C7C09B /* CustomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheetView.swift; sourceTree = "<group>"; };
 		261CA7252888565400C7C09B /* DukeSakai--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DukeSakai--iOS--Info.plist"; sourceTree = "<group>"; };
-		261CA72628885E5100C7C09B /* AuthContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContentView.swift; sourceTree = "<group>"; };
-		261CA72928885E9300C7C09B /* DeeplinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkManager.swift; sourceTree = "<group>"; };
+		261CA72628885E5100C7C09B /* AuthDecider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDecider.swift; sourceTree = "<group>"; };
 		261CA72C288865B000C7C09B /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		261CA72F2888B24800C7C09B /* PopupMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupMenu.swift; sourceTree = "<group>"; };
 		261CA7322888B2C300C7C09B /* CollectionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPickerView.swift; sourceTree = "<group>"; };
@@ -124,8 +124,8 @@
 		2655D908288DBDF20023C210 /* PreviewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewUtils.swift; sourceTree = "<group>"; };
 		2655D90C288DC7830023C210 /* courses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = courses.json; sourceTree = "<group>"; };
 		2655D90F288DEECD0023C210 /* announcements.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = announcements.json; sourceTree = "<group>"; };
+		265C635F28A6CDBC005D9403 /* AuthWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthWebView.swift; sourceTree = "<group>"; };
 		26CF4ACE288646570017C703 /* DukeSakaiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeSakaiApp.swift; sourceTree = "<group>"; };
-		26CF4ACF288646570017C703 /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
 		26CF4AD0288646580017C703 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26CF4AD5288646580017C703 /* DukeSakai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeSakai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CF4ADB288646580017C703 /* DukeSakai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeSakai.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,10 +136,8 @@
 		26CF4AEE288646590017C703 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CF4AF2288646590017C703 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		26CF4AF4288646590017C703 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
-		26CF4B0A288646FA0017C703 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		26CF4B10288649500017C703 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		26CF4B13288649970017C703 /* ExistingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingUtils.swift; sourceTree = "<group>"; };
-		26CF4B1628864A630017C703 /* LoginVCWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCWrapper.swift; sourceTree = "<group>"; };
+		26CF4B13288649970017C703 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		26CF4B1D288654D50017C703 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		26CF4B23288668320017C703 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		26CF4B272887236C0017C703 /* ResourcesNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesNavigationView.swift; sourceTree = "<group>"; };
@@ -154,7 +152,11 @@
 		26E16960288F277500D0ABA8 /* AssignmentsNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentsNavigationView.swift; sourceTree = "<group>"; };
 		26E16963288F41A500D0ABA8 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		26E16966288F4B5100D0ABA8 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
-		26E16969288F57D400D0ABA8 /* RemoteContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteContentView.swift; sourceTree = "<group>"; };
+		26E1696D2890326F00D0ABA8 /* GradeRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRetriever.swift; sourceTree = "<group>"; };
+		26E169832891FCEA00D0ABA8 /* AsyncContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
+		26E169862896093A00D0ABA8 /* ResourceOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceOverviewView.swift; sourceTree = "<group>"; };
+		26F67B0E28A9A1240098B7FD /* SakaiEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SakaiEnvironment.swift; sourceTree = "<group>"; };
+		26F67B1128A9D2A60098B7FD /* CookieMonster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieMonster.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +164,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26E1695F288F0D7900D0ABA8 /* AsyncView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,19 +201,20 @@
 				2655D905288B789C0023C210 /* DynamicWebView.swift */,
 				26E16963288F41A500D0ABA8 /* WebView.swift */,
 				26E16966288F4B5100D0ABA8 /* SafariView.swift */,
-				26E16969288F57D400D0ABA8 /* RemoteContentView.swift */,
 			);
 			path = ReuseableUIElements;
 			sourceTree = "<group>";
 		};
-		261CA7242888554500C7C09B /* OAuth Login */ = {
+		261CA7242888554500C7C09B /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				261CA72628885E5100C7C09B /* AuthContentView.swift */,
-				261CA72928885E9300C7C09B /* DeeplinkManager.swift */,
+				261CA72628885E5100C7C09B /* AuthDecider.swift */,
+				26CF4B10288649500017C703 /* LoginViewController.swift */,
+				265C635F28A6CDBC005D9403 /* AuthWebView.swift */,
 				261CA72C288865B000C7C09B /* Authenticator.swift */,
+				26F67B1128A9D2A60098B7FD /* CookieMonster.swift */,
 			);
-			path = "OAuth Login";
+			path = Login;
 			sourceTree = "<group>";
 		};
 		261CA73E288B0E5A00C7C09B /* Utils */ = {
@@ -220,21 +222,12 @@
 			children = (
 				2655D90B288DC7730023C210 /* TestAssets */,
 				261CA741288B0F0300C7C09B /* Networking.swift */,
-				26CF4B13288649970017C703 /* ExistingUtils.swift */,
+				26CF4B13288649970017C703 /* Utils.swift */,
+				26E169832891FCEA00D0ABA8 /* AsyncContentView.swift */,
 				2655D908288DBDF20023C210 /* PreviewUtils.swift */,
 				261CA7202887B32800C7C09B /* ReuseableUIElements */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		261CA73F288B0E9A00C7C09B /* Existing Login */ = {
-			isa = PBXGroup;
-			children = (
-				26CF4B0A288646FA0017C703 /* LoginView.swift */,
-				26CF4B10288649500017C703 /* LoginViewController.swift */,
-				26CF4B1628864A630017C703 /* LoginVCWrapper.swift */,
-			);
-			path = "Existing Login";
 			sourceTree = "<group>";
 		};
 		2655D8FE288B59B00023C210 /* Announcements */ = {
@@ -273,13 +266,13 @@
 			isa = PBXGroup;
 			children = (
 				26CF4ACE288646570017C703 /* DukeSakaiApp.swift */,
-				26CF4ACF288646570017C703 /* RootNavigationView.swift */,
 				26E1695A288EE08E00D0ABA8 /* CollectionCoordinatorView.swift */,
 				26CF4B23288668320017C703 /* HomeTabView.swift */,
 				261CA7322888B2C300C7C09B /* CollectionPickerView.swift */,
+				26F67B0E28A9A1240098B7FD /* SakaiEnvironment.swift */,
+				26E1696C2890325800D0ABA8 /* Grades */,
 				26E16956288E469900D0ABA8 /* Assignments */,
-				261CA7242888554500C7C09B /* OAuth Login */,
-				261CA73F288B0E9A00C7C09B /* Existing Login */,
+				261CA7242888554500C7C09B /* Login */,
 				2655D8FE288B59B00023C210 /* Announcements */,
 				26CF4B26288723590017C703 /* Resources */,
 				261CA73E288B0E5A00C7C09B /* Utils */,
@@ -337,6 +330,7 @@
 		26CF4B26288723590017C703 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				26E169862896093A00D0ABA8 /* ResourceOverviewView.swift */,
 				26CF4B272887236C0017C703 /* ResourcesNavigationView.swift */,
 				26CF4B2A288725210017C703 /* ResourcesRetriever.swift */,
 				26CF4B2D2887343A0017C703 /* PDFViewer.swift */,
@@ -365,6 +359,14 @@
 			path = Assignments;
 			sourceTree = "<group>";
 		};
+		26E1696C2890325800D0ABA8 /* Grades */ = {
+			isa = PBXGroup;
+			children = (
+				26E1696D2890326F00D0ABA8 /* GradeRetriever.swift */,
+			);
+			path = Grades;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -382,7 +384,6 @@
 			);
 			name = "DukeSakai (iOS)";
 			packageProductDependencies = (
-				26E1695E288F0D7900D0ABA8 /* AsyncView */,
 			);
 			productName = "DukeSakai (iOS)";
 			productReference = 26CF4AD5288646580017C703 /* DukeSakai.app */;
@@ -477,7 +478,6 @@
 			);
 			mainGroup = 26CF4AC8288646560017C703;
 			packageReferences = (
-				26E1695D288F0D7900D0ABA8 /* XCRemoteSwiftPackageReference "AsyncView" */,
 			);
 			productRefGroup = 26CF4AD6288646580017C703 /* Products */;
 			projectDirPath = "";
@@ -536,34 +536,35 @@
 				26CF4B1E288654D50017C703 /* Course.swift in Sources */,
 				26E16967288F4B5100D0ABA8 /* SafariView.swift in Sources */,
 				26E16964288F41A500D0ABA8 /* WebView.swift in Sources */,
-				26CF4B0B288646FA0017C703 /* LoginView.swift in Sources */,
+				26F67B1228A9D2A60098B7FD /* CookieMonster.swift in Sources */,
+				26E169872896093A00D0ABA8 /* ResourceOverviewView.swift in Sources */,
+				26E1696E2890326F00D0ABA8 /* GradeRetriever.swift in Sources */,
 				26CF4B2E2887343A0017C703 /* PDFViewer.swift in Sources */,
 				26CF4B282887236C0017C703 /* ResourcesNavigationView.swift in Sources */,
 				261CA72D288865B000C7C09B /* Authenticator.swift in Sources */,
-				26E1696A288F57D400D0ABA8 /* RemoteContentView.swift in Sources */,
+				265C636028A6CDBC005D9403 /* AuthWebView.swift in Sources */,
 				261CA7332888B2C300C7C09B /* CollectionPickerView.swift in Sources */,
 				26CF4B31288736020017C703 /* ResourceDetailView.swift in Sources */,
+				26E169842891FCEA00D0ABA8 /* AsyncContentView.swift in Sources */,
+				26F67B0F28A9A1240098B7FD /* SakaiEnvironment.swift in Sources */,
 				261CA742288B0F0300C7C09B /* Networking.swift in Sources */,
 				2655D909288DBDF20023C210 /* PreviewUtils.swift in Sources */,
 				261CA73C28892A9200C7C09B /* OrientationWrapper.swift in Sources */,
-				26CF4AF8288646590017C703 /* RootNavigationView.swift in Sources */,
 				261CA7302888B24800C7C09B /* PopupMenu.swift in Sources */,
 				261CA71B2887A05400C7C09B /* ShareSheet.swift in Sources */,
 				26CF4B11288649500017C703 /* LoginViewController.swift in Sources */,
 				26CF4AF6288646590017C703 /* DukeSakaiApp.swift in Sources */,
 				26E16961288F277500D0ABA8 /* AssignmentsNavigationView.swift in Sources */,
-				26CF4B14288649970017C703 /* ExistingUtils.swift in Sources */,
+				26CF4B14288649970017C703 /* Utils.swift in Sources */,
 				26E1695B288EE08E00D0ABA8 /* CollectionCoordinatorView.swift in Sources */,
 				26CF4B3428873B240017C703 /* DocumentRetriever.swift in Sources */,
-				261CA72728885E5100C7C09B /* AuthContentView.swift in Sources */,
+				261CA72728885E5100C7C09B /* AuthDecider.swift in Sources */,
 				26E16958288E46BF00D0ABA8 /* AssignmentsRetriever.swift in Sources */,
 				2655D903288B675D0023C210 /* AnnoucementDetailView.swift in Sources */,
 				26CF4B24288668320017C703 /* HomeTabView.swift in Sources */,
-				26CF4B1728864A630017C703 /* LoginVCWrapper.swift in Sources */,
 				2655D900288B59CD0023C210 /* AnnouncementsRetriever.swift in Sources */,
 				26CF4B2B288725210017C703 /* ResourcesRetriever.swift in Sources */,
 				261CA7362889057000C7C09B /* FineBorder.swift in Sources */,
-				261CA72A28885E9300C7C09B /* DeeplinkManager.swift in Sources */,
 				261CA71E2887AA1C00C7C09B /* CustomSheetView.swift in Sources */,
 				2655D906288B789C0023C210 /* DynamicWebView.swift in Sources */,
 				2655D8FC288B59A80023C210 /* AnnouncementsNavigationView.swift in Sources */,
@@ -577,34 +578,35 @@
 				26CF4B1F288654D50017C703 /* Course.swift in Sources */,
 				26E16968288F4B5100D0ABA8 /* SafariView.swift in Sources */,
 				26E16965288F41A500D0ABA8 /* WebView.swift in Sources */,
-				26CF4B0C288646FA0017C703 /* LoginView.swift in Sources */,
+				26F67B1328A9D2A60098B7FD /* CookieMonster.swift in Sources */,
+				26E169882896093A00D0ABA8 /* ResourceOverviewView.swift in Sources */,
+				26E1696F2890326F00D0ABA8 /* GradeRetriever.swift in Sources */,
 				26CF4B2F2887343A0017C703 /* PDFViewer.swift in Sources */,
 				26CF4B292887236C0017C703 /* ResourcesNavigationView.swift in Sources */,
 				261CA72E288865B000C7C09B /* Authenticator.swift in Sources */,
-				26E1696B288F57D400D0ABA8 /* RemoteContentView.swift in Sources */,
+				265C636128A6CDBC005D9403 /* AuthWebView.swift in Sources */,
 				261CA7342888B2C400C7C09B /* CollectionPickerView.swift in Sources */,
 				26CF4B32288736020017C703 /* ResourceDetailView.swift in Sources */,
+				26E169852891FCEA00D0ABA8 /* AsyncContentView.swift in Sources */,
+				26F67B1028A9A1240098B7FD /* SakaiEnvironment.swift in Sources */,
 				261CA743288B0F0300C7C09B /* Networking.swift in Sources */,
 				2655D90A288DBDF20023C210 /* PreviewUtils.swift in Sources */,
 				261CA73D28892A9200C7C09B /* OrientationWrapper.swift in Sources */,
-				26CF4AF9288646590017C703 /* RootNavigationView.swift in Sources */,
 				261CA7312888B24800C7C09B /* PopupMenu.swift in Sources */,
 				261CA71C2887A05400C7C09B /* ShareSheet.swift in Sources */,
 				26CF4B12288649500017C703 /* LoginViewController.swift in Sources */,
 				26CF4AF7288646590017C703 /* DukeSakaiApp.swift in Sources */,
 				26E16962288F277500D0ABA8 /* AssignmentsNavigationView.swift in Sources */,
-				26CF4B15288649970017C703 /* ExistingUtils.swift in Sources */,
+				26CF4B15288649970017C703 /* Utils.swift in Sources */,
 				26E1695C288EE08E00D0ABA8 /* CollectionCoordinatorView.swift in Sources */,
 				26CF4B3528873B240017C703 /* DocumentRetriever.swift in Sources */,
-				261CA72828885E5100C7C09B /* AuthContentView.swift in Sources */,
+				261CA72828885E5100C7C09B /* AuthDecider.swift in Sources */,
 				26E16959288E46BF00D0ABA8 /* AssignmentsRetriever.swift in Sources */,
 				2655D904288B675D0023C210 /* AnnoucementDetailView.swift in Sources */,
 				26CF4B25288668320017C703 /* HomeTabView.swift in Sources */,
-				26CF4B1828864A630017C703 /* LoginVCWrapper.swift in Sources */,
 				2655D901288B59CD0023C210 /* AnnouncementsRetriever.swift in Sources */,
 				26CF4B2C288725210017C703 /* ResourcesRetriever.swift in Sources */,
 				261CA7372889057000C7C09B /* FineBorder.swift in Sources */,
-				261CA72B28885E9300C7C09B /* DeeplinkManager.swift in Sources */,
 				261CA71F2887AA1C00C7C09B /* CustomSheetView.swift in Sources */,
 				2655D907288B789C0023C210 /* DynamicWebView.swift in Sources */,
 				2655D8FD288B59A80023C210 /* AnnouncementsNavigationView.swift in Sources */,
@@ -1001,25 +1003,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		26E1695D288F0D7900D0ABA8 /* XCRemoteSwiftPackageReference "AsyncView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ralfebert/AsyncView/";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		26E1695E288F0D7900D0ABA8 /* AsyncView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 26E1695D288F0D7900D0ABA8 /* XCRemoteSwiftPackageReference "AsyncView" */;
-			productName = AsyncView;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 26CF4AC9288646560017C703 /* Project object */;
 }

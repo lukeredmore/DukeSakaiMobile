@@ -8,44 +8,34 @@
 import SwiftUI
 
 struct HomeTabView: View {
-    @Binding var selectedCollection: CourseCollection
-    
-    private var courseNames: String {
-        selectedCollection.courses.map { course in
-            return course.name
-        }.joined(separator: ", ")
-    }
-    
     @State private var selection = 3
+    
     var body: some View {
         TabView(selection: $selection) {
-            Text("This is your gradebook for \(courseNames)")
+            Text("This is your gradebook")
                 .tabItem {
                     Image(systemName: "text.book.closed")
                     Text("Grades")
                 }
                 .tag(1)
             
-            RemoteContentView(selectedCollection: $selectedCollection,
-                              loader: AssignmentsRetriever.getAssignments,
-                              builder: AssignmentsNavigationView.build)
+            AsyncContentView(loader: AssignmentsRetriever.getAssignments,
+                             content: AssignmentsNavigationView.build)
                 .tabItem {
                     Image(systemName: "doc.text")
                     Text("Assignments")
                 }
                 .tag(2)
             
-            RemoteContentView(selectedCollection: $selectedCollection,
-                              loader: AnnouncementsRetriever.getAnnouncements) { AnnouncementsNavigationView.build($0, hasMultipleCourses: selectedCollection.courses.count > 1) }
+            AsyncContentView(loader: AnnouncementsRetriever.getAnnouncements,
+                             content: AnnouncementsNavigationView.build)
                 .tabItem {
                     Image(systemName: "megaphone")
                     Text("Alerts")
                 }
                 .tag(3)
             
-            RemoteContentView(selectedCollection: $selectedCollection,
-                              loader: ResourceRetriever.getResources,
-                              builder: ResourcesNavigationView.build)
+            ResourceOverviewView()
                 .tabItem {
                     Image(systemName: "folder")
                     Text("Resources")
@@ -54,10 +44,3 @@ struct HomeTabView: View {
         }
     }
 }
-
-//struct HomeTabView_Previews: PreviewProvider {
-//    static var previews: some View {
-//            HomeTabView(allCollections:
-//                    .constant(PreviewUtils.allCollections))
-//    }
-//}

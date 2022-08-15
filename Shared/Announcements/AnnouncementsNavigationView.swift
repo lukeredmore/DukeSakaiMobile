@@ -8,15 +8,20 @@
 import SwiftUI
 
 struct AnnouncementsNavigationView: View {
-    var courseNameFollowsAuthorName: Bool, annoucements: [Announcement]
+    var annoucements: [Announcement]
+    @EnvironmentObject var env : SakaiEnvironment
     @State private var tappedAnnoucement: Announcement? = nil
     
+    private var courseNameFollowsAuthorName : Bool {
+        env.selectedCollection.courses.count > 1
+    }
+    
     @ViewBuilder
-    static func build(_ item: [Announcement], hasMultipleCourses: Bool) -> some View {
+    static func build(_ item: [Announcement]) -> some View {
         if item.isEmpty {
             Text("No announcements found")
         } else {
-            AnnouncementsNavigationView(courseNameFollowsAuthorName: hasMultipleCourses, annoucements: item)
+            AnnouncementsNavigationView(annoucements: item)
         }
     }
     

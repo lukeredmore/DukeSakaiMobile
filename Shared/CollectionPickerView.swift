@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct CollectionPickerView: View {
-    @Binding var favoritesCollection: CourseCollection
-    @Binding var termCollections: [CourseCollection]
-    var collectionSelected: (_ newCollection: CourseCollection) -> Void
+    @EnvironmentObject var env : SakaiEnvironment
+    
+    let completion: () -> Void
+    
+    func collectionSelected(_ collection: CourseCollection) {
+        env.selectedCollection = collection
+        completion()
+    }
     
     @ViewBuilder
     func HeaderRow(collection: CourseCollection) -> some View {
@@ -34,16 +39,7 @@ struct CollectionPickerView: View {
     func CourseRow(singleCourseCollection: CourseCollection, favorite: Bool) -> some View {
         HStack {
             Button {
-                if favorite {
-                    print("removing \(singleCourseCollection.courses[0].siteId) from favorites")
-                    let favs = favoritesCollection.courses.filter { fav in fav != singleCourseCollection.courses[0] }
-                    favoritesCollection = CourseCollection(collectionName: "Favorites", courses: favs)
-                } else {
-                    print("adding \(singleCourseCollection.courses[0].siteId) to favorites")
-                    var favs = favoritesCollection.courses
-                    favs.append(singleCourseCollection.courses[0])
-                    favoritesCollection = CourseCollection(collectionName: "Favorites", courses: favs)
-                }
+                env.toggleCourseInFavorites(singleCourseCollection.courses[0])
             } label: {
                 Image(systemName: "star\(favorite ? ".fill" : "")")
                     .foregroundColor(favorite ? .yellow : .primary)
@@ -63,6 +59,7 @@ struct CollectionPickerView: View {
     func SelectableRow(_ collection: CourseCollection) -> some View {
         if !collection.courses.isEmpty {
             Button {
+                env.selectedCollection = collection
                 collectionSelected(collection)
             } label : {
                 HeaderRow(collection: collection)
@@ -72,12 +69,13 @@ struct CollectionPickerView: View {
     
     @ViewBuilder
     func SelectableRow(_ course: Course, showFavorites: Bool = false) -> some View {
-        let favorite = favoritesCollection.courses.contains(course)
+        let favorite = env.favoritesCollection.courses.contains(course)
         
         if !favorite || showFavorites {
             let singleCourseCollection = CourseCollection(collectionName: course.name,
                                                           courses: [course])
             Button {
+                env.selectedCollection = singleCourseCollection
                 collectionSelected(singleCourseCollection)
             } label : {
                 CourseRow(singleCourseCollection: singleCourseCollection,
@@ -90,9 +88,9 @@ struct CollectionPickerView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 0) {
-                SelectableRow(favoritesCollection)
-                ForEach(favoritesCollection.courses, id: \.siteId) { SelectableRow($0, showFavorites: true) }
-                ForEach(termCollections, id: \.collectionName) { collection in
+                SelectableRow(env.favoritesCollection)
+                ForEach(env.favoritesCollection.courses, id: \.siteId) { SelectableRow($0, showFavorites: true) }
+                ForEach(env.termCollections, id: \.collectionName) { collection in
                     SelectableRow(collection)
                     ForEach(collection.courses, id: \.siteId) { SelectableRow($0) }
                 }

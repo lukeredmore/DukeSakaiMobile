@@ -49,44 +49,47 @@ class Resource: Identifiable {
 }
 
 class ResourceRetriever {
-    static func getResources(for col: CourseCollection) async throws -> [Resource] {
-        await withCheckedContinuation { continuation in
-            getResources(for: col) { res in
-                continuation.resume(returning: res ?? [])
+    private static func getResources(forSiteId siteId: String) async throws -> [Resource] {
+        let url = try Networking.createSakaiURL(siteId: siteId, endpoint: "content", options: [:])
+        let json = try await Networking.json(from: url)
+        let content_collection : [[String: AnyObject]] = try json.get("content_collection")
+        
+        var resources = [Resource]()
+        for entry in content_collection {
+            do {
+                resources.append(Resource(title: try entry.get("title"),
+                                          numChildren: try entry.get("numChildren"),
+                                          type: try entry.get("type"),
+                                          url: try entry.get("url"),
+                                          webUrl: try entry.get("webLinkUrl")))
+            } catch {
+                print(error)
             }
         }
+        return resources
     }
     
-    private static func getResources(for collection: CourseCollection, build: Bool = true, completion: @escaping ([Resource]?) -> Void) {
-        Networking.getJSONArrayAt("content", from: collection.courses, aggregatingBy: "content_collection") { jsonArray in
-            var resources = [Resource]()
-            
-            for resource in jsonArray {
-                guard let numChildren = resource["numChildren"] as? Int,
-                      let type = resource["type"] as? String,
-                      let title = resource["title"] as? String,
-                      let url = resource["url"] as? String else {
-                    print("A RESOURCE WAS NIL!")
-                    continue }
-                let res = Resource(title: title,
-                                   numChildren: numChildren,
-                                   type: type,
-                                   url: url,
-                                   webUrl: resource["webLinkUrl"] as? String ?? url)
-                resources.append(res)
+    static func getResources(for collection: CourseCollection) async throws -> [Resource] {
+        print("Loading resources for collection \(collection.collectionName)")
+        
+        var allResources = [Resource]()
+        try await withThrowingTaskGroup(of: [Resource].self) { taskGroup in
+            for course in collection.courses {
+                taskGroup.addTask {
+                    try await getResources(forSiteId: course.siteId)
+                }
+                for try await result in taskGroup {
+                    print("├── Loaded \(result.count) resources for course \(course.name)")
+                    allResources.append(contentsOf: result)
+                }
             }
-            if build {
-                completion(buildHierarchy(resources))
-            } else {
-                completion(resources)
-            }
-            
-            
         }
+        
+        print("Loaded all \(allResources.count) resources for collection \(collection.collectionName)")
+        return buildHierarchy(allResources)
     }
     
     private static func buildHierarchy(_ arry: [Resource]) -> [Resource] {
-        
         var roots = [Resource]()
         var children = [String:[Resource]]()
         

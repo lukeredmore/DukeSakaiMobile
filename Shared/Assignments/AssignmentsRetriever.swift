@@ -10,70 +10,50 @@ import SwiftUI
 
 struct Assignment {
     var title: String
-    var status: String
-    var scale: String
+    var status: String?
+    var scale: String?
     var instructions: String
-    var dueAt: Date
+    var dueAt: Date?
 }
 
 class AssignmentsRetriever {
-    static func getAssignments(for col: CourseCollection) async throws -> [Assignment] {
-        await withCheckedContinuation { continuation in
-            getAssignments(for: col) { assgn in
-                    continuation.resume(returning: assgn ?? [])
+    private static func getAssignments(forSiteId siteId: String) async throws -> [Assignment] {
+        let url = try Networking.createSakaiURL(siteId: siteId, endpoint: "assignment", options: [:])
+        let json = try await Networking.json(from: url)
+        let assignment_collection : [[String: AnyObject]] = try json.get("assignment_collection")
+        
+        var assignments = [Assignment]()
+        for entry in assignment_collection {
+            do {
+                assignments.append(Assignment(title: try entry.get("title"),
+                           status: try entry.get("status"),
+                           scale: try entry.get("gradeScaleMaxPoints"),
+                           instructions: try entry.get("instructions"),
+                           dueAt: try Date(try entry.get("dueTimeString"), strategy: .iso8601)))
+            } catch {
+                print(error)
             }
         }
+        return assignments
     }
     
-    private static func getAssignments(for col: CourseCollection, completion: @escaping ([Assignment]?) -> Void) {
-        print("Loading assignments")
-        Networking.getJSONArrayAt("assignment",
-                                  from: col.courses,
-                                  aggregatingBy: "assignment_collection") { jsonArray in
-            print("got new json array")
-            var assignmentItems = [Assignment]()
-            for assn in jsonArray {
-                var title:String = "Not Available"
-                var status:String = "Not Available"
-                var dueTimeString:String = "Not Available"
-                var dueTime:Int64 = 0
-                var gradeScaleMaxPoints:String = "Not Available"
-                var instructions:String = "<h5>Not Available</h5>"
-                
-                if let mytitle = assn["title"] as? String {
-                    title = (mytitle == "" ? "Not Available" : mytitle)
+    static func getAssignments(for collection: CourseCollection) async throws -> [Assignment] {
+        print("Loading assignments for collection \(collection.collectionName)")
+        
+        var allAssignments = [Assignment]()
+        try await withThrowingTaskGroup(of: [Assignment].self) { taskGroup in
+            for course in collection.courses {
+                taskGroup.addTask {
+                    try await getAssignments(forSiteId: course.siteId)
                 }
-                if let mystatus = assn["status"] as? String {
-                    status = (mystatus == "" ? "Not Available" : mystatus)
+                for try await result in taskGroup {
+                    allAssignments.append(contentsOf: result)
                 }
-                if let mydueTimeString = assn["dueTimeString"] as? String {
-                    dueTimeString = (mydueTimeString == "" ? "Not Available" : mydueTimeString)
-                }
-                if let tempDue = assn["dueTime"]  {
-                    dueTime = (tempDue["epochSecond"] as? Int64) ?? 0
-//                    dueTimeString = self.ReadableDate(date: NSDate(timeIntervalSince1970: TimeInterval(dueTime)))
-                }
-                if let mygradeScaleMaxPoints = assn["gradeScaleMaxPoints"] as? String {
-                    gradeScaleMaxPoints = (mygradeScaleMaxPoints == "" ? "Not Available" : mygradeScaleMaxPoints)
-                }
-                if let myinstructions = assn["instructions"] as? String {
-                    instructions = (myinstructions == "" ? "<h5>Not Available</h5>" : myinstructions)
-                }
-                let tuple = (title, status, dueTimeString, gradeScaleMaxPoints, instructions, dueTime)
-                
-                assignmentItems.append(Assignment(title: title,
-                                                       status: status,
-                                                       scale: gradeScaleMaxPoints,
-                                                       instructions: instructions,
-                                                       dueAt: Date(timeIntervalSince1970: Double(dueTime))))
             }
-            print("Returning new assignment items")
-            completion(assignmentItems)
-            
         }
+        
+        print("Loaded \(allAssignments.count) assignments for collection \(collection.collectionName)")
+        return allAssignments
     }
-    
-    
-    
 }
 

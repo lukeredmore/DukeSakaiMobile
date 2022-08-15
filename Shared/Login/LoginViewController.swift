@@ -184,10 +184,12 @@ class LoginViewController: UIViewController, WKNavigationDelegate, WKUIDelegate 
         // Save cookies to disk manually to reuse in the next session
         loginWebView.configuration.websiteDataStore.httpCookieStore.getAllCookies { cookies in
             self.setData(cookies, key: "cookies")
-        }
-        loginWebView.configuration.websiteDataStore.httpCookieStore.getAllCookies({cookies in
+            print("Saved cookies to disk")
             self.enterSakai(nil, cookies)
-        })
+        }
+//        loginWebView.configuration.websiteDataStore.httpCookieStore.getAllCookies({cookies in
+//            self.enterSakai(nil, cookies)
+//        })
     }
     
     func enterSakai(_ sender: Any?, _ cookies: [HTTPCookie]) {
@@ -204,6 +206,7 @@ class LoginViewController: UIViewController, WKNavigationDelegate, WKUIDelegate 
         cookies.forEach { cookie in
             session.configuration.httpCookieStorage?.setCookie(cookie)
         }
+        print("Stole cookies from Sakai in WKWebView")
         let targetString = "site:"
 
         let task = session.dataTask(with: urlRequest as URLRequest) {

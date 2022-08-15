@@ -10,17 +10,22 @@ import SwiftUI
 import WebKit
 
 struct WebView: UIViewRepresentable {
-    var urlString: String? = nil
+    var request: URLRequest? = nil
     var fileUrl: URL? = nil
     var onSafariRedirect: (() -> ())? = nil
     
     init(urlString: String, onSafariRedirect: ( () -> ())? = nil) {
-        self.urlString = urlString
+        self.request = URLRequest(url: URL(string: urlString)!)
         self.onSafariRedirect = onSafariRedirect
     }
     
     init(fileUrl: URL, onSafariRedirect: ( () -> ())? = nil) {
         self.fileUrl = fileUrl
+        self.onSafariRedirect = onSafariRedirect
+    }
+    
+    init(request: URLRequest, onSafariRedirect: ( () -> ())? = nil) {
+        self.request = request
         self.onSafariRedirect = onSafariRedirect
     }
     
@@ -37,12 +42,8 @@ struct WebView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        if let str = urlString {
-            if let url = URL(string: str) {
-                uiView.load(URLRequest(url: url))
-            } else {
-                print("Invalid URL string")
-            }
+        if let request = request {
+            uiView.load(request)
         } else if let file = fileUrl {
             uiView.loadFileURL(file, allowingReadAccessTo: file)
         } else {
@@ -53,9 +54,6 @@ struct WebView: UIViewRepresentable {
 
     }
     
-//    func viewLoaded() {
-//        initialLoad = true
-//    }
 
         class Coordinator: NSObject, WKNavigationDelegate {
             let parent: WebView

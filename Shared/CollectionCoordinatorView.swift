@@ -8,34 +8,16 @@
 import SwiftUI
 
 struct CollectionCoordinatorView: View {
-    @State private var selectedCollection: CourseCollection // never nil,  Tab can read
-    @State private var termCollections: [CourseCollection] // never nil, Picker can read, Tab no access
-    @State private var favoritesCollection : CourseCollection // Picker can read/mutate, Tab no access
-    
+    @StateObject var env = SakaiEnvironment()
     @State private var collectionPickerShown = false
     
-    @Binding var allCourses: [Course]
-    init(_ all: Binding<[Course]>) {
-        _allCourses = all
-        print("creating term collections and favorites in init")
-        let term = Course.organizeByTerm(courses: courses)
-        termCollections = term
-        
-        let favorites = UserDefaults.standard.array(forKey: "favorite-course-ids") as? [String] ?? []
-        let favoriteCourses = all.wrappedValue.filter { course in
-            favorites.contains(course.siteId)
-        }
-        let fav = CourseCollection(collectionName: "Favorites", courses: favoriteCourses)
-        favoritesCollection = fav
-        
-        selectedCollection = favoriteCourses.isEmpty ? term[0] : fav
-    }
+    let courseIds: [String]
     
     var toolbarButton: some View {
         Button {
             collectionPickerShown.toggle()
         } label: {
-            Text(selectedCollection.collectionName == "Favorites" ? "Favorite Courses" : selectedCollection.collectionName)
+            Text(env.selectedCollection.collectionName == "Favorites" ? "Favorite Courses" : env.selectedCollection.collectionName)
                 .font(.headline)
                 .fixedSize(horizontal: true, vertical: false)
                 .offset(x: 4.0, y: 0.0)
@@ -50,39 +32,30 @@ struct CollectionCoordinatorView: View {
         }
     }
     
-    func onCollectionSelected(_ newCollection: CourseCollection) {
-        print("A collection was selected")
-        selectedCollection = newCollection
-        collectionPickerShown = false
-    }
-    
     var body: some View {
-        NavigationView {
-            HomeTabView(selectedCollection: $selectedCollection)
-                .navigationBarBackButtonHidden(true)
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar { ToolbarItem(placement: .principal) { toolbarButton } }
-        }
-        .popupMenu(isPresented: $collectionPickerShown) {
-            CollectionPickerView(favoritesCollection: $favoritesCollection,
-                                 termCollections: $termCollections,
-                                 collectionSelected: onCollectionSelected)
-            .onChange(of: favoritesCollection) { newFavs in
-                print("got new favorites, saving to UserDefaults")
-                if selectedCollection.collectionName == "Favorites" {
-                    print("favorites selected, making them this new thing")
-                    print(newFavs.courses.count)
-                    selectedCollection = newFavs
-                }
-                let favCourses = newFavs.courses.map { $0.siteId }
-                UserDefaults.standard.set(favCourses, forKey: "favorite-course-ids")
+        if env.termCollections.isEmpty {
+            ProgressView().onAppear { Task {
+                await env.createInitialEnv(courseIds: courseIds)
+                print("Created Environment, showing home screen")
+            }}
+        } else {
+            NavigationView {
+                HomeTabView()
+                    .navigationBarBackButtonHidden(true)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar { ToolbarItem(placement: .principal) { toolbarButton } }
             }
+            .popupMenu(isPresented: $collectionPickerShown) {
+                CollectionPickerView() { collectionPickerShown = false }
+            }
+            .environmentObject(env)
         }
+        
     }
 }
 
-struct CollectionCoordinatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        CollectionCoordinatorView(.constant(PreviewUtils.courseList))
-    }
-}
+//struct CollectionCoordinatorView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CollectionCoordinatorView(.constant(PreviewUtils.courseList))
+//    }
+//}

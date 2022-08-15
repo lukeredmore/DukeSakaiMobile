@@ -6,13 +6,9 @@
 //
 
 import SwiftUI
-import AsyncView
 
 struct Announcement: Identifiable, Comparable, Codable {
-    static func < (lhs: Announcement, rhs: Announcement) -> Bool {
-        lhs.createdOn > rhs.createdOn
-    }
-    
+    // TODO: Add attachments as [Resource]
     let id: String
     let title: String
     let author: String
@@ -35,49 +31,65 @@ struct Announcement: Identifiable, Comparable, Codable {
         }
     }
     
+    static func < (lhs: Announcement, rhs: Announcement) -> Bool {
+        lhs.createdOn > rhs.createdOn
+    }
+    
 }
 
 class AnnouncementsRetriever {
-    static func getAnnouncements(for collection: CourseCollection) async throws -> [Announcement] {
-        await withCheckedContinuation { continuation in
-            getAnnouncements(for: collection) { anns in
-                continuation.resume(returning: anns ?? [])
-            }
+    private static func getAnnouncements(forSiteId siteId: String) async throws -> [Announcement] {
+        let url = try Networking.createSakaiURL(siteId: siteId,
+                                                endpoint: "announcement",
+                                                options: ["n": "200", "d": "3000"])
+        guard let json = try? await Networking.json(from: url) else {
+            print("No json found at URL. This should be a rare occurrence, does the page not exist?")
+            return []
         }
-    }
-    
-    static private func getAnnouncements(for collection: CourseCollection, completion: @escaping ([Announcement]?) -> Void) {
-        Networking.getJSONArrayAt("announcement",
-                                  from: collection.courses,
-                                  aggregatingBy: "announcement_collection",
-                                  withOptions: ["n": "200", "d": "3000"]) { jsonArray in
-            var announcements = [Announcement]()
-            for announcementEntry in jsonArray {
-                guard let title = announcementEntry["title"] as? String,
-                      let id = announcementEntry["announcementId"] as? String,
-                      let body = announcementEntry["body"] as? String,
-                      let author = announcementEntry["createdByDisplayName"] as? String,
-                      let createdOn = announcementEntry["createdOn"] as? Int64,
-                      var courseTitle = announcementEntry["siteTitle"] as? String,
-                      let siteId = announcementEntry["siteId"] as? String
-                else {
-                    print("AN ANNOUCEMENT WAS NIL 2")
-                    continue
-                }
+        let announcement_collection : [[String: AnyObject]] = try json.get("announcement_collection")
+        var announcements = [Announcement]()
+        for entry in announcement_collection {
+            do {
+                var courseTitle : String = try entry.get("siteTitle")
                 let split = courseTitle.split(separator: ".")
                 if split.count > 1 {
                      courseTitle = "\(split[0]) \(split[1])"
                 }
-                announcements.append(Announcement(id: id,
-                                                  title: title,
-                                                  author: author,
-                                                  body: body,
-                                                  courseTitle: courseTitle,
-                                                  siteId: siteId,
-                                                  createdOn: Date(timeIntervalSince1970: TimeInterval(Double(createdOn)/1000.0))))
+                announcements.append(Announcement(id: try entry.get("announcementId"),
+                                              title: try entry.get("title"),
+                                              author: try entry.get("createdByDisplayName"),
+                                              body: try entry.get("body"),
+                                              courseTitle: courseTitle,
+                                              siteId: try entry.get("siteId"),
+                                              createdOn: Date(timeIntervalSince1970: TimeInterval(try entry.get("createdOn", as: Double.self)/1000.0))))
+            } catch {
+                print(error)
             }
-            announcements.sort()
-            completion(announcements)
         }
+        return announcements
+    }
+    
+    // TODO: Aggregate with email archive
+    static func getAnnouncements(for collection: CourseCollection) async throws -> [Announcement] {
+        print("Loading announcements for collection \(collection.collectionName)")
+        
+        var annoucements = try await withThrowingTaskGroup(of: [Announcement].self) { taskGroup -> [Announcement] in
+            var allAnnouncements = [Announcement]()
+            
+            for course in collection.courses {
+                taskGroup.addTask {
+                    return try await getAnnouncements(forSiteId: course.siteId)
+                }
+            }
+            
+            for try await courseAnnoucements in taskGroup {
+                allAnnouncements.append(contentsOf: courseAnnoucements)
+            }
+            return allAnnouncements
+        }
+        
+        print("Loaded all \(annoucements.count) announcements for collection \(collection.collectionName)")
+        annoucements.sort()
+        return annoucements
     }
 }
