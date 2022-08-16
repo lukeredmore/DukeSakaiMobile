@@ -81,8 +81,8 @@ struct AuthWebView : UIViewControllerRepresentable {
             let image = UIImage(systemName: "arrow.clockwise")?.withRenderingMode(.alwaysTemplate)
             refreshButton.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
             refreshButton.setImage(image, for: .normal)
+            refreshButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
             let refreshBarButton = UIBarButtonItem(customView: refreshButton)
-            refreshBarButton.action = #selector(refresh)
             
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
             
@@ -96,6 +96,7 @@ struct AuthWebView : UIViewControllerRepresentable {
             let leftConstraint = NSLayoutConstraint(item: navBar, attribute: .leading, relatedBy: .equal, toItem: progressView, attribute: .leading, multiplier: 1, constant: 0)
             let rightConstraint = NSLayoutConstraint(item: navBar, attribute: .trailing, relatedBy: .equal, toItem: progressView, attribute: .trailing, multiplier: 1, constant: 0)
             progressView.translatesAutoresizingMaskIntoConstraints = false
+            progressView.progressTintColor = .systemBlue
             view.addConstraints([bottomConstraint, leftConstraint, rightConstraint])
         }
         
@@ -115,7 +116,8 @@ struct AuthWebView : UIViewControllerRepresentable {
             ])
             webView.load(URLRequest(url: URL(string: "https://mobile-authorizer.oit.duke.edu/dukemobile/login")!))
             webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
-            
+            webView.scrollView.showsHorizontalScrollIndicator = false
+
             view.addSubview(navBar)
             NSLayoutConstraint.activate([
                 navBar.topAnchor.constraint(equalTo: view.topAnchor),
@@ -139,8 +141,6 @@ struct AuthWebView : UIViewControllerRepresentable {
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
             progressView.setProgress(0.2, animated: true)
         }
-        
-        
         
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
             if let urlStr = navigationAction.request.url?.host {

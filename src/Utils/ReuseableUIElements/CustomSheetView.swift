@@ -7,29 +7,6 @@
 
 import SwiftUI
 
-struct CustomSheetParentView: View {
-    @State private var isPresented = false
-    
-    var body: some View {
-        VStack{
-            Button("present sheet", action: {
-                isPresented.toggle()
-            }).adaptiveSheet(isPresented: $isPresented, detents: [.medium(), .large()], smallestUndimmedDetentIdentifier: .large){
-                Rectangle()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                    .foregroundColor(.clear)
-//                    .border(Color.blue, width: 3)
-                    .overlay(ShareSheet(activityItems: ["Here is some whare text"]).frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .onTapGesture {
-                        isPresented.toggle()
-                    }
-                    )
-            }
-            
-        }
-    }
-}
-
 struct AdaptiveSheet<T: View>: ViewModifier {
     let sheetContent: T
     @Binding var isPresented: Bool
@@ -168,6 +145,29 @@ class CustomSheetViewController<Content: View>: UIViewController {
         } else {
             isLandscape = false
             self.presentedViewController?.popoverPresentationController?.adaptiveSheetPresentationController.detents = detents
+        }
+    }
+}
+
+struct CustomSheetParentView: View {
+    @State private var isPresented = false
+
+    var body: some View {
+        VStack{
+            Button("present sheet", action: {
+                isPresented.toggle()
+            }).adaptiveSheet(isPresented: $isPresented, detents: [.medium(), .large()], smallestUndimmedDetentIdentifier: .large){
+                Rectangle()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    .foregroundColor(.clear)
+//                    .border(Color.blue, width: 3)
+                    .overlay(ShareSheet(activityItems: ["Here is some whare text"]).frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .onTapGesture {
+                        isPresented.toggle()
+                    }
+                    )
+            }
+
         }
     }
 }

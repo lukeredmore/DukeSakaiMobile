@@ -10,6 +10,27 @@ import SwiftUI
 struct HomeTabView: View {
     @State private var selection = 3
     
+    init() {
+        let tabBarAppearance = UITabBarAppearance()
+        let tabBarItemAppearance = UITabBarItemAppearance()
+        
+        tabBarAppearance.backgroundColor = UIColor(named: "DukeNavy")
+        
+        tabBarItemAppearance.selected.iconColor = .white
+        tabBarItemAppearance.normal.iconColor = UIColor(named: "LogoGray")
+
+        tabBarItemAppearance.selected.titleTextAttributes = [
+            .foregroundColor: UIColor.white,
+            .font: Font.tabBarItem]
+        tabBarItemAppearance.normal.titleTextAttributes = [
+            .foregroundColor: UIColor(named: "LogoGray")!,
+            .font: Font.tabBarItem]
+
+        tabBarAppearance.stackedLayoutAppearance = tabBarItemAppearance
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+    }
+    
     var body: some View {
         TabView(selection: $selection) {
             Text("This is your gradebook")

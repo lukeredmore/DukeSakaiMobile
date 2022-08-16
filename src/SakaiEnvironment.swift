@@ -11,6 +11,8 @@ class SakaiEnvironment: ObservableObject {
     @Published var selectedCollection = CourseCollection()
     @Published var termCollections = [CourseCollection]()
     @Published var favoritesCollection = CourseCollection()
+    @Published var collectionPickerShown = false
+    @Published var logout: () -> Void = {}
     
     static func create(withCourse course: Course) -> SakaiEnvironment {
         let env = SakaiEnvironment()
@@ -42,12 +44,13 @@ class SakaiEnvironment: ObservableObject {
         UserDefaults.standard.set(favoriteIds, forKey: "favorite-course-ids")
     }
     
-    func createInitialEnv(courseIds: [String]) async {
+    func createInitialEnv(courseIds: [String], logout: @escaping () -> Void) async {
         do {
             print("Creating Environment")
             let courses = await CoursesRetriever().initialCourses(courseIds: courseIds) //try await CoursesRetriever.getCourses(for: courseIds)
             let group = CoursesRetriever.groupCourses(courses: courses)
             DispatchQueue.main.async {
+                self.logout = logout
                 self.termCollections = group.termCollections
                 self.favoritesCollection = group.favoritesCollection
                 self.selectedCollection = self.favoritesCollection.courses.isEmpty ? self.termCollections[0] : self.favoritesCollection

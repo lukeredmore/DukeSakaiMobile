@@ -20,7 +20,8 @@ struct ResourceDetailViewSmall: View {
                 .edgesIgnoringSafeArea([.bottom, .leading, .trailing])
                 
         } else {
-            WebView(urlString: resource.url)
+            ResourceWebView(urlString: resource.url)
+                .edgesIgnoringSafeArea([.bottom, .leading, .trailing])
         }
     }
     
@@ -59,7 +60,7 @@ struct ResourceDetailViewSmall: View {
                 Button {
                     shareSheetPresented.toggle()
                 } label: {
-                    Image(systemName: "square.and.arrow.up")
+                    Image(systemName: "square.and.arrow.up").foregroundColor(.white)
                 }
                 .disabled(downloadLocation == nil)
             }
@@ -67,12 +68,12 @@ struct ResourceDetailViewSmall: View {
 }
 
 struct ResourceDetailViewLarge: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+//    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     let resource: Resource
     
     var body: some View {
-        WebView(urlString: resource.url) { presentationMode.wrappedValue.dismiss() }
+        ResourceWebView(urlString: resource.url)// { presentationMode.wrappedValue.dismiss() }
             .edgesIgnoringSafeArea([.bottom, .leading, .trailing])
     }
 }
@@ -83,12 +84,7 @@ struct ResourceDetailView: View {
         
     @ViewBuilder
     var body: some View {
-        if resource.type == "text/url", let webUrl = resource.webUrl {
-            SafariView(url: URL(string: webUrl)!) { presentationMode.wrappedValue.dismiss() }
-                .navigationBarHidden(true)
-                .navigationTitle("")
-                .edgesIgnoringSafeArea([.bottom, .leading, .trailing, .top])
-        } else if resource.type.contains("pdf") || resource.type.contains("text") || resource.type.contains("officedocument") || resource.type.contains("image")  {
+        if resource.type.contains("pdf") || resource.type.contains("text") || resource.type.contains("officedocument") || resource.type.contains("image")  {
             ResourceDetailViewSmall(resource: resource)
         } else {
             ResourceDetailViewLarge(resource: resource)

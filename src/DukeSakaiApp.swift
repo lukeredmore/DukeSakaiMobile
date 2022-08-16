@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct DukeSakaiApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
             AuthDecider()

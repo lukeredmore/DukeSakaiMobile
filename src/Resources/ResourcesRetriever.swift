@@ -19,7 +19,13 @@ class Resource: Identifiable {
     
     var icon: String {
         if children == nil {
-            return "doc"
+            if type == "text/url" {
+                return "safari"
+            } else if type.hasPrefix("video") {
+                return "play.tv"
+            } else {
+                return "doc"
+            }
         } else if children!.isEmpty {
             return "folder"
         } else {

@@ -14,19 +14,21 @@ struct ResourceOverviewView: View {
         if env.selectedCollection.courses.count == 1 {
             AsyncContentView(loader: ResourceRetriever.getResources, content: ResourcesNavigationView.build)
         } else {
-            List(env.selectedCollection.courses, id: \.siteId) { course in
-                NavigationLink {
-                    AsyncContentView(loader: ResourceRetriever.getResources,
-                                     content: ResourcesNavigationView.build)
-                    .navigationTitle(course.name)
-                    .environmentObject(SakaiEnvironment.create(withCourse: course))
-                } label: {
-                    Image(systemName: "folder.fill")
-                    Text(course.name)
-                        .font(.body)
+            CollectionPickerWrapper() {
+                List(env.selectedCollection.courses, id: \.siteId) { course in
+                    NavigationLink {
+                        AsyncContentView(loader: ResourceRetriever.getResources,
+                                         content: ResourcesNavigationView.build,
+                                         contentOnly: true)
+                        .navigationTitle(course.name)
+                        .environmentObject(SakaiEnvironment.create(withCourse: course))
+                    } label: {
+                        Image(systemName: "folder.fill")
+                            .foregroundColor(Color("DukeNavy"))
+                        Text(course.name)
+                            .font(.body)
+                    }
                 }
-                
-                
             }
         }
     }

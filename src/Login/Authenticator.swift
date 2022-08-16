@@ -9,11 +9,24 @@ import Foundation
 import WebKit
 
 enum AuthState {
-    case idle, invalidAccessToken, noAccessToken, invalidSession(refreshSessionRequest: URLRequest)
+    case idle, invalidAccessToken, noAccessToken, loggingOut, invalidSession(refreshSessionRequest: URLRequest)
     case loggedIn(courses: [String])
 }
 
 class Authenticator {
+    // This method should not be called directly, call env.logout() instead
+    static func logout() async {
+        return await withCheckedContinuation { continuation in
+            print("Logging out by removing access token and resetting cookies")
+            UserDefaults.standard.removeObject(forKey: "cookies")
+            UserDefaults.standard.removeObject(forKey: "accessToken")
+            UserDefaults.standard.removeObject(forKey: "sessionToken")
+            URLSession.shared.reset {
+                continuation.resume()
+            }
+        }
+    }
+    
     static func validateSakaiSession() async -> [String]? {
         do {
             let courses = try await getCourseList()

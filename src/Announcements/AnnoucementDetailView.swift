@@ -12,7 +12,7 @@ struct AnnoucementDetailView: View {
     @State var text: String
     
     var body: some View {
-        DynamicWebView(text: $text)
+        HTMLWebView(text: $text)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .edgesIgnoringSafeArea([.leading, .trailing, .bottom])
     }
