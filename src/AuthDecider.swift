@@ -79,7 +79,7 @@ struct AuthDecider: View {
                         authState = .loggedIn(courses: courses)
                     } else if let existingAccessToken = UserDefaults.standard.string(forKey: "accessToken"),
                               let existingSessionToken = UserDefaults.standard.string(forKey: "sessionToken") {
-                        print("Restored session is invalid, but we have an access token saved, lets validate it and use that")
+                        print("Restored session is invalid, but we have an access token saved, let's validate it and use that")
                         let tokenValid = Authenticator.validateAccessToken(existingAccessToken)
                         var accessToken = existingAccessToken
                         if !tokenValid {
@@ -90,6 +90,8 @@ struct AuthDecider: View {
                             } catch {
                                 print("Couldn't refresh access token, logging out: ")
                                 print(error)
+                                authState = .loggingOut
+                                await Authenticator.logout()
                                 authState = .noAccessToken
                             }
                         }

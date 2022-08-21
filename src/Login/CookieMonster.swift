@@ -52,9 +52,46 @@ struct CookieMonster: UIViewRepresentable {
         }
     }
     
-    static func saveSessionCookiesToDisk(_ value: [HTTPCookie]) {
-        let archivedPool = try! NSKeyedArchiver.archivedData(withRootObject: value, requiringSecureCoding: false)
-        UserDefaults.standard.set(archivedPool, forKey: "cookies")
+    static func printCookiesAsJson(_ cookies: [HTTPCookie]) {
+        /// Wraps `HTTPCookie` in a container which conforms to `Codable` protocol.
+        final class CodableHTTPCookieContainer: Codable {
+          public enum Error: Swift.Error {
+            case failedToUnarchive
+          }
+          public let cookie: HTTPCookie
+
+          public init(_ cookie: HTTPCookie) {
+            self.cookie = cookie
+          }
+
+          public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            let data = try container.decode(Data.self)
+            guard let cookie = NSKeyedUnarchiver.unarchiveObject(with: data) as? HTTPCookie else {
+              throw Error.failedToUnarchive
+            }
+            self.cookie = cookie
+          }
+
+          public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            let data = NSKeyedArchiver.archivedData(withRootObject: cookie)
+            try container.encode(data)
+          }
+        }
+        
+        print(cookies.count, "cookies:")
+        let codableCookies = cookies.map { CodableHTTPCookieContainer($0) }
+        let data = try! JSONEncoder().encode(codableCookies)
+        let jsonString = String(data: data,
+                                encoding: .utf8)!
+        print(jsonString)
+    }
+    
+    static func saveSessionCookiesToDisk(_ cookies: [HTTPCookie]) {
+        printCookiesAsJson(cookies)
+        let cookiesData = try! NSKeyedArchiver.archivedData(withRootObject: cookies, requiringSecureCoding: false)
+        UserDefaults.standard.set(cookiesData, forKey: "cookies")
     }
     
     class Coordinator: NSObject, WKNavigationDelegate {

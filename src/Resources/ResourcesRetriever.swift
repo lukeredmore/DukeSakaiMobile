@@ -8,7 +8,11 @@
 import SwiftUI
 
 
-class Resource: Identifiable {
+class Resource: Identifiable, Equatable {
+    static func == (lhs: Resource, rhs: Resource) -> Bool {
+        lhs.url == rhs.url
+    }
+    
     let numChildren : Int
     let title : String
     let type : String
@@ -55,6 +59,27 @@ class Resource: Identifiable {
 }
 
 class ResourceRetriever {
+    static func getResource(fromResourceUrl url: URL?) -> Resource? {
+        guard let url = url,
+              let path = URLComponents(url: url, resolvingAgainstBaseURL: false)?.path,
+              path.hasPrefix("/access/content/attachment/") == true,
+              let last = path.split(separator: "/").last else { return nil }
+        let filename = String(last)
+        let fileExtension = String(filename.split(separator: ".").last!)
+        var type = "unknown"
+        
+        switch fileExtension {
+        case "jpg", "jpeg", "png":
+            type = "image"
+        case "docx", "doc":
+            type = "officedocument"
+        case "pdf":
+            type = "pdf"
+        default: break
+        }
+        return Resource(title: filename, numChildren: 0, type: type, url: url.absoluteString)
+    }
+    
     private static func getResources(forSiteId siteId: String) async throws -> [Resource] {
         let url = try Networking.createSakaiURL(siteId: siteId, endpoint: "content", options: [:])
         let json = try await Networking.json(from: url)

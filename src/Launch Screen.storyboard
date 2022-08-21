@@ -17,8 +17,6 @@
                         <subviews>
                             <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chapel-sunrise" translatesAutoresizingMaskIntoConstraints="NO" id="qOa-xE-NdA">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                                <variation key="heightClass=compact" image="chapel-spring"/>
-                                <variation key="heightClass=regular-widthClass=regular" image="chapel-spring"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
@@ -37,7 +35,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chapel-spring" width="1025" height="683.33331298828125"/>
         <image name="chapel-sunrise" width="633.33331298828125" height="933.33331298828125"/>
     </resources>
 </document>

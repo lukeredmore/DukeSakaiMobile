@@ -21,13 +21,9 @@ struct AssignmentsNavigationView: View {
     
     var body: some View {
         List(assignments, id: \.title) { item in
-            Text(item.title)
+            NavigationLink(item.title) {
+                AssignmentDetailView(assignment: item)
+            }
         }
     }
 }
-
-//struct AssignmentsNavigationView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AssignmentsNavigationView()
-//    }
-//}

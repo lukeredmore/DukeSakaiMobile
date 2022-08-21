@@ -47,8 +47,6 @@ struct HTMLWebView: UIViewRepresentable {
             a {
                 color: \(UIColor.systemBlue.hex);
             }
-    
-    
             img {
                 max-width: 100%;
             }

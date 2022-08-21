@@ -14,10 +14,12 @@ struct CollectionsLoader: View {
     
     var body: some View {
         if env.termCollections.isEmpty {
-            ProgressView().onAppear { Task {
-                await env.createInitialEnv(courseIds: courseIds, logout: logout)
-                print("Created Environment, showing home screen")
-            }}
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
+                .onAppear { Task {
+                    await env.createInitialEnv(courseIds: courseIds, logout: logout)
+                    print("Created Environment, showing home screen")
+                }}
         } else {
             HomeTabView()
                 .popupMenu(isPresented: $env.collectionPickerShown) {

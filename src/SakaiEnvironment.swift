@@ -47,7 +47,7 @@ class SakaiEnvironment: ObservableObject {
     func createInitialEnv(courseIds: [String], logout: @escaping () -> Void) async {
         do {
             print("Creating Environment")
-            let courses = await CoursesRetriever().initialCourses(courseIds: courseIds) //try await CoursesRetriever.getCourses(for: courseIds)
+            let courses = try await CoursesRetriever.getCourses(for: courseIds)
             let group = CoursesRetriever.groupCourses(courses: courses)
             DispatchQueue.main.async {
                 self.logout = logout
@@ -64,32 +64,7 @@ class SakaiEnvironment: ObservableObject {
     }
     
     
-    class CoursesRetriever: NSObject, LoginViewControllerDelegate {
-        lazy var loginVc = LoginViewController(delegate: self)
-        
-        var continuation: CheckedContinuation<[Course], Never>? = nil
-        
-        func sakaiAuthenticatedWithCourses(_ courses: [Course]) {
-            if (courses.count == sites.count) {
-                print("Got all course objects, returning to set up collections and show home screen")
-                self.continuation?.resume(returning: courses)
-                self.continuation = nil
-            }
-        }
-        
-
-        // This is a very poorly engineered attempt to hack existing fucntionality because my rewrite isn't working (Invalid data, then cancelling the rest)
-        func initialCourses(courseIds: [String]) async -> [Course] {
-            return await withCheckedContinuation { continuation in
-                self.continuation = continuation
-                DispatchQueue.main.async {
-                    sites = courseIds
-                    self.loginVc.initialCourses()
-                }
-            }
-        }
-        
-
+    class CoursesRetriever {
         static func getCourses(for siteIds: [String]) async throws -> [Course] {
             print("Loading courses for all siteIds")
             
@@ -119,12 +94,11 @@ class SakaiEnvironment: ObservableObject {
                                                         endpoint: "site",
                                                         options: ["n": "200", "d": "3000"],
                                                         siteSpecific: false)
-                print("Getting course from url: \(url.absoluteString)")
+//                print("Getting course from url: \(url.absoluteString)")
                 let json = try await Networking.json(from: url)
-                //            print(json)
                 return Course(name: try json.get("title"),
                               siteId: siteId,
-                              term: try json.get("type") != "project" ? json.get(["props", "term"]) : "project",
+                              term: try json.get("type") != "project" ? json.get(["props", "term"]) : "Project",
                               instructor: try json.get(["siteOwner", "userDisplayName"]),
                               lastModified: try json.get("lastModified"),
                               created: try json.get("createdDate"))

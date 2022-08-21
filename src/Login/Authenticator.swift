@@ -21,6 +21,7 @@ class Authenticator {
             UserDefaults.standard.removeObject(forKey: "cookies")
             UserDefaults.standard.removeObject(forKey: "accessToken")
             UserDefaults.standard.removeObject(forKey: "sessionToken")
+            UserDefaults.standard.removeObject(forKey: "favorite-course-ids")
             URLSession.shared.reset {
                 continuation.resume()
             }

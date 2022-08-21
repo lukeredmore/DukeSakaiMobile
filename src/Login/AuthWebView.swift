@@ -155,9 +155,7 @@ struct AuthWebView : UIViewControllerRepresentable {
                 }),
                    let accessToken = queryItems["access_token"],
                    let sessionToken = queryItems["session_token"] {
-                    print("Found tokens")
-                    print(accessToken)
-                    print(sessionToken)
+                    print("Authentication successful, found tokens")
                     completion((accessToken, sessionToken))
                     return .cancel
                 } else {

@@ -10,10 +10,22 @@ import SwiftUI
 
 struct Assignment {
     var title: String
+    var id: String
     var status: String?
     var scale: String?
+    var directUrl: URL
     var instructions: String
     var dueAt: Date?
+    
+    static func build(from json: [String: AnyObject]) throws -> Assignment {
+        return Assignment(title: try json.get("title"),
+                          id: try json.get("id"),
+                          status: try json.get("status"),
+                          scale: try json.get("gradeScaleMaxPoints"),
+                          directUrl: URL(string: try json.get("entityURL"))!,
+                          instructions: try json.get("instructions"),
+                          dueAt: try Date(try json.get("dueTimeString"), strategy: .iso8601))
+    }
 }
 
 class AssignmentsRetriever {
@@ -25,11 +37,8 @@ class AssignmentsRetriever {
         var assignments = [Assignment]()
         for entry in assignment_collection {
             do {
-                assignments.append(Assignment(title: try entry.get("title"),
-                           status: try entry.get("status"),
-                           scale: try entry.get("gradeScaleMaxPoints"),
-                           instructions: try entry.get("instructions"),
-                           dueAt: try Date(try entry.get("dueTimeString"), strategy: .iso8601)))
+                let assignment = try Assignment.build(from: entry)
+                assignments.append(assignment)
             } catch {
                 print(error)
             }
