@@ -6,10 +6,7 @@
 //
 
 import UIKit
-
-enum SakaiError: Error {
-    case other(String)
-}
+import WebKit
 
 public func print(_ items: String..., filename: String = #file, function : String = #function, line: Int = #line, separator: String = " ", terminator: String = "\n") {
     #if DEBUG
@@ -127,32 +124,33 @@ extension String {
         let toIndex = to != nil ? index(from: to!) : endIndex
         return String(self[fromIndex..<toIndex])
     }
-    
-    
 }
 
-func strStr(_ haystack: String, _ needle: String) -> Int {
-    let hChars = Array(haystack), nChars = Array(needle)
-    let hLen = hChars.count, nLen = nChars.count
-    
-    guard hLen >= nLen else {
-        return -1
+extension WKWebView {
+    func populateFileInput(querySelector: String, data: Data, filename: String, type: String) {
+        let byteArray = [UInt8](data)
+        
+        self.evaluateJavaScript("""
+            const byteArrayString = "\(byteArray)"
+            const intArray = byteArrayString.substring(1, byteArrayString.length - 1).split(", ").map(x => Number(x));
+            const byteArray = new Uint8Array(intArray);
+            const blob = new Blob([byteArray], { type: "\(type)" });
+            const file = new File([blob], "\(filename)");
+            
+            let container = new DataTransfer();
+            container.items.add(file);
+            $("\(querySelector)")[0].files = container.files;
+            $("\(querySelector)")[0].onchange();
+            byteArray[0]
+        """)
     }
-    guard nLen != 0 else {
-        return 0
-    }
-    
-    for i in 0 ... hLen - nLen {
-        if hChars[i] == nChars[0] {
-            for j in 0 ..< nLen {
-                if hChars[i + j] != nChars[j] {
-                    break
-                }
-                if j + 1 == nLen {
-                    return i
-                }
-            }
+}
+
+public extension FileManager {
+    func copyOrReplace(sourceUrl: URL, destinationUrl: URL) throws {
+        if fileExists(atPath: destinationUrl.path) {
+            try removeItem(at: destinationUrl)
         }
+        try copyItem(at: sourceUrl, to: destinationUrl)
     }
-    return -1
 }

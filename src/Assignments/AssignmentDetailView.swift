@@ -78,7 +78,7 @@ struct AssignmentWebView: UIViewRepresentable {
         $('#skipNav').remove();
         $('div.act').has("input[value='Back to list']").remove();
         $("form[name='dummyForm']").has("input[value='Done']").remove();
-        window.scrollTo(0,0);
+        $("#submitPanel input[value='Cancel']").remove();
         """,
                      injectionTime: .atDocumentEnd,
                      forMainFrameOnly: false)
@@ -112,8 +112,10 @@ struct AssignmentWebView: UIViewRepresentable {
     let directUrl: URL
     @Binding var resourceToShow: Resource?
     
-    class Coordinator: NSObject, WKNavigationDelegate {
+    class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
         let parent: AssignmentWebView
+        
+        var initialLoad = true
         
         init(_ parent: AssignmentWebView) {
             self.parent = parent
@@ -121,11 +123,19 @@ struct AssignmentWebView: UIViewRepresentable {
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-                webView.evaluateJavaScript("window.scrollTo(0,0)")
+                guard self.initialLoad == true else { print("Already uploaded")
+                    return
+                }
+                self.initialLoad = false
+                let path = Bundle.main.path(forResource: "test", ofType: "pdf")!
+                let data = try! Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                webView.populateFileInput(querySelector: "#attachmentspanel input[name='upload']",
+                                          data: data,
+                                          filename: "test.pdf",
+                                          type: "application/pdf")
             }
             
         }
-        
         
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
             guard let resource = ResourceRetriever.getResource(fromResourceUrl: navigationAction.request.url) else {

@@ -24,13 +24,6 @@ class GradeRetriever {
         
     }
     
-    enum SakaiDataRetrievalError: Error {
-        
-        case failedToParseDataAsJson
-        case invalidRequestUrl
-        case invalidRequestUrlWithComponents
-    }
-    
     private static let SAKAI_DIRECT_URL = "https://sakai.duke.edu/direct/"
     
     private static func createURL(siteId: String, endpoint: String, options: [String: String]) throws -> URL {

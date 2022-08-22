@@ -7,14 +7,6 @@
 
 import Foundation
 
-enum SakaiDataRetrievalError: Error {
-    case failedToParseDataAsJson
-    case invalidRequestUrl
-    case invalidRequestUrlWithComponents
-    case failedToFindKeyInJson(key: String)
-    case failedToParseKeyInJsonAsType(key: String)
-}
-
 class Networking {
     static private let SAKAI_DIRECT_URL = "https://sakai.duke.edu/direct/"
     

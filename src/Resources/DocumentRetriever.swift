@@ -12,7 +12,7 @@ class DocumentRetriever {
         let url = URL(string: urlString)!
         let downloadTask = URLSession.shared.downloadTask(with: url) {
             urlOrNil, responseOrNil, errorOrNil in
-            // check for and handle errors:
+            // TODO: check for and handle errors:
             // * errorOrNil should be nil
             // * responseOrNil should be an HTTPURLResponse with statusCode in 200..<299
             guard let fileURL = urlOrNil else { return }

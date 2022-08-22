@@ -50,11 +50,22 @@
 		265C636028A6CDBC005D9403 /* AuthWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C635F28A6CDBC005D9403 /* AuthWebView.swift */; };
 		26860EE428B04212002A044C /* AssignmentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26860EE328B04212002A044C /* AssignmentDetailView.swift */; };
 		26860EE728B271BA002A044C /* GradeWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26860EE628B271BA002A044C /* GradeWebView.swift */; };
+		26860EE928B2BFE1002A044C /* test.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 26860EE828B2BFE1002A044C /* test.pdf */; };
+		26860EF128B2C293002A044C /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26860EF028B2C293002A044C /* ShareViewController.swift */; };
+		26860EF828B2C293002A044C /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 26860EEE28B2C293002A044C /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		26860EFE28B2C410002A044C /* AttachFileToAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26860EFD28B2C410002A044C /* AttachFileToAssignmentView.swift */; };
+		26860EFF28B2C551002A044C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B13288649970017C703 /* Extensions.swift */; };
+		26860F0128B2C5AC002A044C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26860F0028B2C5AC002A044C /* Errors.swift */; };
+		26860F0228B2C5D4002A044C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26860F0028B2C5AC002A044C /* Errors.swift */; };
+		26860F0428B3B871002A044C /* FileImportHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26860F0328B3B871002A044C /* FileImportHelper.swift */; };
+		26860F0628B3B9C2002A044C /* UTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26860F0528B3B9C2002A044C /* UTI.swift */; };
+		26860F0B28B3C791002A044C /* FilePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26860F0828B3C58E002A044C /* FilePreview.swift */; };
+		26860F0D28B3CBC4002A044C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CF4AD0288646580017C703 /* Assets.xcassets */; };
 		26CF4AE7288646580017C703 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AE6288646580017C703 /* Tests_iOS.swift */; };
 		26CF4AE9288646580017C703 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AE8288646580017C703 /* Tests_iOSLaunchTests.swift */; };
 		26CF4AF6288646590017C703 /* DukeSakaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4ACE288646570017C703 /* DukeSakaiApp.swift */; };
 		26CF4AFA288646590017C703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CF4AD0288646580017C703 /* Assets.xcassets */; };
-		26CF4B14288649970017C703 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B13288649970017C703 /* Utils.swift */; };
+		26CF4B14288649970017C703 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B13288649970017C703 /* Extensions.swift */; };
 		26CF4B1E288654D50017C703 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B1D288654D50017C703 /* Course.swift */; };
 		26CF4B24288668320017C703 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B23288668320017C703 /* HomeTabView.swift */; };
 		26CF4B282887236C0017C703 /* ResourcesNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4B272887236C0017C703 /* ResourcesNavigationView.swift */; };
@@ -76,6 +87,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		26860EF628B2C293002A044C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26CF4AC9288646560017C703 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26860EED28B2C293002A044C;
+			remoteInfo = ShareExtension;
+		};
 		26CF4AE3288646580017C703 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 26CF4AC9288646560017C703 /* Project object */;
@@ -84,6 +102,20 @@
 			remoteInfo = "DukeSakai (iOS)";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		26860EFC28B2C293002A044C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				26860EF828B2C293002A044C /* ShareExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2607E07728AC084D0056DE6E /* StartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPage.swift; sourceTree = "<group>"; };
@@ -120,13 +152,22 @@
 		26860EE328B04212002A044C /* AssignmentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailView.swift; sourceTree = "<group>"; };
 		26860EE528B26EA3002A044C /* DukeSakai (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "DukeSakai (iOS).entitlements"; sourceTree = "<group>"; };
 		26860EE628B271BA002A044C /* GradeWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeWebView.swift; sourceTree = "<group>"; };
+		26860EE828B2BFE1002A044C /* test.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = test.pdf; sourceTree = "<group>"; };
+		26860EEE28B2C293002A044C /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		26860EF028B2C293002A044C /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		26860EF528B2C293002A044C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26860EFD28B2C410002A044C /* AttachFileToAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachFileToAssignmentView.swift; sourceTree = "<group>"; };
+		26860F0028B2C5AC002A044C /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		26860F0328B3B871002A044C /* FileImportHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImportHelper.swift; sourceTree = "<group>"; };
+		26860F0528B3B9C2002A044C /* UTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTI.swift; sourceTree = "<group>"; };
+		26860F0828B3C58E002A044C /* FilePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePreview.swift; sourceTree = "<group>"; };
 		26CF4ACE288646570017C703 /* DukeSakaiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeSakaiApp.swift; sourceTree = "<group>"; };
 		26CF4AD0288646580017C703 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26CF4AD5288646580017C703 /* DukeSakai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeSakai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CF4AE2288646580017C703 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CF4AE6288646580017C703 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		26CF4AE8288646580017C703 /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
-		26CF4B13288649970017C703 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		26CF4B13288649970017C703 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		26CF4B1D288654D50017C703 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		26CF4B23288668320017C703 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		26CF4B272887236C0017C703 /* ResourcesNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesNavigationView.swift; sourceTree = "<group>"; };
@@ -149,6 +190,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		26860EEB28B2C293002A044C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		26CF4AD2288646580017C703 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -210,8 +258,9 @@
 				2655D90B288DC7730023C210 /* TestAssets */,
 				261CA741288B0F0300C7C09B /* Networking.swift */,
 				26F67B1428AAC1360098B7FD /* CustomText.swift */,
-				26CF4B13288649970017C703 /* Utils.swift */,
+				26CF4B13288649970017C703 /* Extensions.swift */,
 				2655D908288DBDF20023C210 /* PreviewUtils.swift */,
+				26860F0028B2C5AC002A044C /* Errors.swift */,
 				261CA7202887B32800C7C09B /* ReuseableUIElements */,
 			);
 			path = Utils;
@@ -231,10 +280,24 @@
 		2655D90B288DC7730023C210 /* TestAssets */ = {
 			isa = PBXGroup;
 			children = (
+				26860EE828B2BFE1002A044C /* test.pdf */,
 				2655D90C288DC7830023C210 /* courses.json */,
 				2655D90F288DEECD0023C210 /* announcements.json */,
 			);
 			path = TestAssets;
+			sourceTree = "<group>";
+		};
+		26860EEF28B2C293002A044C /* ShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				26860EF028B2C293002A044C /* ShareViewController.swift */,
+				26860F0328B3B871002A044C /* FileImportHelper.swift */,
+				26860EFD28B2C410002A044C /* AttachFileToAssignmentView.swift */,
+				26860F0828B3C58E002A044C /* FilePreview.swift */,
+				26860F0528B3B9C2002A044C /* UTI.swift */,
+				26860EF528B2C293002A044C /* Info.plist */,
+			);
+			path = ShareExtension;
 			sourceTree = "<group>";
 		};
 		26CF4AC8288646560017C703 = {
@@ -246,6 +309,7 @@
 				26E1694D288E0F2E00D0ABA8 /* play */,
 				26CF4AE5288646580017C703 /* tst */,
 				26116B4228AACCEC007E94EA /* fonts */,
+				26860EEF28B2C293002A044C /* ShareExtension */,
 				26CF4AD6288646580017C703 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -280,6 +344,7 @@
 			children = (
 				26CF4AD5288646580017C703 /* DukeSakai.app */,
 				26CF4AE2288646580017C703 /* Tests iOS.xctest */,
+				26860EEE28B2C293002A044C /* ShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -347,6 +412,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		26860EED28B2C293002A044C /* ShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26860EF928B2C293002A044C /* Build configuration list for PBXNativeTarget "ShareExtension" */;
+			buildPhases = (
+				26860EEA28B2C293002A044C /* Sources */,
+				26860EEB28B2C293002A044C /* Frameworks */,
+				26860EEC28B2C293002A044C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareExtension;
+			productName = ShareExtension;
+			productReference = 26860EEE28B2C293002A044C /* ShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		26CF4AD4288646580017C703 /* DukeSakai (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26CF4AFE288646590017C703 /* Build configuration list for PBXNativeTarget "DukeSakai (iOS)" */;
@@ -354,10 +436,12 @@
 				26CF4AD1288646580017C703 /* Sources */,
 				26CF4AD2288646580017C703 /* Frameworks */,
 				26CF4AD3288646580017C703 /* Resources */,
+				26860EFC28B2C293002A044C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				26860EF728B2C293002A044C /* PBXTargetDependency */,
 			);
 			name = "DukeSakai (iOS)";
 			packageProductDependencies = (
@@ -394,6 +478,9 @@
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					26860EED28B2C293002A044C = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
 					26CF4AD4288646580017C703 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -420,11 +507,20 @@
 			targets = (
 				26CF4AD4288646580017C703 /* DukeSakai (iOS) */,
 				26CF4AE1288646580017C703 /* Tests iOS */,
+				26860EED28B2C293002A044C /* ShareExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		26860EEC28B2C293002A044C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26860F0D28B3CBC4002A044C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		26CF4AD3288646580017C703 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -438,6 +534,7 @@
 				2607E08228AC1DED0056DE6E /* Launch Screen.storyboard in Resources */,
 				2655D90D288DC7830023C210 /* courses.json in Resources */,
 				26116B5928AACD1A007E94EA /* OpenSans-Semibold.ttf in Resources */,
+				26860EE928B2BFE1002A044C /* test.pdf in Resources */,
 				26CF4AFA288646590017C703 /* Assets.xcassets in Resources */,
 				26116B4F28AACD1A007E94EA /* OpenSans-ExtraBold.ttf in Resources */,
 				26116B5328AACD1A007E94EA /* OpenSans-Italic.ttf in Resources */,
@@ -466,6 +563,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		26860EEA28B2C293002A044C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26860F0128B2C5AC002A044C /* Errors.swift in Sources */,
+				26860EFE28B2C410002A044C /* AttachFileToAssignmentView.swift in Sources */,
+				26860F0B28B3C791002A044C /* FilePreview.swift in Sources */,
+				26860F0628B3B9C2002A044C /* UTI.swift in Sources */,
+				26860EF128B2C293002A044C /* ShareViewController.swift in Sources */,
+				26860EFF28B2C551002A044C /* Extensions.swift in Sources */,
+				26860F0428B3B871002A044C /* FileImportHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		26CF4AD1288646580017C703 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -495,7 +606,7 @@
 				261CA71B2887A05400C7C09B /* ShareSheet.swift in Sources */,
 				26CF4AF6288646590017C703 /* DukeSakaiApp.swift in Sources */,
 				26E16961288F277500D0ABA8 /* AssignmentsNavigationView.swift in Sources */,
-				26CF4B14288649970017C703 /* Utils.swift in Sources */,
+				26CF4B14288649970017C703 /* Extensions.swift in Sources */,
 				26E1695B288EE08E00D0ABA8 /* CollectionsLoader.swift in Sources */,
 				26CF4B3428873B240017C703 /* DocumentRetriever.swift in Sources */,
 				261CA72728885E5100C7C09B /* AuthDecider.swift in Sources */,
@@ -506,6 +617,7 @@
 				26CF4B2B288725210017C703 /* ResourcesRetriever.swift in Sources */,
 				261CA71E2887AA1C00C7C09B /* CustomSheetView.swift in Sources */,
 				26860EE428B04212002A044C /* AssignmentDetailView.swift in Sources */,
+				26860F0228B2C5D4002A044C /* Errors.swift in Sources */,
 				2655D906288B789C0023C210 /* HTMLWebView.swift in Sources */,
 				2655D8FC288B59A80023C210 /* AnnouncementsNavigationView.swift in Sources */,
 				26F67B1528AAC1360098B7FD /* CustomText.swift in Sources */,
@@ -525,6 +637,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		26860EF728B2C293002A044C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26860EED28B2C293002A044C /* ShareExtension */;
+			targetProxy = 26860EF628B2C293002A044C /* PBXContainerItemProxy */;
+		};
 		26CF4AE4288646580017C703 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 26CF4AD4288646580017C703 /* DukeSakai (iOS) */;
@@ -533,6 +650,59 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		26860EFA28B2C293002A044C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PHJP66LCVA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lukeredmore.DukeSakai.ShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		26860EFB28B2C293002A044C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PHJP66LCVA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lukeredmore.DukeSakai.ShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		26CF4AFC288646590017C703 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -647,6 +817,7 @@
 		26CF4AFF288646590017C703 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "DukeSakai (iOS).entitlements";
@@ -681,6 +852,7 @@
 		26CF4B00288646590017C703 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "DukeSakai (iOS).entitlements";
@@ -757,6 +929,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		26860EF928B2C293002A044C /* Build configuration list for PBXNativeTarget "ShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26860EFA28B2C293002A044C /* Debug */,
+				26860EFB28B2C293002A044C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		26CF4ACC288646560017C703 /* Build configuration list for PBXProject "DukeSakai" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -15,6 +15,7 @@ struct Assignment {
     var scale: String?
     var directUrl: URL
     var instructions: String
+    var submissionType: String
     var dueAt: Date?
     
     static func build(from json: [String: AnyObject]) throws -> Assignment {
@@ -24,6 +25,7 @@ struct Assignment {
                           scale: try json.get("gradeScaleMaxPoints"),
                           directUrl: URL(string: try json.get("entityURL"))!,
                           instructions: try json.get("instructions"),
+                          submissionType: try json.get("submissionType"),
                           dueAt: try Date(try json.get("dueTimeString"), strategy: .iso8601))
     }
 }
@@ -40,7 +42,7 @@ class AssignmentsRetriever {
                 let assignment = try Assignment.build(from: entry)
                 assignments.append(assignment)
             } catch {
-                print(error)
+                print("Failed to get assignment with error:", error.localizedDescription)
             }
         }
         return assignments
