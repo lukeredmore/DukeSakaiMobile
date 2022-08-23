@@ -5,12 +5,11 @@
 //  Created by Luke Redmore on 7/20/22.
 //
 
-import Foundation
+import UIKit
 import WebKit
 
 enum AuthState {
-    case idle, invalidAccessToken, noAccessToken, loggingOut, invalidSession(refreshSessionRequest: URLRequest)
-    case loggedIn(courses: [String])
+    case idle, newUser, loading, loggedIn(courses: [String])
 }
 
 class Authenticator {
@@ -18,13 +17,51 @@ class Authenticator {
     static func logout() async {
         return await withCheckedContinuation { continuation in
             print("Logging out by removing access token and resetting cookies")
-            UserDefaults.standard.removeObject(forKey: "cookies")
-            UserDefaults.standard.removeObject(forKey: "accessToken")
-            UserDefaults.standard.removeObject(forKey: "sessionToken")
-            UserDefaults.standard.removeObject(forKey: "favorite-course-ids")
+            UserDefaults.shared.removeObject(forKey: "cookies")
+            UserDefaults.shared.removeObject(forKey: "accessToken")
+            UserDefaults.shared.removeObject(forKey: "sessionToken")
+            UserDefaults.shared.removeObject(forKey: "favorite-course-ids")
             URLSession.shared.reset {
                 continuation.resume()
             }
+        }
+    }
+    
+    @MainActor
+    static func restoreSession(scene: UIWindowScene) async throws -> [String] {
+        print("Attempting to restore session")
+        CookieMonster.loadSessionCookiesIntoURLSession()
+        if let courses = await validateSakaiSession() {
+            print("Saved session is still valid")
+            return courses
+        }
+        print("Saved session invalid")
+        guard let savedAccessToken = UserDefaults.shared.string(forKey: "accessToken"),
+              let savedSessionToken = UserDefaults.shared.string(forKey: "sessionToken") else {
+            print("No saved access token found. New user?")
+            throw AuthenticationError.noAccessToken
+        }
+        
+        print("Found a saved access token. Let's validate it and refresh the session")
+        let accessToken = try await refreshAccessTokenIfNecessary(accessToken: savedAccessToken, sessionToken: savedSessionToken)
+        let request = buildSakaiAccessRequest(accessToken: accessToken)
+        let cookieMonster = CookieMonster(frame: .zero, listeningFor: "https://sakai.duke.edu/portal")
+        let window = scene.windows.first!
+        window.addSubview(cookieMonster)
+        let cookies = try await cookieMonster.loadAndCollectCookies(request)
+        print("Created valid session and stole its cookies")
+        CookieMonster.saveSessionCookiesToDisk(cookies)
+        cookies.forEach { cookie in
+            URLSession.shared.configuration.httpCookieStorage?.setCookie(cookie)
+        }
+        print("Saved cookies to disk and copied them to URLSession")
+        cookieMonster.removeFromSuperview()
+        if let courses = await validateSakaiSession() {
+            print("Restored session successfully")
+            return courses
+        } else {
+            print("Unknown authentication error")
+            throw AuthenticationError.unknown
         }
     }
     
@@ -49,6 +86,16 @@ class Authenticator {
         }
     }
     
+    private static func refreshAccessTokenIfNecessary(accessToken: String, sessionToken: String) async throws -> String {
+        if !validateAccessToken(accessToken) {
+            print("Access token is invalid, refreshing")
+            return try await refreshAccessToken(accessToken: accessToken, sessionToken: sessionToken)
+        } else {
+            print("Access token is valid, no need to refresh")
+            return accessToken
+        }
+    }
+    
     static func refreshAccessToken(accessToken: String, sessionToken: String) async throws -> String {
         var request = URLRequest(url: URL(string: "https://mobile-authorizer.oit.duke.edu/dukemobile/refresh")!)
         request.httpMethod = "POST"
@@ -62,14 +109,14 @@ class Authenticator {
            let data = json["data"] as? [String: AnyObject],
            let accessToken = data["access_token"] as? String,
            let sessionToken = data["session_token"] as? String {
-            UserDefaults.standard.set(accessToken, forKey: "accessToken")
-            UserDefaults.standard.set(sessionToken, forKey: "sessionToken")
+            UserDefaults.shared.set(accessToken, forKey: "accessToken")
+            UserDefaults.shared.set(sessionToken, forKey: "sessionToken")
             print("Refreshed access token")
             return accessToken
         } else {
-            throw SakaiError.other("Failed to refresh token")
+            throw AuthenticationError.couldNotRefreshAccessToken
         }
-
+        
     }
     
     static func validateAccessToken(_ token: String) -> Bool {

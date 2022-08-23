@@ -20,10 +20,10 @@ struct AuthWebView : UIViewControllerRepresentable {
     
     class AuthWebViewController: UIViewController, WKNavigationDelegate {
         
-        let item = UINavigationItem(title: "")
-        let titleLabel = UILabel()
-        let webView = WKWebView()
-        let navBar = UINavigationBar()
+        private let item = UINavigationItem(title: "")
+        private let titleLabel = UILabel()
+        private let webView = WKWebView()
+        private let navBar = UINavigationBar()
         private let progressView = UIProgressView(progressViewStyle: .bar)
         
         let completion: ((accessToken: String, sessionToken: String)?) -> Void
@@ -96,7 +96,7 @@ struct AuthWebView : UIViewControllerRepresentable {
             let leftConstraint = NSLayoutConstraint(item: navBar, attribute: .leading, relatedBy: .equal, toItem: progressView, attribute: .leading, multiplier: 1, constant: 0)
             let rightConstraint = NSLayoutConstraint(item: navBar, attribute: .trailing, relatedBy: .equal, toItem: progressView, attribute: .trailing, multiplier: 1, constant: 0)
             progressView.translatesAutoresizingMaskIntoConstraints = false
-            progressView.progressTintColor = .systemBlue
+            progressView.progressTintColor = UIColor(named: "DukeNavy")
             view.addConstraints([bottomConstraint, leftConstraint, rightConstraint])
         }
         

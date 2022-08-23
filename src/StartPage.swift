@@ -18,7 +18,7 @@ struct StartPage: View {
                 Button {
                     showingLoginSheet = true
                 } label: {
-                    Text("Login")
+                    Text("Login with NetID")
                         .frame(width: geo.size.width > 300.0 ? 250 : geo.size.width*0.6,
                                height: 70.0)
                         .foregroundColor(.white)

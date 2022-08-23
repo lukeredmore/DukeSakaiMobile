@@ -10,13 +10,13 @@ import SwiftUI
 
 class ImportEnvironment: ObservableObject {
     @Published var files: [ImportedFile]? = nil
+    @Published var scene: UIWindowScene? = nil
 }
 
 class ShareViewController: UIHostingController<AnyView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        AWSAuthUtils.authenticate()
         setupNavBar()
 
         print("View loading")
@@ -31,10 +31,6 @@ class ShareViewController: UIHostingController<AnyView> {
             print("There were \(errorCount) errors importing these \(itemProviders.count) files")
             self.setEnvironmentFiles(files)
         }
-        
-        //TODO: Fix this, no access from extensino
-//        let accessToken = UserDefaults.standard.string(forKey: "accessToken")!
-//        print(accessToken)
     }
     
     private func setEnvironmentFiles(_ files : [ImportedFile]) {
@@ -43,6 +39,7 @@ class ShareViewController: UIHostingController<AnyView> {
                 print("Could not find navigation controller")
                 return
             }
+            nav.env.scene = self.view.window!.windowScene
             nav.env.files = files
         }
     }
@@ -56,7 +53,6 @@ class ShareViewController: UIHostingController<AnyView> {
         self.navigationItem.title = "Sakai Assignments"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
 
-        
         let itemCancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAction))
         self.navigationItem.setLeftBarButton(itemCancel, animated: false)
     }

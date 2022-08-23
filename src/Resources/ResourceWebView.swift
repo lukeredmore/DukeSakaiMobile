@@ -22,8 +22,7 @@ struct ResourceWebView: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> WKWebView {
-        let config = WKWebViewConfiguration()
-        config.copyCookiesFromURLSession()
+        let config = CookieMonster.loadSessionCookiesIntoWKWebViewConfig()
         let wv = WKWebView(frame: UIScreen.main.bounds, configuration: config)
         wv.navigationDelegate = context.coordinator
         wv.isOpaque = false
@@ -62,16 +61,3 @@ struct ResourceWebView: UIViewRepresentable {
         }
     }
 }
-
-extension WKWebViewConfiguration {
-    func copyCookiesFromURLSession() {
-        guard let cookies = URLSession.shared.configuration.httpCookieStorage?.cookies else {
-            print("Could not shared cookies")
-            return
-        }
-        for cookie in cookies {
-            self.websiteDataStore.httpCookieStore.setCookie(cookie)
-        }
-    }
-}
-

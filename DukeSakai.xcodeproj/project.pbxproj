@@ -61,6 +61,9 @@
 		26860F0628B3B9C2002A044C /* UTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26860F0528B3B9C2002A044C /* UTI.swift */; };
 		26860F0B28B3C791002A044C /* FilePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26860F0828B3C58E002A044C /* FilePreview.swift */; };
 		26860F0D28B3CBC4002A044C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CF4AD0288646580017C703 /* Assets.xcassets */; };
+		26860F1028B40B31002A044C /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA72C288865B000C7C09B /* Authenticator.swift */; };
+		26860F1128B40B50002A044C /* CookieMonster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F67B1128A9D2A60098B7FD /* CookieMonster.swift */; };
+		26860F1228B410D4002A044C /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CA741288B0F0300C7C09B /* Networking.swift */; };
 		26CF4AE7288646580017C703 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AE6288646580017C703 /* Tests_iOS.swift */; };
 		26CF4AE9288646580017C703 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4AE8288646580017C703 /* Tests_iOSLaunchTests.swift */; };
 		26CF4AF6288646590017C703 /* DukeSakaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CF4ACE288646570017C703 /* DukeSakaiApp.swift */; };
@@ -161,6 +164,7 @@
 		26860F0328B3B871002A044C /* FileImportHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImportHelper.swift; sourceTree = "<group>"; };
 		26860F0528B3B9C2002A044C /* UTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTI.swift; sourceTree = "<group>"; };
 		26860F0828B3C58E002A044C /* FilePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePreview.swift; sourceTree = "<group>"; };
+		26860F0E28B40818002A044C /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
 		26CF4ACE288646570017C703 /* DukeSakaiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeSakaiApp.swift; sourceTree = "<group>"; };
 		26CF4AD0288646580017C703 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26CF4AD5288646580017C703 /* DukeSakai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeSakai.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,6 +294,7 @@
 		26860EEF28B2C293002A044C /* ShareExtension */ = {
 			isa = PBXGroup;
 			children = (
+				26860F0E28B40818002A044C /* ShareExtension.entitlements */,
 				26860EF028B2C293002A044C /* ShareViewController.swift */,
 				26860F0328B3B871002A044C /* FileImportHelper.swift */,
 				26860EFD28B2C410002A044C /* AttachFileToAssignmentView.swift */,
@@ -568,9 +573,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				26860F0128B2C5AC002A044C /* Errors.swift in Sources */,
+				26860F1228B410D4002A044C /* Networking.swift in Sources */,
+				26860F1028B40B31002A044C /* Authenticator.swift in Sources */,
 				26860EFE28B2C410002A044C /* AttachFileToAssignmentView.swift in Sources */,
 				26860F0B28B3C791002A044C /* FilePreview.swift in Sources */,
 				26860F0628B3B9C2002A044C /* UTI.swift in Sources */,
+				26860F1128B40B50002A044C /* CookieMonster.swift in Sources */,
 				26860EF128B2C293002A044C /* ShareViewController.swift in Sources */,
 				26860EFF28B2C551002A044C /* Extensions.swift in Sources */,
 				26860F0428B3B871002A044C /* FileImportHelper.swift in Sources */,
@@ -653,6 +661,7 @@
 		26860EFA28B2C293002A044C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PHJP66LCVA;
@@ -679,6 +688,7 @@
 		26860EFB28B2C293002A044C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = PHJP66LCVA;

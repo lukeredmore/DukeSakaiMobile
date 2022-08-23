@@ -74,11 +74,6 @@
 			<key>orderHint</key>
 			<integer>12</integer>
 		</dict>
-		<key>DukeSakai (iOS) 1.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
 		<key>DukeSakai (iOS).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -291,6 +286,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>26860EED28B2C293002A044C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>26CF4AD4288646580017C703</key>
 		<dict>
 			<key>primary</key>

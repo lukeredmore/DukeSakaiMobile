@@ -22,7 +22,7 @@ class SakaiEnvironment: ObservableObject {
     
     func toggleCourseInFavorites(_ course: Course) {
         print("Toggling \(course.name) in favorites")
-        var favoriteIds : [String] = UserDefaults.standard.array(forKey: "favorite-course-ids") as? [String] ?? []
+        var favoriteIds : [String] = UserDefaults.shared.array(forKey: "favorite-course-ids") as? [String] ?? []
         
         var favs = favoritesCollection.courses
         if let current = favs.firstIndex(where: { $0 == course }) {
@@ -41,7 +41,7 @@ class SakaiEnvironment: ObservableObject {
                 self.selectedCollection = favoritesCollection
             }
         }
-        UserDefaults.standard.set(favoriteIds, forKey: "favorite-course-ids")
+        UserDefaults.shared.set(favoriteIds, forKey: "favorite-course-ids")
     }
     
     func createInitialEnv(courseIds: [String], logout: @escaping () -> Void) async {
@@ -88,13 +88,10 @@ class SakaiEnvironment: ObservableObject {
         
         private static func getCourse(for siteId: String) async throws -> Course {
             do {
-                
-                
                 let url = try Networking.createSakaiURL(siteId: siteId,
                                                         endpoint: "site",
                                                         options: ["n": "200", "d": "3000"],
                                                         siteSpecific: false)
-//                print("Getting course from url: \(url.absoluteString)")
                 let json = try await Networking.json(from: url)
                 return Course(name: try json.get("title"),
                               siteId: siteId,
@@ -112,7 +109,7 @@ class SakaiEnvironment: ObservableObject {
             print("Aggregating courses into collections")
             let termCollections = organizeCoursesByTerm(courses: courses)
             
-            let favorites = UserDefaults.standard.array(forKey: "favorite-course-ids") as? [String] ?? []
+            let favorites = UserDefaults.shared.array(forKey: "favorite-course-ids") as? [String] ?? []
             let favoriteCourses = courses.filter { course in
                 favorites.contains(course.siteId)
             }

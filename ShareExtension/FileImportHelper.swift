@@ -25,7 +25,6 @@ public class ImportedFile: Identifiable {
     
     public func getThumbnail(completion: @escaping (UIImage) -> Void) {
         if uti.preferredMIMEType?.contains("image") == true {
-            print("this is an image")
             let data = try! Data(contentsOf: path)
             completion(UIImage(data: data)!)
             return

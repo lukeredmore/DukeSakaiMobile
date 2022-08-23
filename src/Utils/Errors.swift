@@ -19,3 +19,9 @@ enum SakaiError: Error {
     case importError
     case other(String)
 }
+
+enum AuthenticationError: Error {
+    case noAccessToken
+    case couldNotRefreshAccessToken
+    case unknown
+}

@@ -154,3 +154,7 @@ public extension FileManager {
         try copyItem(at: sourceUrl, to: destinationUrl)
     }
 }
+
+extension UserDefaults {
+    static var shared = UserDefaults(suiteName: "group.DukeSakai")!
+}

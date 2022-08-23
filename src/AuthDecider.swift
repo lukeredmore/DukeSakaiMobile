@@ -6,14 +6,9 @@
 //
 
 import SwiftUI
-import AuthenticationServices
-import WebKit
-
-
 
 struct AuthDecider: View {
-    @State private var showingSheet = false
-    @State private var authState: AuthState = .idle
+    @State private var authState = AuthState.idle
     
     struct Background: View {
         struct BackgroundView: UIViewControllerRepresentable {
@@ -38,72 +33,50 @@ struct AuthDecider: View {
         }
     }
     
+    private func authenticate() { Task {
+        let scene = await UIApplication.shared.connectedScenes.first as! UIWindowScene
+        do {
+            let courses = try await Authenticator.restoreSession(scene: scene)
+            authState = .loggedIn(courses: courses)
+        } catch {
+            print(error)
+            switch error {
+            case AuthenticationError.noAccessToken,
+                AuthenticationError.couldNotRefreshAccessToken:
+                authState = .newUser
+            case AuthenticationError.unknown:
+                print("Unknown auth error")
+            default:
+                print("Unknown error")
+            }
+        }
+    }}
+    
     @ViewBuilder
     var decider: some View {
-        if case .loggedIn(let courses) = authState {
-            CollectionsLoader(courseIds: courses) { Task { /*logout method*/
-                authState = .loggingOut
-                await Authenticator.logout()
-                authState = .noAccessToken
-            }}
-        } else if case .noAccessToken = authState {
-            StartPage { result in
-                UserDefaults.standard.set(result.accessToken, forKey: "accessToken")
-                UserDefaults.standard.set(result.sessionToken, forKey: "sessionToken")
-                authState = .invalidSession(refreshSessionRequest: Authenticator.buildSakaiAccessRequest(accessToken: result.accessToken))
-            }
-        } else if case .loggingOut = authState {
-            ProgressView().progressViewStyle(CircularProgressViewStyle(tint: Color.white))
-        } else { ZStack {
-            if case .invalidSession(let request) = authState {
-                CookieMonster(request: request) { courses in
-                    guard let courses = courses else {
-                        //TODO: handle flow, its likely this user has a netId but doesn't use Sakai
-                        print("This user doens't use Sakai?")
-                        Task {
-                            await Authenticator.logout()
-                            authState = .noAccessToken
-                        }
-                        return
+        switch authState {
+        case .idle, .loading:
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
+                .onAppear {
+                    if case .idle = authState {
+                        authenticate()
                     }
-                    print("Session is now valid after authenticated in WKWebView, logging in")
-                    authState = .loggedIn(courses: courses)
                 }
+        case .newUser:
+            StartPage { result in
+                authState = .loading
+                UserDefaults.shared.set(result.accessToken, forKey: "accessToken")
+                UserDefaults.shared.set(result.sessionToken, forKey: "sessionToken")
+                authenticate()
             }
-            
-            ProgressView().progressViewStyle(CircularProgressViewStyle(tint: Color.white))
-                .onAppear { Task {
-                    CookieMonster.loadSessionCookiesIntoURLSession()
-                    if let courses = await Authenticator.validateSakaiSession() {
-                        print("Valid Sakai session loaded, logging in")
-                        authState = .loggedIn(courses: courses)
-                    } else if let existingAccessToken = UserDefaults.standard.string(forKey: "accessToken"),
-                              let existingSessionToken = UserDefaults.standard.string(forKey: "sessionToken") {
-                        print("Restored session is invalid, but we have an access token saved, let's validate it and use that")
-                        let tokenValid = Authenticator.validateAccessToken(existingAccessToken)
-                        var accessToken = existingAccessToken
-                        if !tokenValid {
-                            print("Access token is expired, refreshing it")
-                            do {
-                                accessToken = try await Authenticator.refreshAccessToken(accessToken: existingAccessToken,
-                                                                                         sessionToken: existingSessionToken)
-                            } catch {
-                                print("Couldn't refresh access token, logging out: ")
-                                print(error)
-                                authState = .loggingOut
-                                await Authenticator.logout()
-                                authState = .noAccessToken
-                            }
-                        }
-                        print("Building new session with valid accessToken")
-                        let request = Authenticator.buildSakaiAccessRequest(accessToken: accessToken)
-                        authState = .invalidSession(refreshSessionRequest: request)
-                    } else {
-                        print("Looks like a new user")
-                        authState = .noAccessToken
-                    }
-                }}
-        }}
+        case .loggedIn(let courses):
+            CollectionsLoader(courseIds: courses) { Task { /*logout method*/
+                authState = .loading
+                await Authenticator.logout()
+                authState = .newUser
+            }}
+        }
     }
 }
 

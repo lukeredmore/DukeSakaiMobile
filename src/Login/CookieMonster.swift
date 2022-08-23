@@ -10,31 +10,42 @@ import SwiftUI
 
 /* Cookie Monster is an invisible WKWebView who POSTs access token to shib which
  * then redirects to Sakai portal. Once portal is loaded, Cookie Monster steals
- * all the cookies of the WKWebView and copies them to disk and shared URLSession.
- * On restart, Cookie Monster will try to load the saved cookies as a head start
+ * all the cookies of the WKWebView.
  */
-struct CookieMonster: UIViewRepresentable {
-    typealias UIViewType = WKWebView
+class CookieMonster: WKWebView, WKNavigationDelegate {
+    private var continuation: CheckedContinuation<[HTTPCookie], Error>? = nil
+    private let cookieUrlPrefix: String
     
-    let request: URLRequest
-    let completion: ([String]?) -> Void
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+    init(frame: CGRect = .zero, configuration: WKWebViewConfiguration = WKWebViewConfiguration(), listeningFor cookieUrlPrefix: String) {
+        self.cookieUrlPrefix = cookieUrlPrefix
+        super.init(frame: frame, configuration: configuration)
+        self.navigationDelegate = self
     }
     
-    func makeUIView(context: Context) -> WKWebView {
-        let wv = WKWebView()
-        wv.navigationDelegate = context.coordinator
-        wv.isHidden = true
-        wv.load(request)
-        return wv
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    func updateUIView(_ uiView: WKWebView, context: Context) {}
+    func loadAndCollectCookies(_ request: URLRequest) async throws -> [HTTPCookie] {
+        print("Loading page to collect cookies")
+        load(request)
+        //TODO: implement timeout if requested page isn't reached. It's likely this user has a netId but doesn't use Sakai
+        return try await withCheckedThrowingContinuation { continuation in
+            self.continuation = continuation
+        }
+    }
     
-    static func loadSessionCookiesFromDisk() -> [HTTPCookie]? {
-        if let data = UserDefaults.standard.value(forKey: "cookies") as? Data,
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        guard let url = webView.url, url.absoluteString.hasPrefix(cookieUrlPrefix) else { return }
+        webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { cookies in
+            self.continuation?.resume(returning: cookies)
+        }
+    }
+}
+
+extension CookieMonster {
+    private static func loadSessionCookiesFromDisk() -> [HTTPCookie]? {
+        if let data = UserDefaults.shared.value(forKey: "cookies") as? Data,
            let cookies = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [HTTPCookie] {
             return cookies
         }
@@ -52,72 +63,20 @@ struct CookieMonster: UIViewRepresentable {
         }
     }
     
-    static func printCookiesAsJson(_ cookies: [HTTPCookie]) {
-        /// Wraps `HTTPCookie` in a container which conforms to `Codable` protocol.
-        final class CodableHTTPCookieContainer: Codable {
-          public enum Error: Swift.Error {
-            case failedToUnarchive
-          }
-          public let cookie: HTTPCookie
-
-          public init(_ cookie: HTTPCookie) {
-            self.cookie = cookie
-          }
-
-          public init(from decoder: Decoder) throws {
-            let container = try decoder.singleValueContainer()
-            let data = try container.decode(Data.self)
-            guard let cookie = NSKeyedUnarchiver.unarchiveObject(with: data) as? HTTPCookie else {
-              throw Error.failedToUnarchive
-            }
-            self.cookie = cookie
-          }
-
-          public func encode(to encoder: Encoder) throws {
-            var container = encoder.singleValueContainer()
-            let data = NSKeyedArchiver.archivedData(withRootObject: cookie)
-            try container.encode(data)
-          }
-        }
-        
-        print(cookies.count, "cookies:")
-        let codableCookies = cookies.map { CodableHTTPCookieContainer($0) }
-        let data = try! JSONEncoder().encode(codableCookies)
-        let jsonString = String(data: data,
-                                encoding: .utf8)!
-        print(jsonString)
-    }
-    
     static func saveSessionCookiesToDisk(_ cookies: [HTTPCookie]) {
-        printCookiesAsJson(cookies)
         let cookiesData = try! NSKeyedArchiver.archivedData(withRootObject: cookies, requiringSecureCoding: false)
-        UserDefaults.standard.set(cookiesData, forKey: "cookies")
+        UserDefaults.shared.set(cookiesData, forKey: "cookies")
     }
     
-    class Coordinator: NSObject, WKNavigationDelegate {
-        let parent: CookieMonster
-        
-        init(_ parent: CookieMonster) {
-            self.parent = parent
+    static func loadSessionCookiesIntoWKWebViewConfig() -> WKWebViewConfiguration {
+        let config = WKWebViewConfiguration()
+        guard let cookies = URLSession.shared.configuration.httpCookieStorage?.cookies else {
+            print("Could not find shared cookies")
+            return config
         }
-        
-        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            guard let url = webView.url, url.absoluteString.hasPrefix("https://sakai.duke.edu/portal") else { return }
-            
-            // Steal cookies from authnticated Sakai to URLSession
-            webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { cookies in
-                CookieMonster.saveSessionCookiesToDisk(cookies)
-
-                cookies.forEach { cookie in
-                    URLSession.shared.configuration.httpCookieStorage?.setCookie(cookie)
-                }
-                print("Stole cookies from authenticated Sakai in (background) WKWebView and stored them in URLSession and disk")
-                Task {
-                    let courses = await Authenticator.validateSakaiSession()
-                    self.parent.completion(courses)
-                }
-                
-            }
+        for cookie in cookies {
+            config.websiteDataStore.httpCookieStore.setCookie(cookie)
         }
+        return config
     }
 }

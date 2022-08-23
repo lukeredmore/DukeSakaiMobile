@@ -86,8 +86,7 @@ struct AssignmentWebView: UIViewRepresentable {
     
     
     func makeUIView(context: Context) -> WKWebView {
-        let config = WKWebViewConfiguration()
-        config.copyCookiesFromURLSession()
+        let config = CookieMonster.loadSessionCookiesIntoWKWebViewConfig()
         let contentController = WKUserContentController()
         contentController.addUserScript(jsScript)
         config.userContentController = contentController

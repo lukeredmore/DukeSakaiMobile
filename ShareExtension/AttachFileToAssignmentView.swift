@@ -26,10 +26,30 @@ struct PreviewWebView: UIViewRepresentable {
 struct AttachFileToAssignmentView: View {
     @EnvironmentObject private var env: ImportEnvironment
     
+    @State private var authState: AuthState = .idle
+    
     var body: some View {
-        if let files = env.files, !files.isEmpty {
-            FilePreview(files: files)
-            Spacer()
+        if let files = env.files, let scene = env.scene, !files.isEmpty {
+            VStack {
+                FilePreview(files: files)
+                if case .loggedIn(let courses) = authState {
+                    Text(courses.joined(separator: ", "))
+                        .frame(maxHeight: .infinity)
+                } else {
+                    ProgressView()
+                        .frame(maxHeight: .infinity)
+                        .onAppear { Task {
+                            do {
+                                let courses = try await Authenticator.restoreSession(scene: scene)
+                                authState = .loggedIn(courses: courses)
+                            } catch {
+                                print(error)
+                                //TODO: show alert
+                                //TODO: Dismiss
+                            }
+                        }}
+                }
+            }
         }
     }
 }

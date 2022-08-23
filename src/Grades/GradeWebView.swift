@@ -21,8 +21,7 @@ struct GradeWebView: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> WKWebView {
-        let config = WKWebViewConfiguration()
-        config.copyCookiesFromURLSession()
+        let config = CookieMonster.loadSessionCookiesIntoWKWebViewConfig()
         let wv = WKWebView(frame: .zero, configuration: config)
         wv.navigationDelegate = context.coordinator
 //        wv.load(request)
