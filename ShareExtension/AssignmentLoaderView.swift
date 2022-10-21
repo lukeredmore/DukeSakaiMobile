@@ -6,51 +6,35 @@
 //
 
 import SwiftUI
-import WebKit
 
-struct PreviewWebView: UIViewRepresentable {
-    typealias UIViewType = WKWebView
-    
-    let url: URL
-    
-    func makeUIView(context: Context) -> WKWebView {
-        let wv = WKWebView()
-        wv.load(URLRequest(url: url))
-        return wv
-    }
-    
-    func updateUIView(_ uiView: WKWebView, context: Context) { }
-}
-
-
-struct AttachFileToAssignmentView: View {
+struct AssignmentLoaderView: View {
     @EnvironmentObject private var env: ImportEnvironment
     
     @State private var authState: AuthState = .idle
     
+    @State private var assignments = [Assignment]()
+        
     var body: some View {
         if let files = env.files, let scene = env.scene, !files.isEmpty {
-            VStack {
-                FilePreview(files: files)
-                if case .loggedIn(let courses) = authState {
-                    Text(courses.joined(separator: ", "))
+                if case .loggedIn = authState {
+                    OpenAssignmentsView(assignments: assignments)
                         .frame(maxHeight: .infinity)
                 } else {
                     ProgressView()
-                        .frame(maxHeight: .infinity)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .onAppear { Task {
                             do {
                                 let courses = try await Authenticator.restoreSession(scene: scene)
+                                assignments = try await OpenAssignmentsRetriever.getOpenAssignments()
                                 authState = .loggedIn(courses: courses)
                             } catch {
                                 print(error)
-                                //TODO: show alert
-                                //TODO: Dismiss
+                                env.showAlert("Could not find any open assignments")
+                                env.cancel()
                             }
                         }}
                 }
             }
-        }
     }
 }
 

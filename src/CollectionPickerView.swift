@@ -24,10 +24,12 @@ struct CollectionPickerView: View {
             Text(collection.collectionName)
                 .font(.headline)
             Spacer()
-            Image(systemName: "chevron.right")
-                .scaleEffect(0.6)
-                .offset(x: -2.0)
-                .foregroundColor(Color(UIColor.systemGray2))
+            if env.selectedTab != 1 {
+                Image(systemName: "chevron.right")
+                    .scaleEffect(0.6)
+                    .offset(x: -2.0)
+                    .foregroundColor(Color(UIColor.systemGray2))
+            }
         }
         .foregroundColor(.primary)
         .frame(maxWidth: .infinity)
@@ -63,7 +65,7 @@ struct CollectionPickerView: View {
                 collectionSelected(collection)
             } label : {
                 HeaderRow(collection: collection)
-            }
+            }.disabled(env.selectedTab == 1)
         }
     }
     

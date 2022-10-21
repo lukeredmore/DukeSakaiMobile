@@ -9,11 +9,22 @@ import SwiftUI
 
 struct StartPage: View {
     @State private var showingLoginSheet = false
+    @State private var showingInfoSheet = false
     let completion: ((accessToken: String, sessionToken: String)) -> Void
     
     var body: some View {
         GeometryReader { geo in
             VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        showingInfoSheet = true
+                    } label: {
+                        Image(systemName: "info.circle")
+                            .font(.title2)
+                            .frame(width: 40, height: 40)
+                    }
+                }
                 Spacer()
                 Button {
                     showingLoginSheet = true
@@ -40,6 +51,28 @@ struct StartPage: View {
             }
             .interactiveDismissDisabled()
             .edgesIgnoringSafeArea([.leading, .trailing, .bottom])
+        }.sheet(isPresented: $showingInfoSheet) {
+            if #available(iOS 16.0, *) {
+                LogViewer()
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button("Close") {
+                                showingInfoSheet = false
+                            }
+                        }
+                    }
+                    .toolbarBackground(Color(uiColor: .systemBackground), for: .navigationBar)
+            } else {
+                LogViewer()
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button("Close") {
+                                showingInfoSheet = false
+                            }
+                        }
+                    }
+            }
+            
         }
     }
 }

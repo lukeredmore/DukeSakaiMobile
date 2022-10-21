@@ -10,10 +10,11 @@ import SwiftUI
 @main
 struct DukeSakaiApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject private var logDataController = LogDataController()
     
     var body: some Scene {
         WindowGroup {
-            AuthDecider()
+            AuthDecider().environment(\.managedObjectContext, logDataController.container.viewContext)
         }
     }
 }

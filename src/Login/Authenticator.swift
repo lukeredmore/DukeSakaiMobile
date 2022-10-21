@@ -75,7 +75,7 @@ class Authenticator {
         }
     }
     
-    static func getCourseList() async throws -> [String] {
+    private static func getCourseList() async throws -> [String] {
         let json = try await Networking.json(from: URL(string: "https://sakai.duke.edu/direct/membership.json?_limit=100")!)
         let membershipCollection : [[String: AnyObject]] = try json.get("membership_collection")
         
@@ -96,7 +96,7 @@ class Authenticator {
         }
     }
     
-    static func refreshAccessToken(accessToken: String, sessionToken: String) async throws -> String {
+    private static func refreshAccessToken(accessToken: String, sessionToken: String) async throws -> String {
         var request = URLRequest(url: URL(string: "https://mobile-authorizer.oit.duke.edu/dukemobile/refresh")!)
         request.httpMethod = "POST"
         request.setValue(accessToken, forHTTPHeaderField: "x-access-token")
@@ -119,7 +119,7 @@ class Authenticator {
         
     }
     
-    static func validateAccessToken(_ token: String) -> Bool {
+    private static func validateAccessToken(_ token: String) -> Bool {
         let tokenParts: [[String: AnyObject]?] = token.split(separator: ".").map { encodedPart in
             guard let bodyData = Data(base64Encoded: String(encodedPart), autoPadding: true),
                   let json = try? JSONSerialization.jsonObject(with: bodyData, options: []),
@@ -139,7 +139,7 @@ class Authenticator {
         return false
     }
     
-    static func buildSakaiAccessRequest(accessToken: String) -> URLRequest {
+    private static func buildSakaiAccessRequest(accessToken: String) -> URLRequest {
         let authURLString = "https://shib.oit.duke.edu/idp/oauth/oauthtokensso"
         let url = URL(string: authURLString)!
         var request = URLRequest(url: url)

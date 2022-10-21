@@ -30,14 +30,15 @@ class Course: Equatable, Codable {
         lhs.siteId == rhs.siteId
     }
     
-    let name: String, siteId: String, term: String, instructor: String, lastModified: Int64, created: Int64
+    let name: String, siteId: String, term: String, instructor: String, lastModified: Int64, created: Int64, gradebookUrl: String?
     
-    init(name: String, siteId: String, term: String, instructor: String, lastModified: Int64, created: Int64) {
+    init(name: String, siteId: String, term: String, instructor: String, lastModified: Int64, created: Int64, gradebookUrl: String?) {
         self.name = name
         self.siteId = siteId
         self.term = term
         self.instructor = instructor
         self.lastModified = lastModified
         self.created = created
+        self.gradebookUrl = gradebookUrl
     }
 }

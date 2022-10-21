@@ -14,10 +14,10 @@ struct AssignmentDetailView: View {
     @State private var resourceToShow : Resource? = nil
     @State private var showingSheet = false
     
-    
     var body: some View {
         VStack {
-            AssignmentWebView(directUrl: assignment.directUrl, resourceToShow: $resourceToShow)
+            AssignmentWebView(directUrl: assignment.directUrl,
+                              resourceToShow: $resourceToShow)
                 .navigationTitle(assignment.title)
                 .onChange(of: resourceToShow) { _ in
                     showingSheet = true
@@ -43,48 +43,14 @@ struct AssignmentDetailView: View {
 }
 
 struct AssignmentWebView: UIViewRepresentable {
-    var cssString: String {
-        return """
-            body {
-                padding: 1em;
-                color: \(UIColor.label.hex) !important;
-                background-color: \(UIColor.systemBackground.hex) !important;
-            }
-            .itemSummary th, .itemSummary .row, .textPanel * {
-                color: \(UIColor.label.hex) !important;
-            }
-            a, .textPanel a {
-                color: \(UIColor.systemBlue.hex) !important;
-            }
-            img {
-                max-width: 100%;
-            }
-        """.replacingOccurrences(of: "\n", with: "")
-    }
-    
-    var jsScript: WKUserScript {
-        WKUserScript(source: """
-        var style = document.createElement('style');
-        style.innerHTML = '\(cssString)';
-        document.head.appendChild(style);
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
-        var head = document.getElementsByTagName('head')[0];
-        head.appendChild(meta);
-        $('.Mrphs-topHeader').remove();
-        $('.Mrphs-siteHierarchy').remove();
-        $('#toolMenuWrap').remove();
-        $('#skipNav').remove();
-        $('div.act').has("input[value='Back to list']").remove();
-        $("form[name='dummyForm']").has("input[value='Done']").remove();
-        $("#submitPanel input[value='Cancel']").remove();
-        """,
-                     injectionTime: .atDocumentEnd,
-                     forMainFrameOnly: false)
-    }
+    // MARK: Instance properties
+    @EnvironmentObject var shareEnv: ImportEnvironment
+    let directUrl: URL
+    @Binding var resourceToShow: Resource?
     
     
+    // MARK: UIViewRepresentable conformance
+    typealias UIViewType = WKWebView
     func makeUIView(context: Context) -> WKWebView {
         let config = CookieMonster.loadSessionCookiesIntoWKWebViewConfig()
         let contentController = WKUserContentController()
@@ -106,10 +72,47 @@ struct AssignmentWebView: UIViewRepresentable {
     
     func updateUIView(_ uiView: WKWebView, context: Context) { }
     
-    typealias UIViewType = WKWebView
+    // MARK: Delegate properties and methods
+    private var cssString: String {
+        return """
+            body {
+                padding: 1em;
+                color: \(UIColor.label.hex) !important;
+                background-color: \(UIColor.systemBackground.hex) !important;
+            }
+            .itemSummary th, .itemSummary .row, .textPanel * {
+                color: \(UIColor.label.hex) !important;
+            }
+            a, .textPanel a {
+                color: \(UIColor.systemBlue.hex) !important;
+            }
+            img {
+                max-width: 100%;
+            }
+        """.replacingOccurrences(of: "\n", with: "")
+    }
     
-    let directUrl: URL
-    @Binding var resourceToShow: Resource?
+    private var jsScript: WKUserScript {
+        WKUserScript(source: """
+        var style = document.createElement('style');
+        style.innerHTML = '\(cssString)';
+        document.head.appendChild(style);
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(meta);
+        $('.Mrphs-topHeader').remove();
+        $('.Mrphs-siteHierarchy').remove();
+        $('#toolMenuWrap').remove();
+        $('#skipNav').remove();
+        $('div.act').has("input[value='Back to list']").remove();
+        $("form[name='dummyForm']").has("input[value='Done']").remove();
+        $("#submitPanel input[value='Cancel']").remove();
+        """,
+                     injectionTime: .atDocumentEnd,
+                     forMainFrameOnly: false)
+    }
     
     class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
         let parent: AssignmentWebView
@@ -122,20 +125,24 @@ struct AssignmentWebView: UIViewRepresentable {
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-                guard self.initialLoad == true else { print("Already uploaded")
-                    return
-                }
+                guard self.initialLoad == true,
+                      let file : ImportedFile = self.parent.shareEnv.files?[0] else { return }
+                print("Uploading files")
                 self.initialLoad = false
-                let path = Bundle.main.path(forResource: "test", ofType: "pdf")!
-                let data = try! Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                                
+                //TODO: add support for multiple files
+                let data = try! Data(contentsOf: file.path, options: .mappedIfSafe)
+//                let path = Bundle.main.path(forResource: "test", ofType: "pdf")!
+//                let data = try! Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 webView.populateFileInput(querySelector: "#attachmentspanel input[name='upload']",
                                           data: data,
-                                          filename: "test.pdf",
-                                          type: "application/pdf")
+                                          filename: file.name,
+                                          type: file.uti.preferredMIMEType ?? "unknown")
             }
             
         }
         
+        @MainActor
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
             guard let resource = ResourceRetriever.getResource(fromResourceUrl: navigationAction.request.url) else {
                 return .allow

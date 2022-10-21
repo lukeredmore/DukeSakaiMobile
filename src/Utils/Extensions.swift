@@ -7,21 +7,25 @@
 
 import UIKit
 import WebKit
+import CoreData
 
 public func print(_ items: String..., filename: String = #file, function : String = #function, line: Int = #line, separator: String = " ", terminator: String = "\n") {
+    let filename = URL(fileURLWithPath: filename).lastPathComponent.replacingOccurrences(of: ".swift", with: "")
+    let output = items.map { "\($0)" }.joined(separator: separator)
+    CoreDataManager.shared.appendToLog(source: filename, msg: output)
     #if DEBUG
-    let pretty = " ⭐️ [\(URL(fileURLWithPath: filename).lastPathComponent.replacingOccurrences(of: ".swift", with: ""))] "
-        let output = items.map { "\($0)" }.joined(separator: separator)
-        Swift.print(pretty+output, terminator: terminator)
+        Swift.print(" ⭐️ [\(filename)] \(output)", terminator: terminator)
     #else
         Swift.print(items)
     #endif
+    
 }
 
 public func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+    let output = items.map { "\($0)" }.joined(separator: separator)
+    CoreDataManager.shared.appendToLog(source: "", msg: output)
     #if DEBUG
-        let output = items.map { "\($0)" }.joined(separator: separator)
-    Swift.print(" ⭐️ [\(URL(fileURLWithPath: #file).lastPathComponent.replacingOccurrences(of: ".swift", with: ""))] \(output)", terminator: terminator)
+        Swift.print(" ⭐️ [\(URL(fileURLWithPath: #file).lastPathComponent.replacingOccurrences(of: ".swift", with: ""))] \(output)", terminator: terminator)
     #else
         Swift.print(items)
     #endif

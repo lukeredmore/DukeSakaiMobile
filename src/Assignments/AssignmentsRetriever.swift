@@ -7,29 +7,6 @@
 
 import SwiftUI
 
-
-struct Assignment {
-    var title: String
-    var id: String
-    var status: String?
-    var scale: String?
-    var directUrl: URL
-    var instructions: String
-    var submissionType: String
-    var dueAt: Date?
-    
-    static func build(from json: [String: AnyObject]) throws -> Assignment {
-        return Assignment(title: try json.get("title"),
-                          id: try json.get("id"),
-                          status: try json.get("status"),
-                          scale: try json.get("gradeScaleMaxPoints"),
-                          directUrl: URL(string: try json.get("entityURL"))!,
-                          instructions: try json.get("instructions"),
-                          submissionType: try json.get("submissionType"),
-                          dueAt: try Date(try json.get("dueTimeString"), strategy: .iso8601))
-    }
-}
-
 class AssignmentsRetriever {
     private static func getAssignments(forSiteId siteId: String) async throws -> [Assignment] {
         let url = try Networking.createSakaiURL(siteId: siteId, endpoint: "assignment", options: [:])

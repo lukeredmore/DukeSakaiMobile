@@ -17,6 +17,10 @@ struct ResourceWebView: UIViewRepresentable {
         self.request = URLRequest(url: URL(string: urlString)!)
     }
     
+    init(url: URL) {
+        self.request = URLRequest(url: url)
+    }
+    
     func makeCoordinator() -> ResourceWebView.Coordinator {
         Coordinator(self)
     }
@@ -53,7 +57,10 @@ struct ResourceWebView: UIViewRepresentable {
             } else {
                 print(navigationAction.request.url!.absoluteString)
                 await MainActor.run {
-                    UIApplication.shared.open(navigationAction.request.url!)
+                    //TODO: open in safari when navigating away
+//                    #if available
+//                    UIApplication.shared.open(navigationAction.request.url!)
+//                    #endif
                     parent.presentationMode.wrappedValue.dismiss()
                 }
                 return .cancel

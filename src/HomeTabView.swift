@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeTabView: View {
-    @State private var selection = 3
+    @EnvironmentObject var env : SakaiEnvironment
     
     init() {
         let tabBarAppearance = UITabBarAppearance()
@@ -32,8 +32,8 @@ struct HomeTabView: View {
     }
     
     var body: some View {
-        TabView(selection: $selection) {
-            Text("This is your gradebook")
+        TabView(selection: $env.selectedTab) {
+            GradeWebViewContainer()
                 .tabItem {
                     Image(systemName: "text.book.closed")
                     Text("Grades")
@@ -62,6 +62,13 @@ struct HomeTabView: View {
                     Text("Resources")
                 }
                 .tag(4)
+            LogViewer()
+//            BARStatusView()
+                .tabItem {
+                    Image(systemName: "info.circle")
+                    Text("Info")
+                }
+                .tag(5)
         }
     }
 }

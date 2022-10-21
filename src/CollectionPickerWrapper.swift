@@ -19,7 +19,6 @@ struct LogoutButton: View {
         .foregroundColor(.white)
         .confirmationDialog("Are you sure you want to sign out?", isPresented: $showingOptions, titleVisibility: .visible) {
             SwiftUI.Button("Sign out", role: .destructive, action: env.logout)
-            
         }
     }
 }

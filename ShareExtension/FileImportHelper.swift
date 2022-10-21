@@ -8,42 +8,7 @@
 import Foundation
 import PDFKit
 import Photos
-import QuickLookThumbnailing
 import VisionKit
-
-public class ImportedFile: Identifiable {
-    public var name: String
-    public var path: URL
-    public var uti: UTI
-    public static let THUMBNAIL_SIZE = 75.0
-    
-    public init(name: String, path: URL, uti: UTI) {
-        self.name = name
-        self.path = path
-        self.uti = uti
-    }
-    
-    public func getThumbnail(completion: @escaping (UIImage) -> Void) {
-        if uti.preferredMIMEType?.contains("image") == true {
-            let data = try! Data(contentsOf: path)
-            completion(UIImage(data: data)!)
-            return
-        }
-        let request = QLThumbnailGenerator.Request(
-            fileAt: path,
-            size: CGSize(width: ImportedFile.THUMBNAIL_SIZE, height: ImportedFile.THUMBNAIL_SIZE),
-            scale: UIScreen.main.scale,
-            representationTypes: [.lowQualityThumbnail, .thumbnail])
-        QLThumbnailGenerator.shared.generateRepresentations(for: request) { image, _, error in
-            if let image = image {
-                completion(image.uiImage)
-            } else if let error = error {
-                print(error)
-                completion(UIImage(named: "default-thumbnail")!)
-            }
-        }
-    }
-}
 
 public enum PhotoFileFormat: Int, CaseIterable {//}, PersistableEnum {
     case jpg, heic, png
@@ -85,33 +50,6 @@ public enum PhotoFileFormat: Int, CaseIterable {//}, PersistableEnum {
         return uti.preferredFilenameExtension!
     }
 }
-
-//public enum ScanFileFormat: Int, CaseIterable {
-//    case pdf, image
-//
-//    public var title: String {
-//        switch self {
-//        case .pdf:
-//            return "PDF"
-//        case .image:
-//            return "Image (.JPG)"
-//        }
-//    }
-//
-//    public var uti: UTI {
-//        switch self {
-//        case .pdf:
-//            return .pdf
-//        case .image:
-//            return .jpeg
-//        }
-//    }
-//
-//    public var `extension`: String {
-//        return uti.preferredFilenameExtension!
-//    }
-//}
-
 
 public class FileImportHelper {
     public static let instance = FileImportHelper()

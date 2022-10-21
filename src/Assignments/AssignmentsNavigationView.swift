@@ -23,6 +23,7 @@ struct AssignmentsNavigationView: View {
         List(assignments, id: \.title) { item in
             NavigationLink(item.title) {
                 AssignmentDetailView(assignment: item)
+                    .environmentObject(ImportEnvironment.empty)
             }
         }
     }
